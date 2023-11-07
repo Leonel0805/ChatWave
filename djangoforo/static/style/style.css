@@ -1,0 +1,14 @@
+h1{
+    color: red;
+}
+
+body {
+    background-color:rgb(235, 236, 183);
+}
+
+.navbar{
+    background-color: rgb(199, 251, 255);
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+}

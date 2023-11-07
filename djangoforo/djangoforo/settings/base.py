@@ -24,11 +24,14 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.core'
     
 ]
 
 THIRD_APPS = [
-    'channels'
+    'channels',
+    'rest_framework',
+    'rest_framework_simplejwt'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
@@ -48,7 +51,7 @@ ROOT_URLCONF = 'djangoforo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'djangoforo', 'templates')],
+        'DIRS': [os.path.join('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'style/style.css'%}">
+
+    <!-- BOOTSTRAP5 -->
+
+    <title> {% block title %} {% endblock %} | Django Foro </title>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    {% include 'navbar.html' %}
+
+    {% block content %}
+        <h1>base</h1>
+
+    {% endblock %}
+    
+</body>
+</html>
