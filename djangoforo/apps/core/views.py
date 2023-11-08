@@ -21,6 +21,18 @@ def login(request):
         if response.status_code == 200:
             return redirect('home')
             
+        elif response.status_code == 401:
+            message = response.json()['error']
+            return render(request, 'users/login.html', {
+                'message':message
+            })
+        
+        elif response.status_code == 404:
+            message = response.json()['error']
+            return render(request, 'users/login.html',{
+                'message':message
+            })
+        
     return render(request, 'users/login.html', {
         'form':form
     })

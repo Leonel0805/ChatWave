@@ -10,4 +10,8 @@
         <button>Enviar</button>
     </form>
 
+    {% if message %}
+        <p>Mensaje:{{ message }}</p>
+    {% endif %}
+
 {% endblock %}

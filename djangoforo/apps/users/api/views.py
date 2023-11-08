@@ -54,18 +54,19 @@ class UserLoginAPIView(APIView):
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
-        
+          
         # authenticate recibe username y password
-        user = authenticate(
+        user_authenticate = authenticate(
             username=email,
             password=password
         )
-        print(email)
-
-        if user:
+        
+        email_found = User.objects.filter(email=email).first() 
+        
+        if user_authenticate:
             login_serializer = self.serializer_class(data = request.data)
             if login_serializer.is_valid():
-                user_serializer = UserSerializer(user)
+                user_serializer = UserSerializer(user_authenticate)
                 return Response({
                     'token': login_serializer.validated_data['access'],
                     'refresh': login_serializer.validated_data['refresh'],
@@ -73,12 +74,13 @@ class UserLoginAPIView(APIView):
                     'message':"Login successfully!"
                 }, status=status.HTTP_200_OK)
                 
-            else:
-                return Response({
-                    'error': login_serializer.errors
-                }, status=status.HTTP_400_BAD_REQUEST)
-                
-        else:
+
+        elif email_found: 
             return Response({
-                'error': 'not user'
+                'error': 'Invalid credentials'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        else:       
+            return Response({
+                'error': 'User not found'
             }, status=status.HTTP_404_NOT_FOUND)
