@@ -12,6 +12,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .serializers import (
@@ -25,7 +26,6 @@ class UserListAPIView(ListAPIView):
     
     serializer_class = UserSerializer
     queryset = User.objects.all()
-
 
 #Registro de ususarios, no proveemos un token, solo en el login
 class UserRegisterAPIView(APIView):
@@ -49,6 +49,9 @@ class UserRegisterAPIView(APIView):
             
 class UserLoginAPIView(APIView):
     
+    #authentication_classes = [JWTAuthentication]
+    #permission_classes = [IsAuthenticated]
+    
     serializer_class = TokenObtainPairSerializer
     
     def post(self, request):
@@ -67,6 +70,7 @@ class UserLoginAPIView(APIView):
             login_serializer = self.serializer_class(data = request.data)
             if login_serializer.is_valid():
                 user_serializer = UserSerializer(user_authenticate)
+                
                 return Response({
                     'token': login_serializer.validated_data['access'],
                     'refresh': login_serializer.validated_data['refresh'],
@@ -84,3 +88,27 @@ class UserLoginAPIView(APIView):
             return Response({
                 'error': 'User not found'
             }, status=status.HTTP_404_NOT_FOUND)
+            
+            
+#Logout
+
+class UserLogoutAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    serializer_class = TokenObtainPairSerializer()
+    
+    def post(self, request):
+
+        user = User.objects.filter(pk = request.user.id).first()
+
+        if user:
+            RefreshToken.for_user(user)
+            return Response({
+                'message':'Logout successfully!'
+            })
+        
+        else:
+            return Response({
+                'error': 'Not found'
+            })

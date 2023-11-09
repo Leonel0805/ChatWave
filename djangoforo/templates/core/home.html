@@ -4,6 +4,18 @@
 
 {% block content %}
 
+    {% if user.is_authenticated %}
+        <p> {{user.username}} </p>
+    {% endif %}
+
+
     <h1>Home</h1>
 
+    {{user.username}}
+
+    {% if data %}
+        {% for user in data %}
+           <p>  {{user.email}} | {{user.username}}</p>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
