@@ -52,11 +52,12 @@ class UserGenericViewSet(GenericViewSet):
             
     def retrieve(self, request, pk=None):
         
+        self.serializer_class = self.update_serializer_class
        # user = User.objects.filter(pk = pk).first()
         user = self.get_object(pk)
         
         if user:
-            user_serializer = self.list_serializer_class(user)
+            user_serializer = self.serializer_class(user)
             return Response({
                 'user':user_serializer.data
             })
@@ -73,7 +74,7 @@ class UserGenericViewSet(GenericViewSet):
                     'user update': user_serializer.data
                 })
     
-    @action(detail=True, methods=['put'], url_path='set_password')
+    @action(detail=True, methods=['put'], url_path='set_password', serializer_class=UpdatePasswordSerializer)
     def set_password(self, request, pk=None):
         user = self.get_object(pk)
         
