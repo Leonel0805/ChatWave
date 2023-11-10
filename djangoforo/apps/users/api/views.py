@@ -1,5 +1,5 @@
 from .serializers import (
-    UserSerializer
+    UserListSerializer
 )
 
 from django.contrib.auth import authenticate
@@ -16,7 +16,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .serializers import (
-    UserRegisterSerializer
+    UserSerializer
 )
 
 class UserListAPIView(ListAPIView):
@@ -24,7 +24,7 @@ class UserListAPIView(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     
-    serializer_class = UserSerializer
+    serializer_class = UserListSerializer
     queryset = User.objects.all()
 
 #Registro de ususarios, no proveemos un token, solo en el login
