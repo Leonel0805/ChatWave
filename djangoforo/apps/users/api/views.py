@@ -33,7 +33,7 @@ class UserRegisterAPIView(APIView):
     def post(self, request):
         
         # serializamo lo obtenido por POST
-        user_serializer = UserRegisterSerializer(data = request.data)
+        user_serializer = UserSerializer(data = request.data)
         
         if user_serializer.is_valid():
             user = user_serializer.save()

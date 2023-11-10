@@ -7,7 +7,7 @@ from .viewsets import (
 
 router = DefaultRouter()
 
-router.register('userslol', UserGenericViewSet, 'userslol')
-router.register('userview', UsersViewSet, 'userviews')
+router.register('usersview', UserGenericViewSet, 'userslol')
+router.register('userviewset', UsersViewSet, 'userviews')
 
 urlpatterns = router.urls

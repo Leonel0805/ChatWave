@@ -1,6 +1,6 @@
 from apps.users.models import User 
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
-from .serializers import UserListSerializer, UserSerializer, UpdateUserSerializer
+from .serializers import UserListSerializer, UserSerializer, UpdateUserSerializer, UpdatePasswordSerializer
 
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -13,7 +13,7 @@ class UserGenericViewSet(GenericViewSet):
     serializer_class = UserSerializer
     list_serializer_class = UserListSerializer
     update_serializer_class = UpdateUserSerializer
-    queryset = None
+    queryset = User.objects.filter(is_active=False)
     
     #get_object() nos devuelve el objeto por pk
     def get_object(self, pk):
@@ -73,10 +73,23 @@ class UserGenericViewSet(GenericViewSet):
                     'user update': user_serializer.data
                 })
     
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=['put'], url_path='set_password')
     def set_password(self, request, pk=None):
-        pass
+        user = self.get_object(pk)
+        
+        if user:
+            password_serializer = UpdatePasswordSerializer(user, data=request.data)
+            if password_serializer.is_valid():
+                password_serializer.save()
+                return Response({
+                    'message':'password change'
+                })    
+            
     
+        return Response({
+            'error': 'not found'
+        })
+            
     def destroy(self, request, pk=None):
         user = self.get_object(pk)
         
