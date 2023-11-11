@@ -7,10 +7,12 @@
 
     <h1>Home</h1>
 
-    {{user.username}}
+    {% if user %}
+        {{user.email}}
+    {% endif %}
 
     {% if data %}
-        {% for user in data %}
+        {% for user in data.users %}
            <p>  {{user.email}} | {{user.username}}</p>
         {% endfor %}
     {% endif %}

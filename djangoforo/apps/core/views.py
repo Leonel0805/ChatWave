@@ -7,17 +7,27 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-
+import json
 
 #home
+@authentication_classes([JWTAuthentication])  # Reemplaza JWTAuthentication con tu clase de autenticación JWT específica
+@permission_classes([IsAuthenticated])
 def home(request):
     
     if request.method == 'GET':
-        url = ('http://127.0.0.1:8000/api/users/')
+      
+        url = ('http://127.0.0.1:8000/api/usersview/usersview/')
         
         # Obtener el token guardado en la cookie
         token = request.COOKIES.get('Bearer')
-      
+        
+        #obtenemos el user guardado en cookie
+        user_jsonstr = request.COOKIES.get('User')
+        
+        #convertimos el user type str a dict 
+        user = json.loads(user_jsonstr)
+        print(user['username'])
+        
         #pasar el token guardado en cookie al header
         headers = {
             'Authorization': f'Bearer {token}'
@@ -25,10 +35,12 @@ def home(request):
         
         response = requests.get(url, headers=headers)
         data = response.json()
+        print(data)
         
         if response.status_code == 200:
             return render(request, 'core/home.html', {
-                'data':data
+                'data':data,
+                'user':user
             })
 
     return render(request, 'core/home.html')
@@ -47,10 +59,15 @@ def login(request):
         if response.status_code == 200:
             #accedemos al token
             token = response.json()['token']
+            user = response.json()['user']
             
+            #convertimos el objeto a str json
+            user_jsonstr = json.dumps(user)
             #lo almacenamos en una cookie
             response_html =  redirect('home')
             response_html.set_cookie('Bearer', token)
+            response_html.set_cookie('User', user_jsonstr)
+            
             return response_html
             
         elif response.status_code == 401:

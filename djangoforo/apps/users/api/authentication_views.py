@@ -1,11 +1,6 @@
-from .serializers import (
-    UserListSerializer
-)
-
 from django.contrib.auth import authenticate
 
 from apps.users.models import User 
-from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework import status
 
@@ -15,17 +10,11 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .serializers import (
-    UserSerializer
+from .serializers import(
+    UserSerializer,
+    UserMeSerializer
 )
 
-class UserListAPIView(ListAPIView):
-    
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    
-    serializer_class = UserListSerializer
-    queryset = User.objects.all()
 
 #Registro de ususarios, no proveemos un token, solo en el login
 class UserRegisterAPIView(APIView):
@@ -48,10 +37,7 @@ class UserRegisterAPIView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
             
 class UserLoginAPIView(APIView):
-    
-    #authentication_classes = [JWTAuthentication]
-    #permission_classes = [IsAuthenticated]
-    
+     
     serializer_class = TokenObtainPairSerializer
     
     def post(self, request):
@@ -69,7 +55,7 @@ class UserLoginAPIView(APIView):
         if user_authenticate:
             login_serializer = self.serializer_class(data = request.data)
             if login_serializer.is_valid():
-                user_serializer = UserSerializer(user_authenticate)
+                user_serializer = UserMeSerializer(user_authenticate)
                 
                 return Response({
                     'token': login_serializer.validated_data['access'],
@@ -84,14 +70,13 @@ class UserLoginAPIView(APIView):
                 'error': 'Invalid credentials'
             }, status=status.HTTP_401_UNAUTHORIZED)
 
-        else:       
-            return Response({
-                'error': 'User not found'
-            }, status=status.HTTP_404_NOT_FOUND)
+      
+        return Response({
+            'error': 'User not found'
+        }, status=status.HTTP_404_NOT_FOUND)
             
             
 #Logout
-
 class UserLogoutAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -108,7 +93,7 @@ class UserLogoutAPIView(APIView):
                 'message':'Logout successfully!'
             })
         
-        else:
-            return Response({
-                'error': 'Not found'
-            })
+   
+        return Response({
+            'error': 'Not found'
+        })

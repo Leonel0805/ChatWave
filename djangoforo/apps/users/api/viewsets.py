@@ -100,11 +100,7 @@ class UserGenericViewSet(GenericViewSet):
             return Response({
                 'message':'Usuario eliminado!'
             })
-        else:
-            return Response({
-                'error':'NOT FOUND'
-            })
-#Model view set
-class UsersViewSet(ModelViewSet):
-    serializer_class = UserListSerializer
-    queryset = User.objects.all()
+    
+        return Response({
+            'error':'NOT FOUND'
+        })
