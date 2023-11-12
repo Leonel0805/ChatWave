@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
-import requests
+from django.contrib import messages
 from .forms import LoginForm
 
 from rest_framework.decorators import authentication_classes, permission_classes
@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 import json
+import requests
 
 #home
 @authentication_classes([JWTAuthentication])  # Reemplaza JWTAuthentication con tu clase de autenticación JWT específica
@@ -38,6 +39,7 @@ def home(request):
         print(data)
         
         if response.status_code == 200:
+            messages.success(request, 'usuarios cargados correctamente')
             return render(request, 'core/home.html', {
                 'data':data,
                 'user':user
@@ -67,6 +69,8 @@ def login(request):
             response_html =  redirect('home')
             response_html.set_cookie('Bearer', token)
             response_html.set_cookie('User', user_jsonstr)
+            
+            messages.success(request, 'Buen logeo')
             
             return response_html
             
