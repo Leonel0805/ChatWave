@@ -14,5 +14,9 @@ body {
 }
 
 .success{
-    color: rgb(60, 255, 0);
+    color: rgb(47, 202, 0);
+}
+
+.error{
+    color: red;
 }

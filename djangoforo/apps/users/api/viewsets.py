@@ -4,16 +4,21 @@ from .serializers import UserListSerializer, UserSerializer, UpdateUserSerialize
 
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 #la diferencia entre GenericViewSet y un ModelViewSet es que el
 #model ya tiene los metodos predeterminados y podes sobreescribir
 # en cambio GenericViewSet no tiene los metodos
 
 class UserGenericViewSet(GenericViewSet):
+    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
     serializer_class = UserSerializer
     list_serializer_class = UserListSerializer
     update_serializer_class = UpdateUserSerializer
-    queryset = User.objects.filter(is_active=False)
+    queryset = None
     
     #get_object() nos devuelve el objeto por pk
     def get_object(self, pk):

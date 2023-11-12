@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib import messages
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -10,9 +10,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 import json
 import requests
 
-#home
-@authentication_classes([JWTAuthentication])  # Reemplaza JWTAuthentication con tu clase de autenticación JWT específica
-@permission_classes([IsAuthenticated])
+# Home
 def home(request):
     
     if request.method == 'GET':
@@ -40,19 +38,52 @@ def home(request):
         
         if response.status_code == 200:
             messages.success(request, 'usuarios cargados correctamente')
+            
             return render(request, 'core/home.html', {
                 'data':data,
                 'user':user
             })
-
+            
+        else:
+            error = response.json()['messages'][0]['message']
+            messages.error(request, error)
+            
     return render(request, 'core/home.html')
+
 
 def index(request):
     return render(request, 'base.html')
 
+# Register
+def register(request):
+    
+    form = RegisterForm()
+
+    if request.method == 'POST':
+        
+        url = ('http://127.0.0.1:8000/api/register/')
+        response = requests.post(url, data=request.POST)
+        
+        if response.status_code == 201:
+            message = response.json()['message']       
+            messages.success(request, message)
+            
+            return redirect('login')
+    
+        else:
+            error = response.json()['error']       
+            messages.error(request, error)
+    
+    return render(request, 'users/register.html',{
+        'form':form
+    })    
+    
+
+# Login
 def login(request):
     
     form = LoginForm()
+    
     if request.method == 'POST':
         
         url = ('http://127.0.0.1:8000/api/login/')
@@ -62,6 +93,7 @@ def login(request):
             #accedemos al token
             token = response.json()['token']
             user = response.json()['user']
+            message = response.json()['message']
             
             #convertimos el objeto a str json
             user_jsonstr = json.dumps(user)
@@ -70,22 +102,19 @@ def login(request):
             response_html.set_cookie('Bearer', token)
             response_html.set_cookie('User', user_jsonstr)
             
-            messages.success(request, 'Buen logeo')
+            messages.success(request, message)
             
             return response_html
             
         elif response.status_code == 401:
-            message = response.json()['error']
-            return render(request, 'users/login.html', {
-                'message':message
-            })
+            error = response.json()['error']
+            messages.error(request, error)
         
         elif response.status_code == 404:
-            message = response.json()['error'] 
-            return render(request, 'users/login.html',{
-                'message':message
-            })
+            error = response.json()['error'] 
+            messages.error(request, error)
+            
         
     return render(request, 'users/login.html', {
-        'form':form
+        'form':form,
     })
