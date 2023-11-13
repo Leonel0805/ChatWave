@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import LoginForm, RegisterForm
 
+from django.views.decorators.http import require_POST
+
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -23,9 +25,12 @@ def home(request):
         #obtenemos el user guardado en cookie
         user_jsonstr = request.COOKIES.get('User')
         
-        #convertimos el user type str a dict 
-        user = json.loads(user_jsonstr)
-        print(user['username'])
+        if user_jsonstr is not None:
+            #convertimos el user type str a dict 
+            user = json.loads(user_jsonstr)
+            print(user['username'])
+            
+        
         
         #pasar el token guardado en cookie al header
         headers = {
@@ -118,3 +123,30 @@ def login(request):
     return render(request, 'users/login.html', {
         'form':form,
     })
+    
+
+def logout(request):
+    
+    if request.method == 'POST':
+        
+        url = ('http://127.0.0.1:8000/api/logout/')
+        
+        
+        token = request.COOKIES.get('Bearer')
+        
+        headers = {
+            'Authorization': f'Bearer {token}'
+        }
+        
+        response = requests.post(url, headers=headers)
+
+        if response.status_code == 200:
+            message = response.json()['message']
+            messages.success(request, message)
+            return redirect('index')
+        
+        else:
+            print('no 200')
+    
+    return render(request, 'users/logout.html')
+            
