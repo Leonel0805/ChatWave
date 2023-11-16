@@ -1,11 +1,58 @@
-<nav>
-    <div class="navbar">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Foro-Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"> <!-- Alineado a la izquierda -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+            </ul>
+            <form class="d-flex mx-auto"> <!-- Centrado -->
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
 
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'register' %}">Register</a>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'logout' %}">Logout</a>
+            {% if token %}
+                <ul class="navbar-nav mr-0"> <!-- Alineado a la derecha -->
+                    <li class="nav-item">
+                        <a class="nav-link" aria-disabled="true">Crear</a>
+                    </li>
+                </ul>
 
+                <ul class="navbar-nav ml-5">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Perfil
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Mis datos</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            {% else %}
+
+                <ul class="navbar-nav mr-0"> <!-- Alineado a la derecha -->
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{% url 'register' %}" aria-disabled="true">Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}" aria-disabled="true">Login</a>
+                    </li>
+                </ul>
+
+            {% endif %}
+
+        </div>
     </div>
-
 </nav>
+
+
+
+

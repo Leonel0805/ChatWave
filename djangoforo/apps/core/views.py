@@ -3,16 +3,16 @@ from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import LoginForm, RegisterForm
 
-from django.views.decorators.http import require_POST
-
-from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.authentication import JWTAuthentication
 
 import json
 import requests
 
 # Home
+
+def get_token(request):
+    token = request.COOKIES.get('Bearer')
+    return token
+
 def home(request):
     
     if request.method == 'GET':
@@ -20,7 +20,7 @@ def home(request):
         url = ('http://127.0.0.1:8000/api/usersview/usersview/')
         
         # Obtener el token guardado en la cookie
-        token = request.COOKIES.get('Bearer')
+        token = get_token(request)
         
         #obtenemos el user guardado en cookie
         user_jsonstr = request.COOKIES.get('User')
@@ -30,7 +30,7 @@ def home(request):
             user = json.loads(user_jsonstr)
         
         #pasar el token guardado en cookie al header
-        if token != '':
+        if token is not None and token != '':
             headers = {
                 'Authorization': f'Bearer {token}'
             }
@@ -39,14 +39,17 @@ def home(request):
             data = response.json()
             
             if response.status_code == 200:
-                messages.success(request, 'usuarios cargados correctamente')
-                
+                if 'success_message_displayed' not in request.session:
+                    messages.success(request, 'usuarios cargados correctamente')
+                    request.session['success_message_displayed'] = True
                 return render(request, 'core/home.html', {
                     'data':data,
-                    'user':user
+                    'user':user,
+                    'token':token
                 })
                 
-            else:
+            elif response.status_code == 401:
+                
                 error = response.json()['messages'][0]['message']
                 messages.error(request, error)
                 
@@ -85,6 +88,8 @@ def register(request):
 def login(request):
     
     form = LoginForm()
+    
+    token = get_token(request)
     
     if request.method == 'POST':
         
@@ -129,7 +134,7 @@ def logout(request):
         url = ('http://127.0.0.1:8000/api/logout/')
         
         
-        token = request.COOKIES.get('Bearer')
+        token = get_token(request)
         
         headers = {
             'Authorization': f'Bearer {token}'

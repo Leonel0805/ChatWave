@@ -13,10 +13,24 @@ body {
     margin: 5px;
 }
 
-.success{
-    color: rgb(47, 202, 0);
+.message-success{
+    background-color: rgb(0, 189, 25) ;
 }
 
-.error{
-    color: red;
+.message-error{
+    background-color: red;
 }
+
+.message{
+    color: rgb(255, 255, 255);
+}
+
+
+.registro,
+.login{
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: rgb(194, 9, 194);
+    padding: 50px;
+}
+

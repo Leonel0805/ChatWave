@@ -1,0 +1,13 @@
+{% if messages %}
+        {% for message in messages %}
+        <div class="d-flex message-{{message.tags}}">
+            <ul class="messages">
+                
+                    <li class="message">
+                        {{ message }}
+                    </li>
+             
+            </ul>
+        </div>
+        {% endfor %}
+{% endif %}

@@ -4,20 +4,29 @@
 
 {% block content %}
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button>Enviar</button>
-    </form>
-    
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li class="{{message.tags}}">
-                {{ message }}
-            </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+
+    <div class="d-flex justify-content-center my-5 login">
+
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+
+                <div class="my-1">
+                    {{field.label}}
+                </div>
+
+                <div>
+                    {{field}}
+                </div>
+
+            {% endfor %}
+
+            <button class="btn btn-success my-3">Enviar</button>
+        </form>
+        
+    </div>
+  
 
 {% endblock %}
