@@ -34,3 +34,44 @@ body {
     padding: 50px;
 }
 
+
+
+.columna1{
+    background-color: rgb(233, 233, 253);
+}
+
+.columna2{
+    background-color: aqua;
+}
+
+.cont-meet-people{
+    background-color: rgb(216, 243, 243);
+    max-width: 400px;
+    margin-left: 65px;
+
+}
+
+.meet-people-title{
+    background-color: blueviolet;
+    color: white;
+    max-width: 400px;
+    max-height: 500px;
+    text-align: center;
+    
+}
+
+.meet-people{
+    max-width: 400px;
+    max-height: 500px;
+    text-align: center;
+
+}
+
+
+.image{
+    display: flex;
+    max-width: 50px;
+    max-height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
