@@ -46,25 +46,24 @@ body {
 
 .cont-meet-people{
     background-color: rgb(216, 243, 243);
-    max-width: 400px;
-    margin-left: 65px;
+
 
 }
 
 .meet-people-title{
-    background-color: blueviolet;
+    background-color: rgb(185, 110, 255);
     color: white;
-    max-width: 400px;
-    max-height: 500px;
+
     text-align: center;
+    margin-bottom: 10px;
+    padding: 5px 2px;
     
 }
 
 .meet-people{
-    max-width: 400px;
-    max-height: 500px;
+    background-color: rgb(185, 110, 255);
     text-align: center;
-
+    padding: 12px 5px;
 }
 
 
@@ -74,4 +73,22 @@ body {
     max-height: 50px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.room-container{
+    text-align: center;
+    color: white;
+}
+
+.room-title{
+    background-color: rgb(185, 110, 255);
+    margin-bottom: 10px;
+    padding: 5px 2px;
+}
+
+.room-chat{
+    background-color: rgb(185, 110, 255);
+    padding: 12px 5px;
+
+
 }

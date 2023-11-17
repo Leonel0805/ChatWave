@@ -1,54 +1,86 @@
 {% extends 'base.html' %}
 
+
+{% load static %}
 {% block title %} Home {% endblock%}
 
 {% block content %}
 
-    <h1>Home</h1>
+  <h1>Home</h1>
 
-    {% if user %}
-        <div>
-            <h2>
+  {% if user %}
+    <div>
+      <h2>
         
-              Bienvenido {{user.username}}!
-            </h2>
+        Bienvenido {{user.username}}!
+      </h2>
+    </div>
+  {% endif %}
+
+
+  <!-- meet people -->
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-4  text-align-center ">
+        <div class="meet-people-title">
+          <h2>
+            Conoce Gente!
+          </h2>
         </div>
-    {% endif %}
 
-
-    <!-- meet people -->
-
-    <div class="cont-meet-people">
-      <div class="meet-people-title text-aling-center ">
-        <h2>
-          Conoce Gente!
-        </h2>
-
-      </div>
-      
-      <div class="container-sm meet-people">
-        {% if data %}
+        <div class="container-sm meet-people">
+          {% if data %}
             {% for user in data.users %}
-  
+      
               <div class="row justify-content-center">
                 <div class="col-4 columna1">
                   <img src="{{user.avatar}}" alt="" class="image">
                 </div>       
                 <div class="col-4 columna2">
-                  {{user.username}}
+                      {{user.username}}
                 </div>
               </div>
-     
+         
             {% endfor %}
+    
+          {% else %}
+            <p>No people</p>
+          {% endif %}
+        </div>
+      </div>
+        
+      
+      <div class="col-4">
+        <div class="room-container">
+          <div class="room-title">
+            <h2>
+              ROOMS/CHATS
+            </h2>
+          </div>
+      
+          <div class="room-chat">
+            <img src="{% static 'media/load/nocountry.jpg' %}" alt="image_chat" width="80px" height="80px">
+            <p>chat1</p>
 
-        {% else %}
-          <p>No people</p>
-        {% endif %}
+            <div>
+              <p>Entrar</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <div class="col-4">
+        <div class="contenido3">
+          <p>Likes Rooms</p>
+        </div>
+      </div>
+        
     </div>
     
   
-    
+      <!-- ROOMS -->
+ 
 
 {% endblock %}
