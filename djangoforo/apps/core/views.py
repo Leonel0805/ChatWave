@@ -4,8 +4,7 @@ from django.contrib import messages
 from .forms import LoginForm, RegisterForm
 
 
-import json
-import requests
+import json, requests
 
 # Home
 
@@ -27,7 +26,7 @@ def home(request):
         
         if user_jsonstr is not None:
             #convertimos el user type str a dict 
-            user = json.loads(user_jsonstr)
+            user_host = json.loads(user_jsonstr)
         
         #pasar el token guardado en cookie al header
         if token is not None and token != '':
@@ -44,7 +43,7 @@ def home(request):
                     request.session['success_message_displayed'] = True
                 return render(request, 'core/home.html', {
                     'data':data,
-                    'user':user,
+                    'user_host':user_host,
                     'token':token
                 })
                 
@@ -153,4 +152,5 @@ def logout(request):
             print('no 200')
     
     return render(request, 'users/logout.html')
+            
             

@@ -1,6 +1,14 @@
 from apps.users.models import User 
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
-from .serializers import UserListSerializer, UserSerializer, UpdateUserSerializer, UpdatePasswordSerializer
+from rest_framework.views import APIView
+from rest_framework.generics import RetrieveAPIView
+from .serializers import (
+    UserListSerializer,
+    UserSerializer,
+    UpdateUserSerializer,
+    UpdatePasswordSerializer,
+    UserMeSerializer
+)
 
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -109,3 +117,13 @@ class UserGenericViewSet(GenericViewSet):
         return Response({
             'error':'NOT FOUND'
         })
+
+class UserMeAPIView(RetrieveAPIView):
+       
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    serializer_class = UserMeSerializer
+    
+    def get_object(self):
+        return self.request.user
