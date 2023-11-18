@@ -92,3 +92,28 @@ body {
 
 
 }
+
+.mi-perfil{
+    background-color: rgb(185, 110, 255);
+    max-width: 150px;
+}
+
+
+.data-perfil{
+    text-align: center;
+}
+
+.cont-mi-perfil{
+    background-color: rgb(185, 110, 255);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.valor-perfil-image{
+    display: flex;
+    max-width: 50px;
+    max-height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from apps.core.views import get_token
-
+from django.contrib import messages
 import json, requests
 
 def me_perfil(request):
@@ -18,12 +18,15 @@ def me_perfil(request):
             
             response = requests.get(url, headers=headers)
             
-            data = response.json()
-            print(data)
-            return render(request, 'users/perfil.html',{
-                'token':token,
-                'data':data
-            })   
+            if response.status_code == 200:
+                
+                data = response.json()     
+                return render(request, 'users/perfil.html',{
+                    'token':token,
+                    'data':data
+                })   
+            else:
+                return render(request, 'users/perfil.html')
     
     return render(request, 'users/perfil.html') 
         

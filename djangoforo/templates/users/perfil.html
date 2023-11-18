@@ -6,6 +6,41 @@
 
     <h1> Mi Perfil </h1>
 
-    {{data}}
+    {% if data %}
+
+        <div class="cont-mi-perfil">
+            <div class="container-sm mi-perfil">
+                <h2> Mis datos</h2>
+ 
+            </div>
+
+            <div>
+                {% for key, value in data.items %}
+                    <div class="row">
+                        <div class="col-4 data-perfil">
+                            {{key}}
+                        </div>
+
+                        {% if key != 'avatar' %}
+                            <div class="col-8 valor-perfil">
+                                {{value}}
+                            </div>
+                        {% else %}
+                            <div class="col-8 valor-perfil-image">
+                                <img src="{{ value }}" alt="avatar" >
+                            </div>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+ 
+            </div>
+               
+        </div>
+
+
+    {% endif%}
+
+    
 
 {% endblock %}
