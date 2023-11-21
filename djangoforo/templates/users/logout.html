@@ -4,9 +4,29 @@
 
 {% block content %}
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <button>Logout</button>
-    </form>
+
+    <div class="logout-form my-5">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-title">   
+                <h2>Seguro que queres cerrar sesión?</h2>
+
+            </div>
+
+            <div class="container body-form">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{% url 'home' %}">Volver</a>
+                    </div>
+                    <div class="col-6">
+                        <button>Logout</button>
+                    </div>
+                </div>
+            </div>
+    
+     
+        </form>
+    </div>
+
 
 {% endblock %}
