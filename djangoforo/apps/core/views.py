@@ -12,6 +12,14 @@ def get_token(request):
     token = request.COOKIES.get('Bearer')
     return token
 
+def get_userhost(request):
+    user_host_jsonstr = request.COOKIES.get('User')
+    
+    if user_host_jsonstr is not None:
+        #convertimos el userstr en objeto dict 
+        user = json.loads(user_host_jsonstr)
+        return user
+
 def home(request):
     
     if request.method == 'GET':
@@ -22,11 +30,7 @@ def home(request):
         token = get_token(request)
         
         #obtenemos el user guardado en cookie
-        user_jsonstr = request.COOKIES.get('User')
-        
-        if user_jsonstr is not None:
-            #convertimos el user type str a dict 
-            user_host = json.loads(user_jsonstr)
+        user_host = get_userhost(request)
         
         #pasar el token guardado en cookie al header
         if token is not None and token != '':

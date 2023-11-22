@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from apps.core.views import get_token
+from apps.core.views import get_token, get_userhost
 from django.contrib import messages
 from .forms import PerfilForm
 
@@ -7,12 +7,14 @@ import json, requests
 
 
 def me_perfil(request):
+            
+    token = get_token(request)
+    user_host = get_userhost(request)
     
     if request.method == 'GET':
         
         url = ('http://127.0.0.1:8000/api/authentication/me/')
-        
-        token = get_token(request)
+
         
         if token is not None and token != '':
             headers = {
@@ -23,10 +25,12 @@ def me_perfil(request):
             
             if response.status_code == 200:
                 
-                data = response.json()     
+                data = response.json()   
+                  
                 return render(request, 'users/perfil.html',{
                     'token':token,
-                    'data':data
+                    'data':data,
+                    'user_host':user_host
                 })   
             else:
                 return render(request, 'users/perfil.html')
@@ -38,6 +42,8 @@ def me_perfil_edit(request):
     
     form = PerfilForm()
     token = get_token(request)
+    user_host = get_userhost(request)
+    
     
     if request.method == 'GET':
         
@@ -57,7 +63,8 @@ def me_perfil_edit(request):
                 form = PerfilForm(data=data)
                 return render(request, 'users/edit_perfil.html',{
                     'token':token,
-                    'form':form
+                    'form':form,
+                    'user_host':user_host
                 })
             
         else:
