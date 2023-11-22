@@ -65,7 +65,7 @@ def register(request):
 
     if request.method == 'POST':
         
-        url = ('http://127.0.0.1:8000/api/register/')
+        url = ('http://127.0.0.1:8000/api/authentication/register/')
         response = requests.post(url, data=request.POST)
         
         if response.status_code == 201:
@@ -92,7 +92,7 @@ def login(request):
     
     if request.method == 'POST':
         
-        url = ('http://127.0.0.1:8000/api/login/')
+        url = ('http://127.0.0.1:8000/api/authentication/login/')
         response = requests.post(url, data=request.POST) 
         
         if response.status_code == 200:
@@ -130,7 +130,7 @@ def logout(request):
     
     if request.method == 'POST':
         
-        url = ('http://127.0.0.1:8000/api/logout/')
+        url = ('http://127.0.0.1:8000/api/authentication/logout/')
         
         
         token = get_token(request)

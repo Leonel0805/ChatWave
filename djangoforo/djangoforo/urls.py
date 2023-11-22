@@ -10,11 +10,15 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('apps.core.urls')),
-    path('api/', include('apps.users.api.urls')),
+    path('app/', include('apps.core.urls')),
+    
+    
+    # Rutas de api
+    path('api/authentication/', include('apps.users.api.urls')),
     path('api/usersview/', include('apps.users.api.routers')),
     
-    
+
+    # Rutas de simple_jwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     

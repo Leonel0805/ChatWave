@@ -107,8 +107,14 @@ body {
     background-color: rgb(185, 110, 255);
     max-width: 500px;
     margin: 0 auto;
+    border-radius: 10px;
 }
 
+.mi-perfil-title{
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-top: 7px;
+}
 .valor-perfil-image{
     display: flex;
     max-width: 50px;
@@ -129,4 +135,16 @@ body {
 .body-form{
     text-align: center;
     padding: 10px;
+}
+
+.avatar-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.container-edit-perfil{
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
 }

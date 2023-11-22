@@ -117,14 +117,3 @@ class UserGenericViewSet(GenericViewSet):
         return Response({
             'error':'NOT FOUND'
         })
-
-class UserMeAPIView(RetrieveAPIView):
-       
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    
-    serializer_class = UserMeSerializer
-    
-    def get_object(self):
-        return self.request.user
-    

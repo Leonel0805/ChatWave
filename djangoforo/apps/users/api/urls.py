@@ -6,7 +6,7 @@ from .authentication_views import (
 
 )
 
-from .viewsets import (
+from .apiviews import (
     UserMeAPIView
 )
 

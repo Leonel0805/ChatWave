@@ -29,6 +29,17 @@ class UserMeSerializer(serializers.ModelSerializer):
         model = User 
         fields = ('email', 'username', 'bio', 'avatar')
         
+    def update(self, instance, validated_data):
+        
+        avatar_file = self.context['request'].FILES.get('avatar', None)
+
+        if not avatar_file:
+            # Si no se proporciona un archivo 'avatar'
+            validated_data.pop('avatar', None)
+
+        #llamamos al update predeterminado padre
+        return super().update(instance, validated_data)
+        
 
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:

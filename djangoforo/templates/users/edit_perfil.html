@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Mi Perfil/edit {% endblock %}
+
+{% block content %}
+
+    <h1> Mi Perfil </h1>
+
+        <div class="cont-mi-perfil">
+            <div class="mi-perfil-title">
+                <h2> Mis datos</h2>
+ 
+            </div>
+
+ 
+            <div>
+                {% for field in form %}
+               
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-4 data-perfil">
+                                {{field.label}}
+                            </div>
+
+                            <div class="col-8 valor-perfil">
+                                {{field}}
+                            </div>
+
+                        </div>
+                {% endfor %}
+
+                        
+                        <div class="container-edit-perfil text">
+                            <a href="#">
+                                <button class="btn btn-success">
+                                    Aceptar cambios
+                                </button>
+                            </a>
+
+                        </div>
+                    </form>
+    
+            
+            </div> 
+        </div>
+
+    
+{% endblock %}

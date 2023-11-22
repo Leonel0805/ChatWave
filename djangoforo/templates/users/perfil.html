@@ -9,7 +9,7 @@
     {% if data %}
 
         <div class="cont-mi-perfil">
-            <div class="container-sm mi-perfil">
+            <div class="mi-perfil-title">
                 <h2> Mis datos</h2>
  
             </div>
@@ -33,6 +33,15 @@
 
                     </div>
                 {% endfor %}
+
+                <div class="container-edit-perfil text">
+                    <a href="{% url 'me-perfil-edit' %}">
+                        <button class="btn btn-success">
+                            Editar
+                        </button>
+                    </a>
+
+                </div>
  
             </div>
                

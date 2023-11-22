@@ -25,7 +25,8 @@
                 <ul class="navbar-nav ml-5">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Perfil
+                            <img src="{{ user_host.avatar }}" class="avatar-image" alt="avatar-perfil">
+         
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'me-perfil' %}">Mis datos</a></li>
