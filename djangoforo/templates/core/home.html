@@ -35,14 +35,17 @@
             {% for user in data.users %}
               {% if user.email != user_host.email %}
 
-                <div class="row justify-content-center">
-                  <div class="col-4 columna1">
-                    <img src="{{user.avatar}}" alt="" class="image">
-                  </div>       
-                  <div class="col-4 columna2">
-                        {{user.username}}
+                <a href="{% url 'user_view' pk=user.id %}" style="text-decoration: none;">
+                  <div class="row justify-content-center meet-people-body">
+                    <div class="col-4">
+                      <img src="{{user.avatar}}" alt="" class="image">
+                    </div>       
+                    <div class="col-4">
+                          {{user.username}}
+                    </div>
                   </div>
-                </div>
+                </a>
+
               {% endif %}
          
             {% endfor %}

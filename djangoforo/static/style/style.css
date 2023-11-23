@@ -35,15 +35,6 @@ body {
 }
 
 
-
-.columna1{
-    background-color: rgb(233, 233, 253);
-}
-
-.columna2{
-    background-color: aqua;
-}
-
 .cont-meet-people{
     background-color: rgb(216, 243, 243);
 
@@ -64,6 +55,10 @@ body {
     background-color: rgb(185, 110, 255);
     text-align: center;
     padding: 12px 5px;
+}
+
+.meet-people-body{
+    color: white;
 }
 
 

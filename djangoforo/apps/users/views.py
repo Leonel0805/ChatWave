@@ -95,3 +95,28 @@ def me_perfil_edit(request):
                 messages.success(request, 'Cambios guardados correctamente!')
                 
                 return response_html
+            
+def user_view(request, pk):
+    
+    token = get_token(request)
+    user_host = get_userhost(request)
+    
+    if request.method == 'GET':
+        
+        url = (f'http://127.0.0.1:8000/api/usersview/usersview/{pk}/')
+        
+        
+        if token is not None and token != '':
+            
+            headers = {
+                'Authorization': f'Bearer {token}'
+            }
+            response = requests.get(url, headers=headers)
+        
+            if response.status_code == 200:
+                data = response.json()
+                return render(request, 'users/user_view.html',{
+                    'token':token,
+                    'user_host': user_host,
+                    'data':data,
+                })        

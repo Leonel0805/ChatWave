@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} User {% endblock %}
+
+{% block content %}
+
+    <h1> Perfil de {{user.username}} </h1>
+
+    {% if data %}
+
+        <div class="cont-mi-perfil">
+            <div class="mi-perfil-title">
+                <h2> Mis datos</h2>
+ 
+            </div>
+
+            <div>
+                {% for key, value in data.user.items %}
+                    <div class="row">
+                        <div class="col-4 data-perfil">
+                            {{key}}
+                        </div>
+
+                        {% if key != 'avatar' %}
+                            <div class="col-8 valor-perfil">
+                                {{value}}
+                            </div>
+                        {% else %}
+                            <div class="col-8 valor-perfil-image">
+                                <img src="{{ value }}" alt="avatar" >
+                            </div>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+
+                <div class="container-edit-perfil text">
+                    <a href="{% url 'home' %}">
+                        <button class="btn btn-success">
+                            Volver
+                        </button>
+                    </a>
+
+                </div>
+ 
+            </div>
+               
+        </div>
+
+
+    {% endif%}
+
+{% endblock %}
