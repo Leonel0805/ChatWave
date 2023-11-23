@@ -25,7 +25,8 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
-    'apps.core'
+    'apps.core',
+    'apps.rooms'
     
 ]
 

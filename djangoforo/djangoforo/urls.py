@@ -10,13 +10,15 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('app/', include('apps.core.urls')),
     
+    # Rutas de app
+    path('app/', include('apps.core.urls')),
+    path('app/', include('apps.users.urls_views')),
+    path('app/', include('apps.rooms.urls_views')),
     
     # Rutas de api
     path('api/authentication/', include('apps.users.api.urls')),
     path('api/usersview/', include('apps.users.api.routers')),
-    
 
     # Rutas de simple_jwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

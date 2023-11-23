@@ -149,3 +149,29 @@ body {
     background-color: rgba(226, 9, 255, 0.952);
     padding-top: 10px;
 }
+
+.room-container-link{
+    text-decoration: none;
+    color: white;
+}
+
+.room-chat-contenedor{
+    background-color: rgb(185, 110, 255);
+
+    max-width: 1000px;
+    max-height: 800px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.message-1{
+    text-align: right;
+    background-color: white;
+}
+
+.message-2{
+    text-align: left;
+}
+
+
+

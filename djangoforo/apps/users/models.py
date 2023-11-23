@@ -33,9 +33,7 @@ class CustomUserManager(BaseUserManager):
         user.is_superuser = True
         user.save()
         
-        return user
-
-        
+        return user 
 
 # Custom User, sin First_name o Last_name que debe contener AbstrasUser
 class User(AbstractBaseUser, PermissionsMixin):
