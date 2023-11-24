@@ -19,6 +19,10 @@ urlpatterns = [
     # Rutas de api
     path('api/authentication/', include('apps.users.api.urls')),
     path('api/usersview/', include('apps.users.api.routers')),
+    path('api/rooms/', include('apps.rooms.api.urls')),
+    path('api/roomsviewset/', include('apps.rooms.api.routers')),
+    
+    
 
     # Rutas de simple_jwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
