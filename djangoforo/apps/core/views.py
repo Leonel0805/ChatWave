@@ -24,7 +24,8 @@ def home(request):
     
     if request.method == 'GET':
       
-        url = ('http://127.0.0.1:8000/api/usersview/usersview/')
+        url_users = ('http://127.0.0.1:8000/api/usersview/usersview/')
+        url_rooms = ('http://127.0.0.1:8000/api/rooms/list/')
         
         # Obtener el token guardado en la cookie
         token = get_token(request)
@@ -38,22 +39,33 @@ def home(request):
                 'Authorization': f'Bearer {token}'
             }
         
-            response = requests.get(url, headers=headers)
-            data = response.json()
+            response_users = requests.get(url_users, headers=headers)
+            response_rooms = requests.get(url_rooms, headers=headers)
             
-            if response.status_code == 200:
+            data = {}
+            
+            if response_users.status_code == 200:
+                data['users'] = response_users.json()
+                
+            if response_rooms.status_code == 200:
+                data['rooms'] = response_rooms.json()
+            
+                
                 if 'success_message_displayed' not in request.session:
                     messages.success(request, 'usuarios cargados correctamente')
                     request.session['success_message_displayed'] = True
+                
+                print(data)
                 return render(request, 'core/home.html', {
-                    'data':data,
                     'user_host':user_host,
-                    'token':token
+                    'token':token,
+                    'data':data
+    
                 })
                 
-            elif response.status_code == 401:
+            elif response_users.status_code == 401:
                 
-                error = response.json()['messages'][0]['message']
+                error = response_users.json()['messages'][0]['message']
                 messages.error(request, error)
                 
     return render(request, 'core/home.html')

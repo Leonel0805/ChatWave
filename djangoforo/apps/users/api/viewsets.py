@@ -46,9 +46,7 @@ class UserGenericViewSet(GenericViewSet):
         users = self.get_queryset()
         
         users_serializer = self.list_serializer_class(users, many=True)
-        return Response({
-            'users':users_serializer.data
-        })
+        return Response(users_serializer.data)
     
     def create(self, request):
         user_serializer = UserSerializer(data=request.data)

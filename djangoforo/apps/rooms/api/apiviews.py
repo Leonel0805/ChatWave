@@ -14,9 +14,7 @@ class RoomListAPIView(APIView):
         rooms = Room.objects.all()
         
         rooms_serializer = RoomListSerializer(rooms, many=True)
-        return Response({
-            'rooms': rooms_serializer.data
-        })
+        return Response(rooms_serializer.data)
         
         
 class RoomCreateAPIView(APIView):

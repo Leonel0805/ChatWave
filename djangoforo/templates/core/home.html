@@ -67,23 +67,30 @@
           </div>
         
           <div class="room-chat">
-            <p>chat1</p>
-  
-            <img src="{% static 'media/load/nocountry.jpg' %}" alt="image_chat" width="80px" height="80px">
-  
-            <div>
-              <p>Host: username | 14 likes</p>
-            </div>
-  
-            <div>
-              <a href="{% url 'room-chat'%}" class="room-container-link" >
 
-                <p>Entrar</p>
-              </a>
+            {% if data.rooms %}
+              {% for room in data.rooms %}
+                <p>{{room.name}}</p>
+                <img src="{% static 'media/load/nocountry.jpg' %}" alt="image_chat" width="80px" height="80px">
+                      
+                <div>
+                  <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
+                </div>
 
-              <button>Like</button>
+                      
+                <div>
+                  <a href="{% url 'room-chat'%}" class="room-container-link" >
 
-            </div>
+                    <p>Entrar</p>
+                  </a>
+
+                  <button>Like</button>
+
+                </div>
+              {% endfor %}
+
+            {% endif %}
+
           </div>
           
         </div>
