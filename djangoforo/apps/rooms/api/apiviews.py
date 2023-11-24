@@ -43,16 +43,3 @@ class RoomCreateAPIView(APIView):
             })
         
             
-class LikeRoomAPIView(APIView):
-    
-
-    def post(self, request, pk):
-        
-        request.data['user'] = request.user.pk
-        
-        room = Room.objects.filter(id=pk).first()
-    
-        if room:
-            request.data
-            like_serializer = LikeRoomSerializer(data = request.data)
-        
