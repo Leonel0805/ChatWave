@@ -9,7 +9,9 @@ class Room(models.Model):
     likes = models.ManyToManyField(User, related_name='liked_rooms', default=None, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
-
+    @property
+    def num_likes(self):
+        return self.likes.all().count()
 
 class Like(models.Model):
     
@@ -22,4 +24,6 @@ class Like(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES, max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    
 

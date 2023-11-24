@@ -15,13 +15,13 @@ class RoomListSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         
-        user_id = data['user_host']
-        
+        user_id = data['user_host']  
         user = User.objects.filter(id=user_id).first()
-        
         user_serializer = UserRoomSerializer(user)
         
+        data['likes']= instance.num_likes
         data['user_host'] = user_serializer.data
+        
         return data
 
 class RoomCreateSerializer(serializers.ModelSerializer):

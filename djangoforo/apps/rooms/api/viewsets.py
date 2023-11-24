@@ -33,38 +33,47 @@ class RoomGenericViewSet(GenericViewSet):
             })
     
     
-    @action(detail=True, methods=['patch'],  url_path='like-room', serializer_class=LikeRoomSerializer)
-    def like_unlike_room(self, request, pk):
+    @action(detail=True, methods=['post'],  url_path='like-room', serializer_class=LikeRoomSerializer)
+    def like_room(self, request, pk=None, value='Like'):
+        return self.like_unlike_room(request, pk, value)
+    
+    @action(detail=True, methods=['post'],  url_path='unlike-room', serializer_class=LikeRoomSerializer)
+    def unlike_room(self, request, pk=None, value='Unlike'):
+        return self.like_unlike_room(request, pk, value)
+
+        
+    def like_unlike_room(self, request, pk, value):
         
         room = Room.objects.filter(id=pk).first()
- 
+        user = request.user
+
         if room:
-            request.data['user'] = request.user.id
+            request.data['user'] = user.id
             request.data['room'] = room.pk
-        
+            request.data['value'] = value
             
             print(request.data)
             like_serializer = LikeRoomSerializer(data=request.data)
         
             if like_serializer.is_valid():
-                like_object = Like.objects.filter(user=request.data['user'], room=request.data['room']).first()
+                like = like_serializer.save()
                 
-                if like_object:    
-                    like_object.delete()
-                    return Response({
-                        'message':'Room Unliked!'
-                    })
-
-                else:
-                    like_serializer.save()
+                if like.value == 'Like':
+                    user.liked_rooms.add(room)
                     return Response({
                         'message':'Room liked!'
                     })
+                
+                else:
+                    user.liked_rooms.remove(room)
+                    return Response({
+                        'message':'Unlike Room!'
+                    })
             
-         
+        
         
         return Response({
-            'error':'error'
+            'error':like_serializer.errors
         })
                 
         
