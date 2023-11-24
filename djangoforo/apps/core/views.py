@@ -55,7 +55,6 @@ def home(request):
                     messages.success(request, 'usuarios cargados correctamente')
                     request.session['success_message_displayed'] = True
                 
-                print(data)
                 return render(request, 'core/home.html', {
                     'user_host':user_host,
                     'token':token,

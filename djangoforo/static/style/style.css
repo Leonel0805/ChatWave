@@ -164,9 +164,10 @@ body {
     background-color: rgb(185, 110, 255);
 
     max-width: 1000px;
-    max-height: 800px;
+    max-height: 5000px;
     text-align: center;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .message-1{

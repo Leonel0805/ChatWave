@@ -4,5 +4,5 @@ from apps.rooms import views
 
 
 urlpatterns = [
-    path('room_chat/', views.room_chat, name='room-chat' )
+    path('room_chat/<int:pk>/', views.room_chat, name='room-chat' )
 ]
