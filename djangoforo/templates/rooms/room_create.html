@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} Room {% endblock %}
+
+{% block content %}
+
+    <div class="room-chat-contenedor">
+        <div class="container">
+
+            <div class="room-chat-title">
+                <h1>Crear Room</h1>
+                <p> {{data.room.user_host.email}}</p>
+
+            </div>
+
+            <div class="room-chat-body">
+
+                <div>
+                    {% for field in form %}
+                   
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+    
+                            <div class="row">
+                                <div class="col-6 data-perfil">
+                                    {{field.label}}
+                                </div>
+    
+                                <div class="col-6 valor-perfil">
+                                    {{field}}
+                                </div>
+    
+                            </div>
+                    {% endfor %}
+    
+                            
+                            <div class="container-edit-perfil text">
+                                <a href="#">
+                                    <button class="btn btn-success">
+                                        Aceptar cambios
+                                    </button>
+                                </a>
+    
+                            </div>
+                        </form>
+        
+                
+                </div> 
+            
+            </div>
+        </div>
+    </div>
+    
+
+
+{% endblock %}

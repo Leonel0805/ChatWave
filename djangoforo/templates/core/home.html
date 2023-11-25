@@ -71,7 +71,7 @@
             {% if data.rooms %}
               {% for room in data.rooms %}
                 <p>{{room.name}}</p>
-                <img src="{% static 'media/load/nocountry.jpg' %}" alt="image_chat" width="80px" height="80px">
+                <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
                       
                 <div>
                   <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>

@@ -69,11 +69,8 @@ class RoomGenericViewSet(GenericViewSet):
                     return Response({
                         'message':'Unlike Room!'
                     })
-            
-        
         
         return Response({
             'error':like_serializer.errors
         })
-                
         
