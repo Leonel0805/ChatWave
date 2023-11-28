@@ -13,19 +13,28 @@ def me_perfil(request):
     
     if request.method == 'GET':
         
-        url = ('http://127.0.0.1:8000/api/authentication/me/')
+        url_me = ('http://127.0.0.1:8000/api/authentication/me/')
 
+        url_rooms = ('http://127.0.0.1:8000/api/rooms/my-list/')
+        
         
         if token is not None and token != '':
             headers = {
                 'Authorization': f'Bearer {token}'
             }
             
-            response = requests.get(url, headers=headers)
+            response = requests.get(url_me, headers=headers)
+            response_rooms = requests.get(url_rooms, headers=headers)
+            
+            data = {}
+
             
             if response.status_code == 200:
+                data['me'] = response.json()
                 
-                data = response.json()   
+            if response_rooms.status_code == 200:
+                data['myrooms'] = response_rooms.json()
+                print(data['myrooms']) 
                   
                 return render(request, 'users/perfil.html',{
                     'token':token,

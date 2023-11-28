@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import LoginForm, RegisterForm
 
+from django.core.paginator import Paginator 
 
 import json, requests
 
@@ -48,8 +49,14 @@ def home(request):
                 data['users'] = response_users.json()
                 
             if response_rooms.status_code == 200:
-                data['rooms'] = response_rooms.json()
-            
+                data['allrooms'] = response_rooms.json()
+
+                paginator = Paginator(data['allrooms'], 5)
+                
+                page = request.GET.get('page')
+                
+                data['rooms'] = paginator.get_page(page)
+                
                 
                 if 'success_message_displayed' not in request.session:
                     messages.success(request, 'usuarios cargados correctamente')
