@@ -10,7 +10,7 @@ class UserRoomSerializer(serializers.ModelSerializer):
 class RoomListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ('id', 'user_host', 'image', 'name', 'likes')
+        fields = ('id', 'user_host', 'name', 'image',  'likes')
         
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -21,6 +21,18 @@ class RoomListSerializer(serializers.ModelSerializer):
         
         data['likes']= instance.num_likes
         data['user_host'] = user_serializer.data
+        
+        return data
+    
+class ListMyRoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room 
+        fields = ('id', 'name', 'image', 'likes')
+        
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
+        data['likes']= instance.num_likes
         
         return data
 
@@ -40,4 +52,6 @@ class LikeRoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = ('user', 'room', 'value')
+        
+
         

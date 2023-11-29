@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import RoomListSerializer, RoomCreateSerializer, LikeRoomSerializer
+from .serializers import RoomListSerializer, RoomCreateSerializer, LikeRoomSerializer, ListMyRoomSerializer
 from apps.rooms.models import Room
 
 class RoomListAPIView(APIView):
@@ -16,6 +16,23 @@ class RoomListAPIView(APIView):
         
         rooms_serializer = RoomListSerializer(rooms, many=True)
         return Response(rooms_serializer.data)
+    
+    
+class MyRoomsListAPIView(APIView):
+    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        
+        user = request.user
+        rooms = Room.objects.filter(user_host=user)
+    
+        print(rooms)
+
+        rooms_serializer = ListMyRoomSerializer(rooms, many=True)
+        return Response(rooms_serializer.data)
+        
         
 class LikeRoomListAPIView(APIView):
     

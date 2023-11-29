@@ -79,6 +79,8 @@ body {
     background-color: rgb(185, 110, 255);
     margin-bottom: 10px;
     padding: 5px 2px;
+    border-radius: 10px;
+  
     
 }
 
@@ -105,16 +107,29 @@ body {
 }
 
 .cont-mi-perfil{
-    background-color: rgb(185, 110, 255);
-    max-width: 500px;
+
+    max-width: 1000px;
     margin: 0 auto;
     border-radius: 10px;
 }
+
+.cont-mi-perfil-edit{
+    background-color: rgb(185, 110, 255);
+    max-width: 800px;
+
+    margin: 0 auto;
+    border-radius: 10px;
+    
+}
+
 
 .mi-perfil-title{
     border-radius: 10px;
     padding-left: 15px;
     padding-top: 7px;
+    text-align: center;
+    padding-bottom: 7px;
+    background-color: rgb(185, 110, 255)
 }
 .valor-perfil-image{
     display: flex;
@@ -180,4 +195,12 @@ body {
 }
 
 
+
+.contenedor-perfil-datos,
+.contenedor-perfil-rooms{
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 30px;
+    background-color: rgb(185, 110, 255);
+}
 
