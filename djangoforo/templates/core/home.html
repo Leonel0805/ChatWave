@@ -113,21 +113,29 @@
     
           <div class="like-room">
 
-            <div class="foot-like-room">
-              <img src="{% static 'media/load/nocountry.jpg' %}" alt="image_chat" width="80px" height="80px">
+            {% if data.likedrooms %}
 
-              <p>chat1</p>
-            </div>
-
+              {% for likedroom in data.likedrooms %}
+                <div class="foot-like-room">
+                  <p>{{likedroom.name}} </p>
+                  <img src="{{likedroom.image}}" alt="image_chat" width="80px" height="80px">
   
-            
-            <div class="row foot-like-room">
+                </div>
+    
+      
                 
-              <div class="col">
-                <p>Host: username | 14 likes</p>
-              </div>
-             
-            </div>
+                <div class="row foot-like-room">
+                    
+                  <div class="col">
+                    <p>Host: {{ likedroom.user_host.email }}| {{likedroom.likes}} likes</p>
+                  </div>
+                
+                </div>
+              {% endfor %}
+
+
+            {% endif %}
+            
           </div>
         </div>
 

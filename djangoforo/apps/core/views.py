@@ -27,6 +27,7 @@ def home(request):
       
         url_users = ('http://127.0.0.1:8000/api/usersview/usersview/')
         url_rooms = ('http://127.0.0.1:8000/api/rooms/list/')
+        url_liked_rooms = ('http://127.0.0.1:8000/api/rooms/list/liked_rooms/')
         
         # Obtener el token guardado en la cookie
         token = get_token(request)
@@ -42,6 +43,7 @@ def home(request):
         
             response_users = requests.get(url_users, headers=headers)
             response_rooms = requests.get(url_rooms, headers=headers)
+            response_likes_rooms = requests.get(url_liked_rooms, headers=headers)
             
             data = {}
             
@@ -50,6 +52,9 @@ def home(request):
                 
             if response_rooms.status_code == 200:
                 data['allrooms'] = response_rooms.json()
+                
+            if response_likes_rooms.status_code == 200:
+                data['likedrooms'] = response_likes_rooms.json()
 
                 paginator = Paginator(data['allrooms'], 5)
                 
