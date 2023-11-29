@@ -105,8 +105,8 @@ body {
 }
 
 .cont-mi-perfil{
-    background-color: rgb(185, 110, 255);
-    max-width: 500px;
+
+    max-width: 1000px;
     margin: 0 auto;
     border-radius: 10px;
 }
@@ -115,6 +115,9 @@ body {
     border-radius: 10px;
     padding-left: 15px;
     padding-top: 7px;
+    text-align: center;
+    padding-bottom: 7px;
+    background-color: red;
 }
 .valor-perfil-image{
     display: flex;
@@ -180,4 +183,10 @@ body {
 }
 
 
+
+.contenedor-perfil-datos,
+.contenedor-perfil-rooms{
+    margin-top: 40px;
+    background-color: rgb(185, 110, 255);
+}
 

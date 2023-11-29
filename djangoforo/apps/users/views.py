@@ -3,6 +3,7 @@ from apps.core.views import get_token, get_userhost
 from django.contrib import messages
 from .forms import PerfilForm
 
+from django.core.paginator import Paginator
 import json, requests
 
 
@@ -27,15 +28,19 @@ def me_perfil(request):
             response_rooms = requests.get(url_rooms, headers=headers)
             
             data = {}
-
             
             if response.status_code == 200:
                 data['me'] = response.json()
                 
             if response_rooms.status_code == 200:
-                data['myrooms'] = response_rooms.json()
-                print(data['myrooms']) 
-                  
+                data['allrooms'] = response_rooms.json()
+
+                paginator = Paginator(data['allrooms'], 5)
+                
+                page = request.GET.get('page')
+                
+                data['myrooms'] = paginator.get_page(page)
+                
                 return render(request, 'users/perfil.html',{
                     'token':token,
                     'data':data,

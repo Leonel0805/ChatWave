@@ -4,86 +4,102 @@
 
 {% block content %}
 
-    <h1> Mi Perfil </h1>
-
     {% if data %}
 
-        <div class="cont-mi-perfil">
-            <div class="mi-perfil-title">
-                <h2> Mis datos</h2>
- 
-            </div>
+      <div class="cont-mi-perfil">
+        <div class="mi-perfil-title">
+          <h2> Mis datos</h2>
 
-            <div class="row">
-                  <div class="col-6">
-                    {% for key, value in data.me.items %}
-                      <div class="row">
-                        <div class="col-4 data-perfil">
-                            {{key}}
-                        </div>
-
-                        {% if key != 'avatar' %}
-                            <div class="col-8 valor-perfil">
-                                {{value}}
-                            </div>
-                        {% else %}
-                            <div class="col-8 valor-perfil-image">
-                                <img src="{{ value }}" alt="avatar" >
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    <div class="col-6">
-                      <div class="container-edit-perfil text">
-                          <a href="{% url 'me-perfil-edit' %}">
-                              <button class="btn btn-success">
-                                  Editar
-                              </button>
-                          </a>
-      
-                      </div>
-  
-                    </div>
-                  </div>
-
-                  <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                          <div class="room-container">
-                            
-                            <div class="room-title">
-                              <h2>
-                                ROOMS/CHATS
-                              </h2>
-                            </div>
-                          
-                            <div class="room-chat">
-                  
-                              {% if data.myrooms %}
-                                {% for room in data.myrooms %}
-                                  <p>{{room.name}}</p>
-                                  <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
-                                        
-                                  <div>
-                                    <p>{{room.likes}} Likes </p>
-                                  </div>
-                  
-
-                                {% endfor %}
-                  
-                              {% endif %}
-                            </div>
-                          </div>
-                        </div>
-                    
-                    </div>
-                  </div>
-                    
-            
- 
-            </div>
-               
         </div>
 
+
+        <div class="row">
+          <div class="col-6">
+            <div class="contenedor-perfil-datos">
+                <h1> Mi Perfil </h1>
+
+            
+              {% for key, value in data.me.items %}
+              <div class="row">
+
+                <div class="col-4 data-perfil">
+                  {{key}}
+                </div>
+
+                {% if key != 'avatar' %}
+                  <div class="col-8 valor-perfil">
+                    {{value}}
+                  </div>
+                {% else %}
+                  <div class="col-8 valor-perfil-image">
+                    <img src="{{ value }}" alt="avatar" >
+                  </div>
+                {% endif %}
+
+              </div>
+              {% endfor %}
+
+            
+              <div class="container-edit-perfil">
+                <a href="{% url 'me-perfil-edit' %}">
+                  <button class="btn btn-success">
+                    Editar
+                  </button>
+                </a>
+        
+              </div>
+            </div>
+            
+          </div>
+
+
+          <div class="col-6">
+            <div class="contenedor-perfil-rooms">
+              <div class="row">
+                <div class="col-4">
+                  <div class="room-container">
+                            
+                    <div class="room-title">
+                      <h2>
+                        ROOMS/CHATS
+                      </h2>
+                    </div>
+                          
+                    <div class="room-chat">
+                  
+                      {% if data.myrooms %}
+                        {% for room in data.myrooms %}
+                          <p>{{room.name}}</p>
+                          <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                                        
+                          <div>
+                            <p>{{room.likes}} Likes </p>
+                          </div>
+                  
+  
+                        {% endfor %}
+                  
+                      {% endif %}
+                    </div>
+                  
+                  </div>
+                </div>
+                    
+              </div>
+            </div>
+            
+          </div>
+                  
+          
+    
+          
+
+      </div>
+
+           
+               
+       
+      
 
     {% endif%}
 

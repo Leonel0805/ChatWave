@@ -27,6 +27,7 @@ class MyRoomsListAPIView(APIView):
         
         user = request.user
         rooms = Room.objects.filter(user_host=user)
+    
         print(rooms)
 
         rooms_serializer = ListMyRoomSerializer(rooms, many=True)
