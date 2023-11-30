@@ -13,6 +13,9 @@ class Room(models.Model):
     @property
     def num_likes(self):
         return self.likes.all().count()
+    
+    def __str__(self):
+        return self.name
 
 class Like(models.Model):
     
@@ -25,6 +28,9 @@ class Like(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES, max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Room: {self.room.name} | User: {self.user}"
     
     
 

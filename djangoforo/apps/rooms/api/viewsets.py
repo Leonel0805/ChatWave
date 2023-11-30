@@ -52,14 +52,21 @@ class RoomGenericViewSet(GenericViewSet):
             request.data['room'] = room.pk
             request.data['value'] = value
             
-            print(request.data)
             like_serializer = LikeRoomSerializer(data=request.data)
         
             if like_serializer.is_valid():
                 like = like_serializer.save()
                 
                 if like.value == 'Like':
+
+                    if room in user.liked_rooms.all():
+                        user.liked_rooms.remove(room)
+                        return Response({
+                            'message':''
+                        })
+                        
                     user.liked_rooms.add(room)
+
                     return Response({
                         'message':'Room liked!'
                     })
