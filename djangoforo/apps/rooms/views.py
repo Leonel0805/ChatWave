@@ -37,7 +37,6 @@ def room_create(request):
             if file_image is not None:
                 files = {'image': file_image}
             else:
-                print('no se proporciono nada')
                 files = {}
         
             response = requests.post(url, headers=headers, data=request.POST, files=files)
@@ -59,9 +58,30 @@ def room_create(request):
     return render(request, 'rooms/room_create.html')
 
 
-
-def room_like(request):
-    pass
+def room_like(request, pk):
+    
+    token = get_token(request)
+    user_host = get_userhost(request)
+    
+    if request.method == 'POST':
+        
+        url = (f'http://127.0.0.1:8000/api/roomsviewset/{pk}/like-room/')
+        
+        if token is not None and token != '':
+             
+            headers = {
+                'Authorization': f'Bearer {token}'
+            }
+            
+            response = requests.post(url, headers=headers)
+            
+            if response.status_code == 200:
+                message = response.json()['message']
+                messages.success(request, message)
+                return redirect('home')
+            
+            else:
+                return redirect('error')
 
 def room_chat(request, pk):
     
