@@ -81,7 +81,8 @@ def room_like(request, pk):
                 return redirect('home')
             
             else:
-                return redirect('error')
+                message = 'Error al dar like'
+                return redirect('home')
 
 def room_chat(request, pk):
     

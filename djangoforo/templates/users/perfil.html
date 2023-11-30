@@ -80,20 +80,32 @@
                   
   
                     {% endfor %}
+
+                    <div>
+                      {% for num_page in data.myrooms.paginator.page_range %}
+                      <span class="">
+                          <a href="?page={{ num_page }}">{{ num_page }}</a>
+                      </span>
+                      {% endfor %}
+                    </div>  
+                
+                  {% else %}
+
+                  <div>
+                    <a href="{% url 'room-create' %}">
+                      <button class="btn btn-success">
+                        Crear
+                      </button>
+                    </a>
+
+                  </div>
                   
                   {% endif %}
                 </div>
                   
               </div>
              
-              <div>
-                {% for num_page in data.myrooms.paginator.page_range %}
-                <span class="">
-                    <a href="?page={{ num_page }}">{{ num_page }}</a>
-                </span>
-                {% endfor %}
-              </div>  
-          
+
             </div>
             
 
