@@ -53,15 +53,15 @@ def home(request):
             if response_rooms.status_code == 200:
                 data['allrooms'] = response_rooms.json()
                 
-            if response_likes_rooms.status_code == 200:
-                data['likedrooms'] = response_likes_rooms.json()
-
                 paginator = Paginator(data['allrooms'], 5)
                 
                 page = request.GET.get('page')
                 
                 data['rooms'] = paginator.get_page(page)
                 
+            if response_likes_rooms.status_code == 200:
+                data['likedrooms'] = response_likes_rooms.json()
+
                 
                 if 'success_message_displayed' not in request.session:
                     messages.success(request, 'usuarios cargados correctamente')

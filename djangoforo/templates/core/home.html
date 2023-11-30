@@ -84,7 +84,13 @@
                     <p>Entrar</p>
                   </a>
 
-                  <button>Like</button>
+                  <form action="{% url 'room-like' pk=room.id %}" method="POST">
+                    {% csrf_token %}
+
+                    <button>Like</button>
+
+                  </form>
+       
 
                 </div>
               {% endfor %}
