@@ -4,6 +4,8 @@ from apps.users.views import me_perfil, me_perfil_edit, user_view
 
 urlpatterns = [
     path('home/', views.home, name='home'),
+    path('search/', views.search, name='search'),
+    
     path('index/', views.index, name='index'),
     
     # Authentication

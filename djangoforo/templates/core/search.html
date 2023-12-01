@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+{% block title %} Search {% endblock%}
+
+{% block content %}
+
+    <div class="container">
+
+        <div>
+            <h2>Busquedas relacionadas: {{data.rooms | length}} </h2>
+
+        </div>
+
+        {% if data %}
+            {% for room in data.rooms %}
+                <p>{{room.name}}</p>
+                <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                      
+                <div>
+                  <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
+                </div>
+
+                      
+                <div>
+                  <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+
+                    <p>Entrar</p>
+                  </a>
+
+                  <form action="{% url 'room-like' pk=room.id %}" method="POST">
+                    {% csrf_token %}
+
+                    <button>Like</button>
+
+                  </form>
+       
+
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+
+    </div>
+
+{% endblock %}

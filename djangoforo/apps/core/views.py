@@ -82,6 +82,38 @@ def home(request):
     return render(request, 'core/home.html')
 
 
+def search(request):
+    
+    token = get_token(request)
+    user_host = get_userhost(request)
+    
+    if request.method == 'GET':
+        
+        url = ('http://127.0.0.1:8000/api/rooms/search/')
+        query = request.GET.get('query', '')
+        if token is not None and token != '':
+            
+            headers = {
+                'Authorization': f'Bearer {token}'
+            }
+            
+            params = {'search': query}
+            response = requests.get(url, headers=headers, params=params)
+            
+            data = {}
+            if response.status_code == 200:
+                data['rooms'] = response.json() 
+                
+                return render(request, 'core/search.html',{
+                    'token':token,
+                    'user_host':user_host,
+                    'data':data
+                })
+        
+        
+        
+        
+
 def index(request):
     return render(request, 'base.html')
 

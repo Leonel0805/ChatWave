@@ -36,6 +36,7 @@ def room_create(request):
        
             file_image = request.FILES.get('image')
      
+            #validacion file_image is not None, esta en el serializer
             files = {'image': file_image}
 
         
@@ -133,10 +134,12 @@ def room_edit_delete(request, pk):
                 
                 response = requests.delete(url, headers=headers)
 
+
                 if response.status_code == 204:
-                    message = 'Room eliminado correctamente'
+                    message = 'Room eliminado correctamente!'
                     messages.success(request, message)
                     return redirect('me-perfil')
+
 
 
 
