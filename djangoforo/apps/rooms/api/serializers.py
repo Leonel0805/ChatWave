@@ -27,9 +27,21 @@ class RoomListSerializer(serializers.ModelSerializer):
 class ListMyRoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room 
-        fields = ('id', 'name', 'image', 'likes')
+        fields = ('id', 'name', 'description', 'image', 'likes')
         read_only_fields = ('id', 'likes' )
         
+    def update(self, instance, validated_data):
+        
+        image_file = self.context['request'].FILES.get('image', None)
+
+        if not image_file:
+            # Si no se proporciona un archivo
+            validated_data.pop('image', None)
+
+        #llamamos al update predeterminado padre
+        return super().update(instance, validated_data)    
+    
+    
     def to_representation(self, instance):
         data = super().to_representation(instance)
 
@@ -40,7 +52,7 @@ class ListMyRoomSerializer(serializers.ModelSerializer):
 class RoomCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ('user_host', 'image', 'name', 'likes')
+        fields = ('user_host', 'name','description', 'image', 'likes')
         read_only_fields = ('user_host',)
    
     def validate(self, data):

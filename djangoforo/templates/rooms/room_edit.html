@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Create Room {% endblock %}
+{% block title %} Edit Room {% endblock %}
 
 {% block content %}
 
@@ -8,7 +8,7 @@
         <div class="container">
 
             <div class="room-chat-title">
-                <h1>Crear Room</h1>
+                <h1>Editar Room</h1>
                 <p> {{user_host.email}}</p>
 
             </div>
@@ -34,14 +34,18 @@
                     {% endfor %}
     
                             
+                            
                             <div class="container-edit-perfil text">
-                                <a href="#">
-                                    <button class="btn btn-success">
-                                        Aceptar cambios
-                                    </button>
-                                </a>
+                                
+                                <input type="hidden" name="action", value="edit">
+
+                                <button class="btn btn-success">
+                                    Aceptar cambios
+                                </button>
+                        
     
                             </div>
+
                         </form>
         
                 

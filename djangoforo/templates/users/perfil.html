@@ -79,16 +79,18 @@
                   </div>
                   
                   <div class="container-edit-perfil">
-                    <a href="#">
+                    <a href="{% url 'room-edit-delete' pk=room.id %}">
+                      
                       <button class="btn btn-success">
                         Editar
                       </button>
                     
                     </a>
             
-                    <form action="{% url 'room-delete' pk=room.id %}" method="POST">
+                    <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST">
                       {% csrf_token %}
 
+                      <input type="hidden" name="action", value="delete">
                       <button class="btn btn-danger">
                         Eliminar
                       </button>
