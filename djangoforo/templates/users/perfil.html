@@ -78,6 +78,23 @@
                      <p>{{room.likes}} Likes </p>
                   </div>
                   
+                  <div class="container-edit-perfil">
+                    <a href="#">
+                      <button class="btn btn-success">
+                        Editar
+                      </button>
+                    
+                    </a>
+            
+                    <form action="{% url 'room-delete' pk=room.id %}" method="POST">
+                      {% csrf_token %}
+
+                      <button class="btn btn-danger">
+                        Eliminar
+                      </button>
+                    </form>
+
+                  </div>
   
                     {% endfor %}
 

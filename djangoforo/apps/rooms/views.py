@@ -57,6 +57,29 @@ def room_create(request):
 
     return render(request, 'rooms/room_create.html')
 
+def room_delete(request, pk):
+        
+    token = get_token(request)
+    user_host = get_userhost(request)
+            
+    if request.method == 'POST':
+        
+        url = (f'http://127.0.0.1:8000/api/rooms/my-list/{pk}/')
+        
+        if token is not None and token != '':
+            
+            headers = {
+                'Authorization': f'Bearer {token}'
+            }
+            
+            response = requests.delete(url, headers=headers)
+
+            if response.status_code == 204:
+                message = 'Room eliminado correctamente'
+                messages.success(request, message)
+                return redirect('me-perfil')
+
+
 
 def room_like(request, pk):
     
