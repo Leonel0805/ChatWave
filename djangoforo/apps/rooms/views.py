@@ -15,6 +15,8 @@ def room_create(request):
     form = RoomForm()
     
     if request.method == 'GET':
+        
+        
         return render(request, 'rooms/room_create.html',{
             'token':token,
             'user_host':user_host,
@@ -33,11 +35,10 @@ def room_create(request):
             
        
             file_image = request.FILES.get('image')
-            
-            if file_image is not None:
-                files = {'image': file_image}
-            else:
-                files = {}
+     
+            #validacion file_image is not None, esta en el serializer
+            files = {'image': file_image}
+
         
             response = requests.post(url, headers=headers, data=request.POST, files=files)
             
@@ -56,6 +57,90 @@ def room_create(request):
                 
 
     return render(request, 'rooms/room_create.html')
+
+def room_edit_delete(request, pk):
+        
+    token = get_token(request)
+    user_host = get_userhost(request)
+    form = RoomForm()
+    
+    if request.method == 'GET':
+        
+        url = (f'http://127.0.0.1:8000/api/rooms/my-list/{pk}/')
+      
+        
+        if token is not None and token != '':
+                
+            headers = {
+                'Authorization': f'Bearer {token}'
+            }
+                 
+            response = requests.get(url, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+       
+                form = RoomForm(data=data)
+                
+                return render(request, 'rooms/room_edit.html', {
+                    'token':token,
+                    'user_host':user_host,
+                    'form':form
+                })
+            
+    if request.method == 'POST':
+        
+        url = (f'http://127.0.0.1:8000/api/rooms/my-list/{pk}/')
+        action = request.POST.get('action')
+        
+        if action == 'edit':
+        
+            if token is not None and token != '':
+                
+                headers = {
+                    'Authorization': f'Bearer {token}'
+                }
+                
+                                
+                file_image = request.FILES.get('image')
+            
+                #if file_image is not None:
+                files = {'image': file_image}
+                #else:
+                #    files = {}
+                
+                response = requests.patch(url, headers=headers, data=request.POST, files=files)
+                
+                if response.status_code == 200:
+                    message = ('Room edit correctamente!')
+                    messages.success(request, message)
+            
+                else:
+                    message = ('Error')
+                    messages.error(request, message)
+        
+                return redirect ('me-perfil')
+
+            
+            
+        elif action == 'delete':
+       
+            
+            if token is not None and token != '':
+                
+                headers = {
+                    'Authorization': f'Bearer {token}'
+                }
+                
+                response = requests.delete(url, headers=headers)
+
+
+                if response.status_code == 204:
+                    message = 'Room eliminado correctamente!'
+                    messages.success(request, message)
+                    return redirect('me-perfil')
+
+
 
 
 def room_like(request, pk):

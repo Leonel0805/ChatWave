@@ -3,13 +3,16 @@ from .apiviews import (RoomListAPIView,
     RoomCreateAPIView,
     LikeRoomListAPIView,
     MyRoomsListAPIView,
-    MyRoomEditAPIView
+    MyRoomEditAPIView,
+    RoomSearchAPIView
 )
 
 urlpatterns = [
     path('list/', RoomListAPIView.as_view(), name='list-rooms'),
     path('my-list/', MyRoomsListAPIView.as_view(), name='my-list-rooms'),
     path('my-list/<int:pk>/', MyRoomEditAPIView.as_view(), name='my-list-rooms-edit'),
+    
+    path('search/', RoomSearchAPIView.as_view(), name='room-search'),
     
     
     

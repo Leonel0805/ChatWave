@@ -8,59 +8,7 @@ from rest_framework.generics import RetrieveUpdateDestroyAPIView
 
 from .serializers import RoomListSerializer, RoomCreateSerializer, LikeRoomSerializer, ListMyRoomSerializer
 from apps.rooms.models import Room
-
-class RoomListAPIView(APIView):
-    
-    def get(self, request):
-        
-        rooms = Room.objects.all().order_by('-created_at')
-        
-        rooms_serializer = RoomListSerializer(rooms, many=True)
-        return Response(rooms_serializer.data)
-    
-    
-class MyRoomsListAPIView(APIView):
-    
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    
-    def get(self, request):
-        
-        user = request.user
-        rooms = Room.objects.filter(user_host=user)
-    
-        print(rooms)
-
-        rooms_serializer = ListMyRoomSerializer(rooms, many=True)
-        return Response(rooms_serializer.data)
-
-class MyRoomEditAPIView(RetrieveUpdateDestroyAPIView):
-    
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    
-    serializer_class = ListMyRoomSerializer
-    
-    def get_queryset(self):
-        return Room.objects.filter(user_host=self.request.user)
-
-        
-        
-class LikeRoomListAPIView(APIView):
-    
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-     
-    def get(self, request):
-        
-        user = request.user
-        
-        liked_rooms = user.liked_rooms.all()    
-
-        liked_rooms = RoomListSerializer(liked_rooms, many=True)
-        return Response(liked_rooms.data)
-        
-    
+   
 class RoomCreateAPIView(APIView):
     
     authentication_classes = [JWTAuthentication]
@@ -83,3 +31,69 @@ class RoomCreateAPIView(APIView):
             },status=status.HTTP_400_BAD_REQUEST)
         
             
+class RoomListAPIView(APIView):
+    
+    def get(self, request):
+        
+        rooms = Room.objects.all().order_by('-created_at')
+        
+        rooms_serializer = RoomListSerializer(rooms, many=True)
+        return Response(rooms_serializer.data)
+    
+
+class RoomSearchAPIView(APIView):
+    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        
+        query_param = self.request.query_params.get('search', '')
+        print(query_param)
+        rooms = Room.objects.filter(name__icontains = query_param)
+        
+        rooms_serializer = RoomListSerializer(rooms, many=True)
+        
+        return Response(rooms_serializer.data)
+    
+    
+class LikeRoomListAPIView(APIView):
+    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+     
+    def get(self, request):
+        
+        user = request.user
+        
+        liked_rooms = user.liked_rooms.all()    
+
+        liked_rooms = RoomListSerializer(liked_rooms, many=True)
+        return Response(liked_rooms.data)
+    
+class MyRoomsListAPIView(APIView):
+    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        
+        user = request.user
+        rooms = Room.objects.filter(user_host=user).order_by('-created_at')
+    
+        print(rooms)
+
+        rooms_serializer = ListMyRoomSerializer(rooms, many=True)
+        return Response(rooms_serializer.data)
+
+class MyRoomEditAPIView(RetrieveUpdateDestroyAPIView):
+    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    serializer_class = ListMyRoomSerializer
+    
+    def get_queryset(self):
+        return Room.objects.filter(user_host=self.request.user)
+
+        
