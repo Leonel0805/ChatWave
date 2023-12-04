@@ -90,13 +90,17 @@ def search(request):
     if request.method == 'GET':
         
         url = ('http://127.0.0.1:8000/api/rooms/search/')
+        
+        #obtenemos lo enviado por el form de search en la navbar
         query = request.GET.get('query', '')
+        
         if token is not None and token != '':
             
             headers = {
                 'Authorization': f'Bearer {token}'
             }
             
+            #lo enviamos como params haciendo un get a la url
             params = {'search': query}
             response = requests.get(url, headers=headers, params=params)
             

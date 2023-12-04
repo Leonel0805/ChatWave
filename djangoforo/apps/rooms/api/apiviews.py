@@ -50,9 +50,14 @@ class RoomSearchAPIView(APIView):
         
         query_param = self.request.query_params.get('search', '')
         print(query_param)
-        rooms = Room.objects.filter(name__icontains = query_param)
         
-        rooms_serializer = RoomListSerializer(rooms, many=True)
+        if query_param != '':
+            rooms = Room.objects.filter(name__icontains = query_param)
+            rooms_serializer = RoomListSerializer(rooms, many=True)
+        
+        else:
+            rooms = {}
+            rooms_serializer = RoomListSerializer(rooms, many=True)
         
         return Response(rooms_serializer.data)
     
