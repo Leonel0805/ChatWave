@@ -118,6 +118,7 @@ def user_view(request, pk):
     if request.method == 'GET':
         
         url = (f'http://127.0.0.1:8000/api/usersview/usersview/{pk}/')
+        url_rooms = (f'http://127.0.0.1:8000/api/rooms/list/{pk}/')
         
         
         if token is not None and token != '':
@@ -126,10 +127,20 @@ def user_view(request, pk):
                 'Authorization': f'Bearer {token}'
             }
             response = requests.get(url, headers=headers)
+            response_rooms = requests.get(url_rooms)
         
+            data = {}
             if response.status_code == 200:
                 data = response.json()
-                return render(request, 'users/user_view.html',{
+                
+            if response_rooms.status_code == 200:
+                data['user_rooms'] = response_rooms.json()
+                
+                paginator = Paginator(data['user_rooms'], 3)
+                page = request.GET.get('page')
+                data['user_rooms'] = paginator.get_page(page)
+
+                return render(request, 'users/user_view_copy.html',{
                     'token':token,
                     'user_host': user_host,
                     'data':data,

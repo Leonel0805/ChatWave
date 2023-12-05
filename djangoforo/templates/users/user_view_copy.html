@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %} Mi Perfil {% endblock %}
+
+{% block content %}
+
+    {% if data %}
+
+      <div class="cont-mi-perfil">
+        <div class="mi-perfil-title">
+          <h2> Perfil {{data.user.username}}</h2>
+
+        </div>
+
+
+        <div class="row">
+          <div class="col-6">
+            <div class="contenedor-perfil-datos">
+
+              <div class="perfil-datos-titulo">
+                <h2> Datos </h2>
+
+              </div>
+
+            
+              {% for key, value in data.user.items %}
+              <div class="row">
+
+                <div class="col-4 data-perfil">
+                  {{key}}
+                </div>
+
+                {% if key != 'avatar' %}
+                  <div class="col-8 valor-perfil">
+                    {{value}}
+                  </div>
+                {% else %}
+                  <div class="col-8 valor-perfil-image">
+                    <img src="{{ value }}" alt="avatar" >
+                  </div>
+                {% endif %}
+
+              </div>
+              {% endfor %}
+
+          
+            </div>
+            
+          </div>
+
+
+          <div class="col-6">
+            <div class="contenedor-perfil-rooms">
+              <div class="room-container">
+                            
+                <div class="room-title">
+                  <h2>
+                      ROOMS/CHATS
+                  </h2>
+                </div>
+                          
+                <div class="room-chat-datos">
+                  
+                  {% if data.user_rooms %}
+                    {% for room in data.user_rooms %}
+                      <p>{{room.name}}</p>
+                      <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                                        
+                  <div>
+                     <p>{{room.likes}} Likes </p>
+                  </div>
+                
+                  <div>
+                    <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+  
+                      <p>Entrar</p>
+                    </a>
+  
+                  </div>
+
+                    {% endfor %}
+
+                    <div>
+                      {% for num_page in data.user_rooms.paginator.page_range %}
+                      <span class="">
+                          <a href="?page={{ num_page }}">{{ num_page }}</a>
+                      </span>
+                      {% endfor %}
+                    </div>  
+                
+                  {% else %}
+
+                  <div>
+                    <p>{{message}}</p>
+                  </div>
+                  
+                  {% endif %}
+                </div>
+                  
+              </div>
+             
+
+            </div>
+            
+
+          </div>
+
+          <div class="container-edit-perfil">
+            <a href="{% url 'home' %}">
+              <button class="btn btn-success">
+                Volver
+              </button>
+            </a>
+    
+          </div>
+                   
+
+      </div>
+
+           
+               
+       
+      
+
+    {% endif%}
+
+    
+
+{% endblock %}
