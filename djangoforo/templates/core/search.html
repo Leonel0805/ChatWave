@@ -14,31 +14,46 @@
         </div>
 
         {% if data %}
-            {% for room in data.rooms %}
-                <p>{{room.name}}</p>
-                <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
-                      
-                <div>
-                  <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
+        <div class="room-container">
+
+              <div class="row row-cols-3">
+                {% for room in data.rooms %}
+
+                <div class="room-search">
+
+                  <div class="col room-chat">
+                      <p>{{room.name}}</p>
+                    <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                          
+                    <div>
+                      <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
+                    </div>
+
+                          
+                    <div>
+                      <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+
+                        <p>Entrar</p>
+                      </a>
+
+                      <form action="{% url 'room-like' pk=room.id %}" method="POST">
+                        {% csrf_token %}
+
+                        <button>Like</button>
+
+                      </form>
+          
+
+                    </div>
+                  </div>
                 </div>
+                
+                {% endfor %}
 
-                      
-                <div>
-                  <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+              </div>
 
-                    <p>Entrar</p>
-                  </a>
-
-                  <form action="{% url 'room-like' pk=room.id %}" method="POST">
-                    {% csrf_token %}
-
-                    <button>Like</button>
-
-                  </form>
-       
-
-                </div>
-            {% endfor %}
+        </div>
+                
         {% endif %}
 
 

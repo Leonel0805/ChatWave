@@ -4,12 +4,13 @@ from apps.users.models import User
 
     
 class Room(models.Model):
-    user_host = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_host = models.ForeignKey(User, on_delete=models.CASCADE, related_name='rooms')
     name = models.CharField(max_length=150)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='rooms', blank=True, null=True)
+    image = models.ImageField(upload_to='rooms', default='/load/room_chat_logo.jpg' , blank=True)
     likes = models.ManyToManyField(User, related_name='liked_rooms', default=None, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    
     
     @property
     def num_likes(self):

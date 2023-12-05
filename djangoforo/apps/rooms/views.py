@@ -36,7 +36,7 @@ def room_create(request):
        
             file_image = request.FILES.get('image')
      
-            #validacion file_image is not None, esta en el serializer
+            print(file_image)
             files = {'image': file_image}
 
         

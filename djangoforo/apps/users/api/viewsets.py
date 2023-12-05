@@ -36,7 +36,7 @@ class UserGenericViewSet(GenericViewSet):
         
         if self.queryset is None:
             self.queryset = self.serializer_class().Meta.model.objects\
-                .filter(is_active=True)
+                .filter(is_active=True).exclude(username=self.request.user.username)
             return self.queryset
         else:
             return self.queryset

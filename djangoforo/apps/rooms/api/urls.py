@@ -9,6 +9,8 @@ from .apiviews import (RoomListAPIView,
 
 urlpatterns = [
     path('list/', RoomListAPIView.as_view(), name='list-rooms'),
+    path('list/<int:pk>/', RoomListAPIView.as_view(), name='list-rooms-pk'),
+    
     path('my-list/', MyRoomsListAPIView.as_view(), name='my-list-rooms'),
     path('my-list/<int:pk>/', MyRoomEditAPIView.as_view(), name='my-list-rooms-edit'),
     

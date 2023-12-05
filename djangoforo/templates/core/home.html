@@ -33,7 +33,7 @@
         <div class="container-sm meet-people">
           {% if data %}
             {% for user in data.users %}
-              {% if user.email != user_host.email %}
+            
 
                 <a href="{% url 'user_view' pk=user.id %}" style="text-decoration: none;">
                   <div class="row justify-content-center meet-people-body">
@@ -46,7 +46,7 @@
                   </div>
                 </a>
 
-              {% endif %}
+          
          
             {% endfor %}
     

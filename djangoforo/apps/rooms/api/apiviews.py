@@ -8,6 +8,7 @@ from rest_framework.generics import RetrieveUpdateDestroyAPIView
 
 from .serializers import RoomListSerializer, RoomCreateSerializer, LikeRoomSerializer, ListMyRoomSerializer
 from apps.rooms.models import Room
+from apps.users.models import User
    
 class RoomCreateAPIView(APIView):
     
@@ -33,9 +34,26 @@ class RoomCreateAPIView(APIView):
             
 class RoomListAPIView(APIView):
     
-    def get(self, request):
+    def get(self, request, pk=None):
         
-        rooms = Room.objects.all().order_by('-created_at')
+        print(pk)
+        if pk is not None:
+            print('entramos a user.rooms')
+            user = User.objects.filter(id=pk).first()
+            if user:
+                rooms = user.rooms.all().order_by('-created_at')
+                if len(rooms) == 0:
+                    return Response({
+                        'message': 'No hay rooms creados'
+                    })
+            else:
+                return Response({
+                    'error': 'Rooms de user not found'
+                }, status=status.HTTP_404_NOT_FOUND)
+
+        else:
+            print('no entramos')
+            rooms = Room.objects.all().order_by('-created_at')
         
         rooms_serializer = RoomListSerializer(rooms, many=True)
         return Response(rooms_serializer.data)

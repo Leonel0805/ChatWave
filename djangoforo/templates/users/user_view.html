@@ -4,13 +4,12 @@
 
 {% block content %}
 
-    <h1> Perfil de {{user.username}} </h1>
 
     {% if data %}
 
         <div class="cont-mi-perfil">
             <div class="mi-perfil-title">
-                <h2> Mis datos</h2>
+                <h2> Datos del usuario: {{data.user.username}} </h2>
  
             </div>
 
