@@ -1,5 +1,5 @@
 from apps.users.models import User 
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import GenericViewSet, ModelViewSet, mixins
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView
 from .serializers import (
@@ -18,11 +18,11 @@ from rest_framework.permissions import IsAuthenticated
 #model ya tiene los metodos predeterminados y podes sobreescribir
 # en cambio GenericViewSet no tiene los metodos
 
-class UserGenericViewSet(GenericViewSet):
+from rest_framework.mixins import UpdateModelMixin
+
+class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
     
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    
+
     serializer_class = UserSerializer
     list_serializer_class = UserListSerializer
     update_serializer_class = UpdateUserSerializer
@@ -72,18 +72,6 @@ class UserGenericViewSet(GenericViewSet):
             return Response({
                 'user':user_serializer.data
             })
-            
-    def update(self, request, pk=None):
-        
-        user = self.get_object(pk)
-        
-        if user:
-            user_serializer = UpdateUserSerializer(user, data=request.data)
-            if user_serializer.is_valid():
-                user_serializer.save()
-                return Response({
-                    'user update': user_serializer.data
-                })
     
     @action(detail=True, methods=['put'], url_path='set_password', serializer_class=UpdatePasswordSerializer)
     def set_password(self, request, pk=None):
