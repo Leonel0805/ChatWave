@@ -35,4 +35,10 @@ class Like(models.Model):
         return f"Room: {self.room.name} | User: {self.user}"
     
     
+class Message(models.Model):
+    
+    user = models.ForeignKey(User, related_name='messages', on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, related_name='messages', on_delete=models.CASCADE)
+    content = models.TextField()
+    
 
