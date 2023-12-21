@@ -14,6 +14,9 @@ SECRET_KEY = 'django-insecure-l&%j-$@xr*!38z(1&35u!bjhu2q7o#!&)qp@+(uw^gb2+zr)87
 # Application definition
 
 DJANGO_APPS = [
+    
+    'daphne',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -32,6 +35,7 @@ LOCAL_APPS = [
 
 THIRD_APPS = [
     'channels',
+    
     'rest_framework',
     'rest_framework_simplejwt'
 ]
@@ -68,6 +72,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoforo.wsgi.application'
 ASGI_APPLICATION = 'djangoforo.asgi.application'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",  # o tu dominio en desarrollo
+    "http://localhost:8001",
+]
 
 CHANNEL_LAYERS = {
     "default": {

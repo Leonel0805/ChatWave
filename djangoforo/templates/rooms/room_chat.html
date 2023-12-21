@@ -32,6 +32,14 @@
             </div>
         </div>
     </div>
+
+    {% block scripts %}
+
+        <script type="applications/json" id="json-roomid">
+            {{data.room.id}}   
+        </script>
+
+    {% endblock %}
     
 
 
