@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 import requests
-
-
+from .models import Message
 from .forms import RoomForm
 from apps.core.views import get_token, get_userhost
+from django.contrib.auth.decorators import login_required
 
 def room_create(request):
     
@@ -169,6 +169,7 @@ def room_like(request, pk):
                 message = 'Error al dar like'
                 return redirect('home')
 
+@login_required
 def room_chat(request, pk):
     
     token = get_token(request)
@@ -187,19 +188,20 @@ def room_chat(request, pk):
             response = requests.get(url, headers=headers)
             
             if response.status_code == 200:
-                    
+                
                 data = response.json()
                 
+                ms = Message.objects.filter(room=data['room']['id'])
+                
+                data['ms'] = ms
                 return render(request, 'rooms/room_chat.html',{
                     'token':token,
                     'user_host':user_host,
-                    'data':data
+                    'data':data,
                     
                 })
+                
             
-    elif request.method == 'POST':
-        pass
-           # return render(request, 'rooms/room_chat.html')
 
 
 

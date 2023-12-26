@@ -36,48 +36,47 @@ def home(request):
         user_host = get_userhost(request)
         
         #pasar el token guardado en cookie al header
-        if token is not None and token != '':
-            headers = {
+        #if token is not None and token != '':
+        headers = {
                 'Authorization': f'Bearer {token}'
             }
         
-            response_users = requests.get(url_users, headers=headers)
-            response_rooms = requests.get(url_rooms, headers=headers)
-            response_likes_rooms = requests.get(url_liked_rooms, headers=headers)
+        response_users = requests.get(url_users, headers=headers)
+        response_rooms = requests.get(url_rooms, headers=headers)
+        response_likes_rooms = requests.get(url_liked_rooms, headers=headers)
             
-            data = {}
+        data = {}
             
-            if response_users.status_code == 200:
-                data['users'] = response_users.json()
+        if response_likes_rooms.status_code == 200:
+            data['likedrooms'] = response_likes_rooms.json()
+            
+        if response_users.status_code == 200:
+            data['users'] = response_users.json()
                 
-            if response_rooms.status_code == 200:
-                data['allrooms'] = response_rooms.json()
+        if response_rooms.status_code == 200:
+            data['allrooms'] = response_rooms.json()
                 
-                paginator = Paginator(data['allrooms'], 5)
+            paginator = Paginator(data['allrooms'], 5)
                 
-                page = request.GET.get('page')
+            page = request.GET.get('page')
                 
-                data['rooms'] = paginator.get_page(page)
+            data['rooms'] = paginator.get_page(page)          
                 
-            if response_likes_rooms.status_code == 200:
-                data['likedrooms'] = response_likes_rooms.json()
-
+            if 'success_message_displayed' not in request.session:
+                messages.success(request, 'usuarios cargados correctamente')
+                request.session['success_message_displayed'] = True
                 
-                if 'success_message_displayed' not in request.session:
-                    messages.success(request, 'usuarios cargados correctamente')
-                    request.session['success_message_displayed'] = True
-                
-                return render(request, 'core/home.html', {
-                    'user_host':user_host,
-                    'token':token,
-                    'data':data
+            return render(request, 'core/home.html', {
+                'user_host':user_host,
+                'token':token,
+                'data':data
     
-                })
+            })
                 
-            elif response_users.status_code == 401:
+        elif response_users.status_code == 401:
                 
-                error = response_users.json()['messages'][0]['message']
-                messages.error(request, error)
+            error = response_users.json()['messages'][0]['message']
+            messages.error(request, error)
                 
     return render(request, 'core/home.html')
 

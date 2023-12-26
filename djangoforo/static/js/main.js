@@ -69,4 +69,7 @@ document.querySelector('#chat-message-button').onclick = function (e) {
     } else {
         console.error('La conexión WebSocket no está abierta.');
     }
+
+    messageInputDom.value = '';
+    return false
 }
