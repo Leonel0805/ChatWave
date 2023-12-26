@@ -197,7 +197,9 @@ def room_chat(request, pk):
                     
                 })
             
-            return render(request, 'rooms/room_chat.html')
+    elif request.method == 'POST':
+        pass
+           # return render(request, 'rooms/room_chat.html')
 
 
 

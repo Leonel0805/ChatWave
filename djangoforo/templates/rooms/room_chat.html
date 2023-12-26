@@ -13,31 +13,45 @@
 
             </div>
 
-            <div class="room-chat-body">
+            <div class="room-chat-body" id="chat-body-room">
 
-                <div class="row message-1">
-                    <div class="col">
-                        <p>Message1</p>
-                    </div>
-
-                </div>
-
-                <div class="row message-2">
-                    <div class="col">
-                        <p>Message2</p>
-                    </div>
-
-                </div>
 
             </div>
+
+            
+            <div class="chat-footer">
+
+                <!-- <form action="" method="POST">
+                    {% csrf_token %} -->
+                    <div class="row">
+                        <div class="col-11 send-message">
+                            <input type="text" placeholder="Enviar mensaje" class="w-100" id="chat-message-input">
+                        </div>
+        
+                        <div class="col-1">
+                            <button class="boton-send" id="chat-message-button">
+                                <i class="bi bi-send"></i>
+                            </button>
+                        </div>
+                    </div>
+                <!-- </form> -->
+  
+
+    
+            </div>
+   
         </div>
     </div>
 
     {% block scripts %}
 
-        <script type="applications/json" id="json-roomid">
-            {{data.room.id}}   
+        <script type="application/json" id="json-roomid">
+            {{ data.room.id }}   
         </script>
+       
+        <!-- valor       |  script    :      id -->
+        {{user_host.email|json_script:"json-userhost"}}   
+   
 
     {% endblock %}
     

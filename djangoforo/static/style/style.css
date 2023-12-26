@@ -184,22 +184,41 @@ body {
     background-color: rgb(185, 110, 255);
 
     max-width: 1000px;
-    max-height: 5000px;
+    max-height: 6000px;
     text-align: center;
     margin: 0 auto;
     padding: 20px;
 }
 
+.room-chat-body{
+    background-color: red;
+    padding-bottom: 500px;
+    max-height: 900px;
+}
+
 .message-1{
     text-align: right;
     background-color: white;
+    margin-left: 500px;
+    padding-left: 500px;
 }
 
 .message-2{
     text-align: left;
 }
 
+.chat-footer{
+    margin-top: 15px;
+    padding: 10px;
+    max-height: 100px;
+}
 
+.send-message{
+    max-width: 100%;
+}
+.boton-send{
+    margin-left: 1px;
+}
 
 .contenedor-perfil-datos,
 .contenedor-perfil-rooms{
