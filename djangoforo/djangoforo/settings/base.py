@@ -9,7 +9,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-l&%j-$@xr*!38z(1&35u!bjhu2q7o#!&)qp@+(uw^gb2+zr)87'
 
-LOGIN_URL = '/app/login/'
 
 DJANGO_APPS = [
     
@@ -76,16 +75,26 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8001",
 ]
 
+#LOCAL
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("127.0.0.1", 6379)],
+#         },
+#     },
+# }
+
+#CLOUD
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
+            "hosts": [('redis://:4nKl9XcdCFZxJAODMeBl4xe1JlEYeKcI@redis-13746.c281.us-east-1-2.ec2.cloud.redislabs.com:13746')],
+       
         },
     },
 }
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
