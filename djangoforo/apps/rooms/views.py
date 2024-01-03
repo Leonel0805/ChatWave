@@ -5,7 +5,8 @@ import requests
 from .models import Message
 from .forms import RoomForm
 from apps.core.views import get_token, get_userhost
-from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 def room_create(request):
     
@@ -169,7 +170,7 @@ def room_like(request, pk):
                 message = 'Error al dar like'
                 return redirect('home')
 
-@login_required
+
 def room_chat(request, pk):
     
     token = get_token(request)
