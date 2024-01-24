@@ -184,16 +184,19 @@ body {
     background-color: rgb(185, 110, 255);
 
     max-width: 1000px;
-    max-height: 6000px;
+    max-height: 700px;
     text-align: center;
     margin: 0 auto;
-    padding: 20px;
+    padding: 15px;
+    margin-bottom: 50px;
 }
 
 .room-chat-body{
     background-color: red;
-    padding-bottom: 500px;
-    max-height: 900px;
+    padding: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .message-1{

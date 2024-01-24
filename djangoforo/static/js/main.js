@@ -2,7 +2,7 @@
 
 const RoomId = JSON.parse(document.getElementById('json-roomid').textContent);
 const UserHost = JSON.parse(document.getElementById('json-userhost').textContent);
-
+const chatContainer = document.getElementById('room-chat-contenedor');
 
 
 console.log('Valor de RoomId:', RoomId);
@@ -41,6 +41,7 @@ chatSocket.onmessage = function (e) {
             </div>
         `;
     }
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 document.querySelector('#chat-message-input').focus();
@@ -73,3 +74,7 @@ document.querySelector('#chat-message-button').onclick = function (e) {
     messageInputDom.value = '';
     return false
 }
+
+
+
+console.log(chatContainer)
