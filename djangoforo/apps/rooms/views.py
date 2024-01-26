@@ -45,8 +45,7 @@ def room_create(request):
             
             if response.status_code == 201:
                 message = response.json()
-                print(message)
-                print(message)
+
                 messages.success(request, message)
                 
                 return redirect ('home')
