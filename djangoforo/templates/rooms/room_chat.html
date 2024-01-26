@@ -13,29 +13,33 @@
 
             </div>
 
-            <div class="room-chat-body" id="chat-body-room">
+            <div id="room-chat-body-container">
+                <div class="room-chat-body" id="chat-body-room">
 
-                {% for message in data.ms %}
-                    {% if message.user.email == user_host.email %}
-                        <div class="row message-1">
-                            <div class="col">
-                                {{message.content}}
+                    <!-- carga de mensajes -->
+                    {% for message in data.ms %}
+                        {% if message.user.email == user_host.email %}
+                            <div class="row message-1">
+                                <div class="col">
+                                    {{message.content}}
+                                </div>
                             </div>
-                        </div>
-
-                    {% else %}
-                        
-                        <div class="row message-2">
-                            <div class="col">
-                                {{message.user.email}}:{{message.content}}
+    
+                        {% else %}
+                            
+                            <div class="row message-2">
+                                <div class="col">
+                                    {{message.user.email}}: {{message.content}}
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-
-                {% endfor %}
-
-
+                        {% endif %}
+    
+                    {% endfor %}
+    
+    
+                </div>
             </div>
+            
 
             
             <div class="chat-footer">

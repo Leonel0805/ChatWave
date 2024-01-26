@@ -2,47 +2,39 @@
 
 const RoomId = JSON.parse(document.getElementById('json-roomid').textContent);
 const UserHost = JSON.parse(document.getElementById('json-userhost').textContent);
-const chatContainer = document.getElementById('room-chat-contenedor');
+const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomId + '/');
 
 
-console.log('Valor de RoomId:', RoomId);
-console.log('valor:', UserHost);
 
-const chatSocket = new WebSocket(
-    'ws://' + window.location.host + '/ws/' + RoomId + '/'
-);
-
-chatSocket.onmessage = function (e) {
-    console.log('onmessage')
-}
+const chatContainer = document.getElementById('chat-body-room');
 
 chatSocket.onclose = function (e) {
-    console.log('onclose')
+    console.log('onclose');
 }
 
 chatSocket.onmessage = function (e) {
-    const data = JSON.parse(e.data)
+    const data = JSON.parse(e.data);
 
-    if (data.username == UserHost) {
-        document.querySelector('#chat-body-room').innerHTML +=        
-        `  
-        <div class="row message-1">
-            <div class="col">
-                ${data.message}
-            </div>
-        </div>
-        `;
-    } else {
-        document.querySelector('#chat-body-room').innerHTML += `
-            <div class="row message-2">
-                <div class="col">
-                    ${data.username} : ${data.message}
-                </div>
-            </div>
-        `;
-    }
+    // Crear un nuevo elemento de mensaje
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('row', data.username == UserHost ? 'message-1' : 'message-2'); //le agregamos una class
+
+    //creamos la col para messageElement
+    const colElement = document.createElement('div');
+    colElement.classList.add('col');
+
+    //configuramos el message dentro de col
+    colElement.textContent = data.username == UserHost ? data.message : `${data.username} : ${data.message}`;
+
+
+    messageElement.appendChild(colElement);
+    chatContainer.appendChild(messageElement);
+
+
+    //desplazamiento de scroll
     chatContainer.scrollTop = chatContainer.scrollHeight;
-}
+};
+
 
 document.querySelector('#chat-message-input').focus();
 document.querySelector('#chat-message-input').onkeyup = function (e) {
@@ -77,4 +69,3 @@ document.querySelector('#chat-message-button').onclick = function (e) {
 
 
 
-console.log(chatContainer)
