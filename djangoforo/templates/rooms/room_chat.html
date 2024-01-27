@@ -30,7 +30,8 @@
                         
                         <div class="container-message container-message-2">
                             <div class="message-2">
-                                {{message.user.email}}: {{message.content}}
+                                <a href="{% url 'user_view' pk=message.user.id %}">{{message.user.email}}</a>: {{message.content}}
+                               
                             </div>
                         </div>
                     {% endif %}

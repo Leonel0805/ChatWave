@@ -34,6 +34,7 @@ def me_perfil(request):
                 
             if response_rooms.status_code == 200:
                 data['allrooms'] = response_rooms.json()
+                print(data['allrooms'])
 
                 paginator = Paginator(data['allrooms'], 5)
                 
