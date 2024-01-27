@@ -70,6 +70,11 @@ body {
     margin-bottom: 5px;
 }
 
+.image-home{
+    border-radius: 10%;
+    
+}
+
 .room-container, .like-rooms-container{
     text-align: center;
     color: white;
@@ -87,7 +92,8 @@ body {
 }
 
 .room-chat, .like-room{
-    background-color: #49c2ff;
+    background-color: #3374ff;
+
     padding: 12px 5px;
     border-radius: 5px;
 
@@ -213,12 +219,44 @@ body {
 
 
 .room-chat-body{
-    background-color: rgb(214, 234, 248);
+    background-color: #d6eaf8;
+
     padding: 10px;
     min-height: 450px;
     max-height: 450px;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.boton-home{
+
+    background-color: #1a53ff;
+    color: white;
+    padding: 5px;
+    border: 2px solid #1a53ff;
+    border-radius: 10px;
+
+    transition: 0.7s;
+
+}
+
+.boton-home:hover{
+    border-bottom-right-radius: 0;
+    font-size: 18px;
+}
+
+.boton-like-home{
+    background-color: #dd00cb;
+    color: white;
+    padding: 5px;
+    border: 2px solid #dd00cb;
+    border-radius: 10px;
+
+    transition: 0.7s;
+}
+
+.boton-like-home:hover{
+    font-size: 18px;
 }
 
 .container-message{
@@ -245,6 +283,7 @@ body {
     border: 1px solid #1f65a1;    
     padding: 0px 10px;
     border-radius: 8px;
+    border-bottom-right-radius: 0;
 }
 
 
@@ -256,7 +295,11 @@ body {
     border: 1px solid #1f65a1;
     padding: 0px 10px;
     border-radius: 8px;
+    border-bottom-left-radius: 0;
+
 }
+
+
 
 .user-url-message{
     text-decoration: none;
@@ -268,17 +311,17 @@ body {
 .user-url-message:hover{
     font-size: 18px;
 
-
 }
 
 .user-url-host{
     text-decoration: none;
-    color: black;
+    color: rgb(39, 39, 39);
     transition:font-size 0.5s;
 }
 
 .user-url-host:hover{
     font-size: 17px;
+    color: black;
 }
 
 .chat-footer{

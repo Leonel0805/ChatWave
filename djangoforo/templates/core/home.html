@@ -73,7 +73,7 @@
               
                 <div class="room-chat-home-container">
                   <p class="titulo-chat">{{room.name}}</p>
-                  <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                  <img class="image-home" src="{{room.image}}" alt="image_chat" width="80px" height="80px">
                 
              
                   <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
@@ -81,13 +81,13 @@
                   <div class="entrar-like-container">
                     <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
 
-                      <p>Entrar</p>
+                      <button class="boton-home">Entrar</button>
                     </a>
 
                     <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
                       {% csrf_token %}
   
-                      <button>Like</button>
+                      <button class="boton-like-home">Like</button>
   
                     </form>
          
