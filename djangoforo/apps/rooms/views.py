@@ -180,7 +180,6 @@ def room_chat(request, pk):
     
     if request.method == 'GET':
         
-        url_users = ('http://127.0.0.1:8000/api/usersview/usersview/')
         url = (f'http://127.0.0.1:8000/api/roomsviewset/{pk}/')
         
         if token is not None and token != '':
@@ -190,17 +189,10 @@ def room_chat(request, pk):
             }
             
             response = requests.get(url, headers=headers)
-            response_users = requests.get(url_users, headers=headers)
             
             if response.status_code == 200:
                 
-                data = response.json()
-                
-                if response_users.status_code == 200:
-                    data['users'] = response_users.json()
-                    print(data['users'])
-                        
-                    
+                data = response.json()              
                 ms = Message.objects.filter(room=data['room']['id'])
                 
                 data['ms'] = ms
