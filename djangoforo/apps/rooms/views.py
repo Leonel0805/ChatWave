@@ -140,6 +140,9 @@ def room_edit_delete(request, pk):
                     messages.success(request, message)
                     return redirect('me-perfil')
 
+        else:
+            return redirect('me-perfil')
+
 
 
 

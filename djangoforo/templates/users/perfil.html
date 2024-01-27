@@ -93,8 +93,8 @@
                     <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST">
                       {% csrf_token %}
 
-                      <input type="hidden" name="action", value="delete">
-                      <button class="btn btn-danger">
+                      <input type="hidden" name="action" value="" class="inputValue">
+                      <button class="btn btn-danger buttonDelete">
                         Eliminar
                       </button>
                     </form>
