@@ -87,17 +87,27 @@ body {
 }
 
 .room-chat, .like-room{
-    background-color: rgb(185, 110, 255);
+    background-color: #49c2ff;
     padding: 12px 5px;
+    border-radius: 5px;
+
 
 }
 
-.room-chat{
-    padding-bottom: 20px;
-    margin-bottom: 50px;
-
+.room-chat-home-container{
+    border: solid black;
+    margin-top: 0px;
+    margin-bottom: 15px;
 }
 
+
+
+.titulo-chat{
+    /* background-color: red; */
+    font-size: 17px;
+    font-weight: bold;
+    font-style: italic;
+}
 .room-search{
 
 }
@@ -175,13 +185,14 @@ body {
     padding-top: 10px;
 }
 
-.room-container-link{
+.room-container-link, .room-like-link{
     text-decoration: none;
-    color: white;
+    display: inline-block;
+    margin: 0px 5px;
 }
 
 .room-chat-contenedor{
-    background-color: rgb(52, 152, 219);
+    background-color: #3498db;
 
     max-width: 1000px;
     max-height: 700px;
@@ -213,6 +224,7 @@ body {
 .container-message{
     max-width: 70%;
     margin: 5px 0px;
+    
 }
 
 .container-message-1{
@@ -246,17 +258,48 @@ body {
     border-radius: 8px;
 }
 
+.user-url-message{
+    text-decoration: none;
+    color: black;
+    transition:font-size 0.3s;
 
+}
+
+.user-url-message:hover{
+    font-size: 18px;
+
+
+}
+
+.user-url-host{
+    text-decoration: none;
+    color: black;
+    transition:font-size 0.5s;
+}
+
+.user-url-host:hover{
+    font-size: 17px;
+}
 
 .chat-footer{
     margin-top: 15px;
     padding: 10px;
     max-height: 100px;
+    transition: box-shadow 0.3s, font-size 0.5s;
+    border-radius: 5px;
+
+}
+
+.chat-footer:hover{
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    font-size: 18px;
 }
 
 .send-message{
     max-width: 100%;
+
 }
+
 .boton-send{
     margin-left: 1px;
 }

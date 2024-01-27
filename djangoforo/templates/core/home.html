@@ -70,27 +70,31 @@
 
             {% if data.rooms %}
               {% for room in data.rooms %}
-                <p>{{room.name}}</p>
-                <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
-                      
-                <div>
+              
+                <div class="room-chat-home-container">
+                  <p class="titulo-chat">{{room.name}}</p>
+                  <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                
+             
                   <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
-                </div>
 
-                      
-                <div>
-                  <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+                  <div class="entrar-like-container">
+                    <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
 
-                    <p>Entrar</p>
-                  </a>
+                      <p>Entrar</p>
+                    </a>
 
-                  <form action="{% url 'room-like' pk=room.id %}" method="POST">
-                    {% csrf_token %}
+                    <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
+                      {% csrf_token %}
+  
+                      <button>Like</button>
+  
+                    </form>
+         
+                  </div>
 
-                    <button>Like</button>
 
-                  </form>
-       
+
 
                 </div>
               {% endfor %}
