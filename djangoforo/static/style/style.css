@@ -187,10 +187,19 @@ body {
     max-height: 700px;
     text-align: center;
     margin: 0 auto;
-    padding: 15px;
+    padding: 15px 30px;
     margin-bottom: 50px;
     border-radius: 20px;
 }
+        
+#room-chat-body-container{
+    border-radius: 15px;
+    border: 3px solid rgb(0, 0, 0);
+    border-top: rgb(33, 97, 140) solid 10px;
+    border-bottom: rgb(33, 97, 140) solid 10px;
+
+}
+
 
 .room-chat-body{
     background-color: rgb(214, 234, 248);
@@ -201,25 +210,43 @@ body {
     overflow-x: hidden;
 }
 
-        
-#room-chat-body-container{
-    border-radius: 15px;
-    border: 3px solid rgb(0, 0, 0);
-    border-top: rgb(33, 97, 140) solid 10px;
-    border-bottom: rgb(33, 97, 140) solid 10px;
+.container-message{
+    max-width: 70%;
+    margin: 5px 0px;
+}
+
+.container-message-1{
+    text-align: right;
+    margin-left: 30%;
+}
+
+.container-message-2{
+    text-align: left;
+    margin-right: 30%;
 
 }
 
 .message-1{
-    text-align: right;
-    background-color: white;
-    margin-left: 500px;
-    padding-left: 500px;
+    background-color: #f0f8ff;
+    color: black;
+    display: inline-block;
+    border: 1px solid #1f65a1;    
+    padding: 0px 10px;
+    border-radius: 8px;
 }
 
+
+
 .message-2{
-    text-align: left;
+    background-color: #ff8c8c;
+    color: black;
+    display: inline-block;
+    border: 1px solid #1f65a1;
+    padding: 0px 10px;
+    border-radius: 8px;
 }
+
+
 
 .chat-footer{
     margin-top: 15px;

@@ -17,14 +17,14 @@ chatSocket.onmessage = function (e) {
 
     // Crear un nuevo elemento de mensaje
     const messageElement = document.createElement('div');
-    messageElement.classList.add('row', data.username == UserHost ? 'message-1' : 'message-2'); //le agregamos una class
+    messageElement.classList.add('container-message', data.username == UserHost ? 'container-message-1' : 'container-message-2'); //le agregamos una class
 
     //creamos la col para messageElement
     const colElement = document.createElement('div');
-    colElement.classList.add('col');
+    colElement.classList.add(data.username == UserHost ? 'message-1' : 'message-2');
 
     //configuramos el message dentro de col
-    colElement.textContent = data.username == UserHost ? data.message : `${data.username} : ${data.message}`;
+    colElement.textContent = data.username == UserHost ? data.message : `${data.username}: ${data.message}`;
 
 
     messageElement.appendChild(colElement);

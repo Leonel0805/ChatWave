@@ -104,7 +104,6 @@ class MyRoomsListAPIView(APIView):
         user = request.user
         rooms = Room.objects.filter(user_host=user).order_by('-created_at')
     
-        print(rooms)
 
         rooms_serializer = ListMyRoomSerializer(rooms, many=True)
         return Response(rooms_serializer.data)

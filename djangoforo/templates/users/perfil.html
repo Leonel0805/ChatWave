@@ -72,7 +72,10 @@
                   {% if data.myrooms %}
                     {% for room in data.myrooms %}
                       <p>{{room.name}}</p>
-                      <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+
+                      <a href="{% url 'room-chat' pk=room.id %}">
+                        <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                      </a>
                                         
                   <div>
                      <p>{{room.likes}} Likes </p>

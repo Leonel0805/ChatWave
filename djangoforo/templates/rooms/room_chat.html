@@ -5,65 +5,65 @@
 {% block content %}
 
     <div class="room-chat-contenedor" id="room-chat-contenedor">
-        <div class="container">
-
-            <div class="room-chat-title">
-                <h1>{{data.room.name}}</h1>
-                <p> {{data.room.user_host.email}}</p>
-
-            </div>
-
-            <div id="room-chat-body-container">
-                <div class="room-chat-body" id="chat-body-room">
-
-                    <!-- carga de mensajes -->
-                    {% for message in data.ms %}
-                        {% if message.user.email == user_host.email %}
-                            <div class="row message-1">
-                                <div class="col">
-                                    {{message.content}}
-                                </div>
-                            </div>
-    
-                        {% else %}
-                            
-                            <div class="row message-2">
-                                <div class="col">
-                                    {{message.user.email}}: {{message.content}}
-                                </div>
-                            </div>
-                        {% endif %}
-    
-                    {% endfor %}
-    
-    
-                </div>
-            </div>
-            
-
-            
-            <div class="chat-footer">
-
-                <!-- <form action="" method="POST">
-                    {% csrf_token %} -->
-                    <div class="row">
-                        <div class="col-11 send-message">
-                            <input type="text" placeholder="Enviar mensaje" class="w-100" id="chat-message-input">
-                        </div>
         
-                        <div class="col-1">
-                            <button class="boton-send" id="chat-message-button">
-                                <i class="bi bi-send"></i>
-                            </button>
-                        </div>
-                    </div>
-                <!-- </form> -->
-  
 
-    
-            </div>
-   
+        <div class="room-chat-title">
+            <h1>{{data.room.name}}</h1>
+            <p> {{data.room.user_host.email}}</p>
+
         </div>
+
+        <div id="room-chat-body-container">
+            <div class="room-chat-body" id="chat-body-room">
+
+                <!-- carga de mensajes -->
+
+                {% for message in data.ms %}
+                    {% if message.user.email == user_host.email %}
+                        <div class="container-message  container-message-1">
+                            <div class="message-1">
+                                {{message.content}}
+                            </div>
+                        </div>
+
+                    {% else %}
+                        
+                        <div class="container-message container-message-2">
+                            <div class="message-2">
+                                {{message.user.email}}: {{message.content}}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+
+
+            </div>
+        </div>
+        
+
+        
+        <div class="chat-footer">
+
+            <!-- <form action="" method="POST">
+                {% csrf_token %} -->
+                <div class="row">
+                    <div class="col-11 send-message">
+                        <input type="text" placeholder="Enviar mensaje" class="w-100" id="chat-message-input">
+                    </div>
+    
+                    <div class="col-1">
+                        <button class="boton-send" id="chat-message-button">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+            <!-- </form> -->
+
+
+
+        </div>
+   
     </div>
 
     {% block scripts %}
