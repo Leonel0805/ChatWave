@@ -56,42 +56,45 @@
         </div>
       </div>
         
-      
+      <!-- ROOMS/CHATS -->
       <div class="col-4">
         <div class="room-container">
           
           <div class="room-title">
             <h2>
-              ROOMS/CHATS
+              Salas/Chats
             </h2>
           </div>
         
-          <div class="room-chat">
+          <div class="room-chat-container">
 
             {% if data.rooms %}
               {% for room in data.rooms %}
               
-                <div class="room-chat-home-container">
-                  <p class="titulo-chat">{{room.name}}</p>
-                  <img class="image-home" src="{{room.image}}" alt="image_chat" width="80px" height="80px">
-                
-             
-                  <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
+                <div class="room-chat-card-container">
+                  <div class="room-card-image-container">
+                    <img class="room-card-image" src="{{room.image}}" alt="image_chat" width="80px" height="80px">
+                  </div>
 
-                  <div class="entrar-like-container">
+                  <div class="room-card-content">
+                    <p class="room-card-title">{{room.name}}</p>
+              
+                    <p>{{room.user_host.email}} | {{room.likes}} Likes </p>
+
                     <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
 
-                      <button class="boton-home">Entrar</button>
+                      <button class="room-card-boton-entrar">Entrar</button>
                     </a>
 
                     <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
                       {% csrf_token %}
   
-                      <button class="boton-like-home">Like</button>
+                      <button class="room-card-boton-like"><i class="bi bi-heart icon-like"></i></button>
   
                     </form>
-         
+          
                   </div>
+                  
 
 
 
@@ -137,7 +140,7 @@
                 <div class="row foot-like-room">
                     
                   <div class="col">
-                    <p>Host: {{ likedroom.user_host.email }}| {{likedroom.likes}} likes</p>
+                    <p>Host: {{ likedroom.user_host.email }} | {{likedroom.likes}} likes</p>
                   </div>
                 
                 </div>
@@ -153,6 +156,7 @@
         
     </div>
     
+  </div>
  
 
 {% endblock %}

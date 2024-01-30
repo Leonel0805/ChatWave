@@ -70,10 +70,6 @@ body {
     margin-bottom: 5px;
 }
 
-.image-home{
-    border-radius: 10%;
-    
-}
 
 .room-container, .like-rooms-container{
     text-align: center;
@@ -83,7 +79,8 @@ body {
 
 
 .room-title, .like-rooms-title{
-    background-color: rgb(185, 110, 255);
+    background-color: #7E9AFF;
+    color: black;
     margin-bottom: 10px;
     padding: 5px 2px;
     border-radius: 10px;
@@ -91,29 +88,89 @@ body {
     
 }
 
-.room-chat, .like-room{
-    background-color: #3374ff;
-
-    padding: 12px 5px;
+.room-chat-container, .like-room{
+    background-color: #7E9AFF;
+    padding: 10px 10px;
     border-radius: 5px;
-
 
 }
 
-.room-chat-home-container{
-    border: solid black;
+.room-chat-card-container{
+    display: flex;
     margin-top: 0px;
     margin-bottom: 15px;
 }
 
+.room-card-image-container{
+    border-radius: 10%;
+    max-width: 30%;
+    max-height: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 16px;
+    display: flex;
+    
+}
+.room-card-image{
+    max-width: 90px;
+    max-height: 140px;
+    width: auto;
+    height: auto;
+}
 
+.room-card-content{
+    color: black;
+    text-align: left;
+    margin-left: 8px;
+    max-width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
 
-.titulo-chat{
-    /* background-color: red; */
-    font-size: 17px;
+}
+
+.room-card-title{
+    font-size: 18px;
     font-weight: bold;
     font-style: italic;
+    display: inline-block ;
 }
+
+.room-card-boton-entrar{
+
+    background-color: #1a53ff;
+    color: white;
+    padding: 4px 50px;
+    border: 2px solid #174AFF;
+    border-radius: 10px;
+    transition: 0.7s;
+    margin-left: 0px;
+
+}
+
+
+.room-card-boton-entrar:hover{
+    border-bottom-right-radius: 0;
+    font-size: 18px;
+}
+
+.room-card-boton-like{
+    background-color: white;
+    padding: 4px;
+    border: 2px solid #174AFF;
+    border-radius: 10px;
+    color: #174AFF;
+    font-weight: bold;
+
+    transition: 0.7s;
+}
+
+
+
+.room-card-boton-like:hover{
+    font-size: 18px;
+}
+
+
 .room-search{
 
 }
@@ -228,36 +285,7 @@ body {
     overflow-x: hidden;
 }
 
-.boton-home{
 
-    background-color: #1a53ff;
-    color: white;
-    padding: 5px;
-    border: 2px solid #1a53ff;
-    border-radius: 10px;
-
-    transition: 0.7s;
-
-}
-
-.boton-home:hover{
-    border-bottom-right-radius: 0;
-    font-size: 18px;
-}
-
-.boton-like-home{
-    background-color: #dd00cb;
-    color: white;
-    padding: 5px;
-    border: 2px solid #dd00cb;
-    border-radius: 10px;
-
-    transition: 0.7s;
-}
-
-.boton-like-home:hover{
-    font-size: 18px;
-}
 
 .container-message{
     max-width: 70%;
