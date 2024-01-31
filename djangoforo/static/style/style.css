@@ -90,15 +90,19 @@ body {
 
 .room-chat-container, .like-room{
     background-color: #7E9AFF;
-    padding: 10px 10px;
     border-radius: 5px;
+    padding: 5px;
 
 }
 
 .room-chat-card-container{
     display: flex;
     margin-top: 0px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
+    border: 1px solid #174AFF;
+    border-bottom: 0,5px;
+    border-top: 0,5px;
+    padding: 5px;
 }
 
 .room-card-image-container{
@@ -142,7 +146,7 @@ body {
     padding: 4px 50px;
     border: 2px solid #174AFF;
     border-radius: 10px;
-    transition: 0.7s;
+    transition: transform 0.7s ease;
     margin-left: 0px;
 
 }
@@ -150,7 +154,9 @@ body {
 
 .room-card-boton-entrar:hover{
     border-bottom-right-radius: 0;
-    font-size: 18px;
+    /* font-size: 20px; */
+    transform: scale(1.15);
+
 }
 
 .room-card-boton-like{
@@ -167,7 +173,7 @@ body {
 
 
 .room-card-boton-like:hover{
-    font-size: 18px;
+    transform: scale(1.2);
 }
 
 
