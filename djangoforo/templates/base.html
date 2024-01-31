@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'style/style.css'%}">
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+    {% block css %}
+    {% endblock %}
 
     <!-- BOOTSTRAP5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -21,35 +23,43 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    {% include 'navbar.html' %}
+    <header>
+                <!-- NAVBAR -->
+        {% include 'navbar.html' %}
 
-    {% include 'core/messages.html' %}
+        {% include 'core/messages.html' %}
+    </header>
 
-    {% block content %}
-        <h1>base</h1>
+    <main>
+            
+        {% block content %}
+            <h1>base</h1>
 
 
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li class="{{message.tags}}">
-                    {{ message }}
-                </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    {% endblock %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{message.tags}}">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endblock %}
+
+    </main>
+
     
+    <footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
+    
+   
     {% block scripts %}
-
     {% endblock %}
-
-    <script type="module" src="{% static 'js/alerts.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/alerts.js' %}"></script>
     <script src="{% static 'js/websocket.js' %}"></script>
-
 
 </body>
 </html>

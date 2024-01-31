@@ -140,7 +140,7 @@ def user_view(request, pk):
                 page = request.GET.get('page')
                 data['user_rooms'] = paginator.get_page(page)
 
-                return render(request, 'users/user_view_copy.html',{
+                return render(request, 'users/user_view.html',{
                     'token':token,
                     'user_host': user_host,
                     'data':data,

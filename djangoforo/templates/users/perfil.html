@@ -1,117 +1,124 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'style/users/perfil.css' %}">
+{% endblock %}
+
 {% block title %} Mi Perfil {% endblock %}
 
 {% block content %}
 
-    {% if data %}
+  {% if data %}
 
-      <div class="cont-mi-perfil">
-        <div class="mi-perfil-title">
-          <h2> Mis datos</h2>
+    <div class="cont-mi-perfil">
+      <div class="mi-perfil-title">
+        <h2> Mis datos</h2>
 
+      </div>
+
+
+      <div class="row">
+        <div class="col-6">
+          <div class="contenedor-perfil-datos">
+
+            <div class="perfil-datos-titulo">
+              <h2> Mi Perfil </h2>
+
+            </div>
+
+          
+            {% for key, value in data.me.items %}
+            <div class="row">
+
+              <div class="col-4 data-perfil">
+                {{key}}
+              </div>
+
+              {% if key != 'avatar' %}
+                <div class="col-8 valor-perfil">
+                  {{value}}
+                </div>
+              {% else %}
+                <div class="col-8 valor-perfil-image">
+                  <img src="{{ value }}" alt="avatar" >
+                </div>
+              {% endif %}
+
+            </div>
+            {% endfor %}
+
+          
+            <div class="container-edit-perfil">
+              <a href="{% url 'me-perfil-edit' %}">
+                <button class="btn btn-success">
+                  Editar
+                </button>
+              </a>
+      
+            </div>
+          </div>
+          
         </div>
 
 
-        <div class="row">
-          <div class="col-6">
-            <div class="contenedor-perfil-datos">
-
-              <div class="perfil-datos-titulo">
-                <h2> Mi Perfil </h2>
-
-              </div>
-
-            
-              {% for key, value in data.me.items %}
-              <div class="row">
-
-                <div class="col-4 data-perfil">
-                  {{key}}
-                </div>
-
-                {% if key != 'avatar' %}
-                  <div class="col-8 valor-perfil">
-                    {{value}}
-                  </div>
-                {% else %}
-                  <div class="col-8 valor-perfil-image">
-                    <img src="{{ value }}" alt="avatar" >
-                  </div>
-                {% endif %}
-
-              </div>
-              {% endfor %}
-
-            
-              <div class="container-edit-perfil">
-                <a href="{% url 'me-perfil-edit' %}">
-                  <button class="btn btn-success">
-                    Editar
-                  </button>
-                </a>
-        
-              </div>
-            </div>
-            
-          </div>
-
-
-          <div class="col-6">
-            <div class="contenedor-perfil-rooms">
-              <div class="room-container">
-                            
-                <div class="room-title">
-                  <h2>
-                      ROOMS/CHATS
-                  </h2>
-                </div>
+        <div class="col-6">
+          <div class="contenedor-perfil-rooms">
+            <div class="room-container">
                           
-                <div class="room-chat-datos">
-                  
-                  {% if data.myrooms %}
-                    {% for room in data.myrooms %}
-                      <p>{{room.name}}</p>
-
-                      <a href="{% url 'room-chat' pk=room.id %}">
-                        <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
-                      </a>
-                                        
-                  <div>
-                     <p>{{room.likes}} Likes </p>
-                  </div>
-                  
-                  <div class="container-edit-perfil">
-                    <a href="{% url 'room-edit-delete' pk=room.id %}">
-                      
-                      <button class="btn btn-success">
-                        Editar
-                      </button>
-                    
-                    </a>
-            
-                    <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST">
-                      {% csrf_token %}
-
-                      <input type="hidden" name="action" value="" class="inputValue">
-                      <button class="btn btn-danger buttonDelete">
-                        Eliminar
-                      </button>
-                    </form>
-
-                  </div>
-  
-                    {% endfor %}
-
-                    <div>
-                      {% for num_page in data.myrooms.paginator.page_range %}
-                      <span class="">
-                          <a href="?page={{ num_page }}">{{ num_page }}</a>
-                      </span>
-                      {% endfor %}
-                    </div>  
+              <div class="title-container room-title">
+                <h2>
+                    Salas/Chats
+                </h2>
+              </div>
+                        
+              <div class="room-chat-container">
                 
-                  {% else %}
+                {% if data.myrooms %}
+                  {% for room in data.myrooms %}
+                    <div class="room-chat-card-container">
+                      <div class="room-card-image-container">
+                        <img class="room-card-image" src="{{room.image}}" alt="image_chat">
+                      </div>
+  
+                      <div class="room-card-content">
+                        <p class="room-card-title">{{room.name}}</p>
+                  
+                        <p>{{room.likes}} Likes </p>
+  
+                        <a href="{% url 'room-edit-delete' pk=room.id %}" class="room-container-link" >
+  
+                          <button class="room-card-boton-entrar">Editar</button>
+                        </a>
+
+                        <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST" class="room-like-link">
+                          {% csrf_token %}
+    
+                          <input type="hidden" name="action" value="" class="inputValue">
+                          <button class="btn btn-danger buttonDelete">
+                            Eliminar
+                          </button>
+                        </form>
+              
+                      </div>
+     
+  
+                    </div>
+
+
+                  {% endfor %}
+
+                  <div class="page-nums">
+                    {% for num_page in data.myrooms.paginator.page_range %}
+                    <span class="">
+                        <a href="?page={{ num_page }}">{{ num_page }}</a>
+                    </span>
+                    {% endfor %}
+                  </div>  
+
+              
+                {% else %}
 
                   <div>
                     <a href="{% url 'room-create' %}">
@@ -121,28 +128,22 @@
                     </a>
 
                   </div>
-                  
-                  {% endif %}
-                </div>
-                  
+                
+                {% endif %}
               </div>
-             
-
+                
             </div>
             
 
           </div>
-                   
+          
 
-      </div>
+        </div>
+                  
 
-           
-               
-       
-      
+    </div>
 
-    {% endif%}
-
-    
+          
+  {% endif%}
 
 {% endblock %}

@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
-
 {% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'style/core/home.css' %}">
+{% endblock %}
+
 {% block title %} Home {% endblock%}
 
 {% block content %}
@@ -20,142 +24,147 @@
 
   <!-- meet people -->
 
-  <div class="container">
+  <div class="home-container">
+ 
+    
+    <div class="meet-people-container">
+      <div class="title-container meet-people-title">
+        <h2>
+          Conoce gente
+        </h2>
+      </div>
 
-    <div class="row">
-      <div class="col-4  text-align-center ">
-        <div class="meet-people-title">
-          <h2>
-            Conoce Gente!
-          </h2>
+      <div class="meet-people-body-container">
+        {% if data %}
+          {% for user in data.users %}
+          
+            <div class="meet-people-card">
+              <a href="{% url 'user_view' pk=user.id %}" class="meet-card-url">
+       
+                <img src="{{user.avatar}}" alt="" class="meet-card-image">
+         
+                <p class="meet-card-username"> {{user.username}} </p>     
+                 
+              </a>
+
+              
+              <div class="meet-card-boton-container">
+                <button class="meet-card-boton-seguir">Seguir</button>
+              </div>
+
+            </div>
+
+
+          {% endfor %}
+  
+        {% else %}
+          <p>No people</p>
+        {% endif %}
+      </div>
+    </div>
+        
+
+   
+    <div class="container-md">
+      <div class="row container-rooms">    
+        <!-- ROOMS/CHATS -->
+        <div class="col-lg-6">
+          <div class="room-container">
+            
+            <div class="title-container room-title ">
+              <h2>
+                Salas/Chats
+              </h2>
+            </div>
+          
+            <div class="room-chat-container">
+
+              {% if data.rooms %}
+                {% for room in data.rooms %}
+                
+                  <div class="room-chat-card-container">
+                    <div class="room-card-image-container">
+                      <img class="room-card-image" src="{{room.image}}" alt="image_chat">
+                    </div>
+
+                    <div class="room-card-content">
+                      <p class="room-card-title">{{room.name}}</p>
+                
+                      <p>{{room.user_host.email}} | {{room.likes}} Likes </p>
+
+                      <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+
+                        <button class="room-card-boton-entrar">Entrar</button>
+                      </a>
+
+                      <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
+                        {% csrf_token %}
+    
+                        <button class="room-card-boton-like"><i class="bi bi-heart icon-like"></i></button>
+    
+                      </form>
+            
+                    </div>
+                    
+
+
+
+
+                  </div>
+                {% endfor %}
+
+              {% endif %}
+
+            </div>
+
+            <div class="page-nums">
+              {% for num_page in data.rooms.paginator.page_range %}
+              <span class="">
+                  <a href="?page={{ num_page }}">{{ num_page }}</a>
+              </span>
+              {% endfor %}
+            </div>
+            
+          </div>
         </div>
 
-        <div class="container-sm meet-people">
-          {% if data %}
-            {% for user in data.users %}
-            
-
-                <a href="{% url 'user_view' pk=user.id %}" style="text-decoration: none;">
-                  <div class="row justify-content-center meet-people-body">
-                    <div class="col-4">
-                      <img src="{{user.avatar}}" alt="" class="image">
-                    </div>       
-                    <div class="col-4">
-                          {{user.username}}
+        <div class="col-lg-6">
+          <div class="like-rooms-container">
+            <div class="title-container like-rooms-title">
+              <h2>Salas favoritas</h2>
+            </div>
+        
+            <div class="room-chat-container">
+        
+              {% if data.likedrooms %}
+        
+                {% for likedroom in data.likedrooms %}
+                  <div class="room-chat-card-container">
+                    <div class="room-card-image-container">
+                      <img class="room-card-image" src="{{likedroom.image}}" alt="image_chat" width="80px" height="80px">
+                    </div>
+        
+                    <div class="room-card-content">
+                      <p class="room-card-title">{{likedroom.name}}</p>
+                      <p>{{likedroom.user_host.email}} | {{likedroom.likes}} Likes </p>
+        
+                      <a href="{% url 'room-chat' pk=likedroom.id %}" class="room-container-link">
+                        <button class="room-card-boton-entrar">Entrar</button>
+                      </a>
+        
                     </div>
                   </div>
-                </a>
-
-          
-         
-            {% endfor %}
-    
-          {% else %}
-            <p>No people</p>
-          {% endif %}
-        </div>
-      </div>
+                {% endfor %}
         
-      <!-- ROOMS/CHATS -->
-      <div class="col-4">
-        <div class="room-container">
-          
-          <div class="room-title">
-            <h2>
-              Salas/Chats
-            </h2>
-          </div>
-        
-          <div class="room-chat-container">
-
-            {% if data.rooms %}
-              {% for room in data.rooms %}
-              
-                <div class="room-chat-card-container">
-                  <div class="room-card-image-container">
-                    <img class="room-card-image" src="{{room.image}}" alt="image_chat">
-                  </div>
-
-                  <div class="room-card-content">
-                    <p class="room-card-title">{{room.name}}</p>
-              
-                    <p>{{room.user_host.email}} | {{room.likes}} Likes </p>
-
-                    <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
-
-                      <button class="room-card-boton-entrar">Entrar</button>
-                    </a>
-
-                    <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
-                      {% csrf_token %}
-  
-                      <button class="room-card-boton-like"><i class="bi bi-heart icon-like"></i></button>
-  
-                    </form>
-          
-                  </div>
-                  
-
-
-
-
-                </div>
-              {% endfor %}
-
-            {% endif %}
-
-          </div>
-
-          <div>
-            {% for num_page in data.rooms.paginator.page_range %}
-            <span class="">
-                <a href="?page={{ num_page }}">{{ num_page }}</a>
-            </span>
-            {% endfor %}
-          </div>
-          
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="like-rooms-container">
-          <div class="like-rooms-title">
-            <h2>Salas favoritas</h2>
-          </div>
-      
-          <div class="room-chat-container">
-      
-            {% if data.likedrooms %}
-      
-              {% for likedroom in data.likedrooms %}
-                <div class="room-chat-card-container">
-                  <div class="room-card-image-container">
-                    <img class="room-card-image" src="{{likedroom.image}}" alt="image_chat" width="80px" height="80px">
-                  </div>
-      
-                  <div class="room-card-content">
-                    <p class="room-card-title">{{likedroom.name}}</p>
-                    <p>{{likedroom.user_host.email}} | {{likedroom.likes}} Likes </p>
-      
-                    <a href="{% url 'room-chat' pk=likedroom.id %}" class="room-container-link">
-                      <button class="room-card-boton-entrar">Entrar</button>
-                    </a>
-      
-                    <form action="{% url 'room-like' pk=likedroom.id %}" method="POST" class="room-like-link">
-                      {% csrf_token %}
-      
-                    </form>
-                  </div>
-                </div>
-              {% endfor %}
-      
-            {% endif %}
+              {% endif %}
+            </div>
           </div>
         </div>
-      </div>
-      
         
+          
+      </div>
     </div>
+    
     
   </div>
  

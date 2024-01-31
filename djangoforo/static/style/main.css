@@ -1,0 +1,27 @@
+
+main {
+    background-color:rgb(114, 76, 76);
+}
+
+.navbar{
+    padding: 10px;
+}
+
+.navbar-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.message{
+    color: rgb(255, 255, 255);
+}
+
+.message-success{
+    background-color: rgb(0, 189, 25) ;
+}
+
+.message-error{
+    background-color: red;
+}
+

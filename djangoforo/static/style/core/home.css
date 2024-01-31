@@ -1,0 +1,208 @@
+.home-container{
+    display: flex;
+    margin-top: 24px;
+}
+
+/* TITULOS */
+.title-container{
+    color: black;
+    margin-bottom: 10px;
+    padding: 5px 2px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.meet-people-title{
+    background-color: #D987FF;
+    border: 1px solid #CB5BFF;
+
+}
+
+.room-title, .like-rooms-title{
+    background-color: #7E9AFF;
+    border: 1px solid #174AFF;;
+}
+
+
+/* CONOCE GENTE */
+.meet-people-container{
+    width: 40%;
+    max-height: 500px;
+    margin-left: 32px;
+    border-radius: 5px;
+    /* padding: 5px; */
+
+}
+
+.meet-people-body-container{
+
+    color: black;
+    /* background-color: green; */
+    max-width: 100%;
+    background-color: #D987FF;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #CB5BFF;
+
+
+}
+
+.meet-people-card{
+    display: flex;
+    padding: 8px 16px;
+}
+
+.meet-card-url{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+.meet-card-image{
+    width: 90px;
+    height: 90px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 50%;
+}
+
+.meet-card-username{
+    text-align: center;
+    display: inline-block;
+    margin-left: 10%;
+    
+}
+
+.meet-card-boton-container{
+    display: inline-block;
+    /* margin-right: 5%; */
+    
+}
+
+.meet-card-boton-seguir{
+    background-color: #1a53ff;
+    color: white;
+    padding: 4px 50px;
+    border: 2px solid #174AFF;
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+    margin-top: 22%;
+}
+
+.meet-card-boton-seguir:hover{
+    transform: scale(1.12);
+
+}
+
+
+/* SALAS/CHATS */
+.room-chat-container, .like-room{
+    background-color: #7E9AFF;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+.container-rooms{
+    padding-left: 150px;
+    padding-right: 24px;
+}
+.room-chat-card-container{
+    display: flex;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 1px solid #174AFF;
+    border-bottom: 0,5px;
+    border-top: 0,5px;
+    padding: 5px;
+}
+
+.room-card-image-container{
+    border-radius: 10%;
+    max-width: 30%;
+    max-height: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 16px;
+    display: flex;
+    
+}
+.room-card-image{
+    max-width: 90px;
+    max-height: 140px;
+    width: auto;
+    height: auto;
+}
+
+.room-card-content{
+    color: black;
+    text-align: left;
+    margin-left: 8px;
+    max-width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+}
+
+.room-card-title{
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    display: inline-block;
+}
+
+
+.room-container-link, .room-like-link{
+    text-decoration: none;
+    display: inline-block;
+    margin: 0px 5px;
+}
+
+
+.room-card-boton-entrar{
+
+    background-color: #1a53ff;
+    color: white;
+    padding: 4px 50px;
+    border: 2px solid #174AFF;
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+    margin-left: 0px;
+
+}
+
+
+
+.room-card-boton-entrar:hover{
+    border-bottom-right-radius: 0;
+    /* font-size: 20px; */
+    transform: scale(1.12);
+
+}
+
+.room-card-boton-like{
+    background-color: white;
+    padding: 4px;
+    border: 2px solid #174AFF;
+    border-radius: 10px;
+    color: #174AFF;
+    font-weight: bold;
+
+    transition: 0.5s;
+}
+
+
+
+.room-card-boton-like:hover{
+    transform: scale(1.2);
+}
+
+.page-nums{
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+}
+
+
+
+
+

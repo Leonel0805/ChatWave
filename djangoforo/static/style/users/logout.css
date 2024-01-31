@@ -1,0 +1,17 @@
+
+.form-title{
+    text-align: center;
+}
+
+
+.logout-form{
+    background-color: rgb(185, 110, 255);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.body-form{
+    text-align: center;
+    padding: 10px;
+}

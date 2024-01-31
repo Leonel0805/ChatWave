@@ -1,0 +1,121 @@
+
+.room-chat-contenedor{
+    background-color: #3498db;
+
+    max-width: 1000px;
+    max-height: 700px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 15px 30px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+}
+
+        
+#room-chat-body-container{
+    border-radius: 15px;
+    border: 3px solid rgb(0, 0, 0);
+    border-top: rgb(33, 97, 140) solid 10px;
+    border-bottom: rgb(33, 97, 140) solid 10px;
+
+}
+
+
+.room-chat-body{
+    background-color: #d6eaf8;
+
+    padding: 10px;
+    min-height: 450px;
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.container-message{
+    max-width: 70%;
+    margin: 5px 0px;
+    
+}
+
+.container-message-1{
+    text-align: right;
+    margin-left: 30%;
+}
+
+.container-message-2{
+    text-align: left;
+    margin-right: 30%;
+
+}
+
+.message-1{
+    background-color: #f0f8ff;
+    color: black;
+    display: inline-block;
+    border: 1px solid #1f65a1;    
+    padding: 0px 10px;
+    border-radius: 8px;
+    border-bottom-right-radius: 0;
+}
+
+
+
+.message-2{
+    background-color: #ff8c8c;
+    color: black;
+    display: inline-block;
+    border: 1px solid #1f65a1;
+    padding: 0px 10px;
+    border-radius: 8px;
+    border-bottom-left-radius: 0;
+
+}
+
+
+
+.user-url-message{
+    text-decoration: none;
+    color: black;
+    transition:font-size 0.3s;
+
+}
+
+.user-url-message:hover{
+    font-size: 18px;
+
+}
+
+.user-url-host{
+    text-decoration: none;
+    color: rgb(39, 39, 39);
+    transition:font-size 0.5s;
+}
+
+.user-url-host:hover{
+    font-size: 17px;
+    color: black;
+}
+
+.chat-footer{
+    margin-top: 15px;
+    padding: 10px;
+    max-height: 100px;
+    transition: box-shadow 0.3s, font-size 0.5s;
+    border-radius: 5px;
+
+}
+
+.chat-footer:hover{
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+.send-message{
+    max-width: 100%;
+
+}
+
+.boton-send{
+    margin-left: 1px;
+}
