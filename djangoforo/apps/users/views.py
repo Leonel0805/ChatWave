@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from apps.core.views import get_token, get_userhost
 from django.contrib import messages
 from .forms import PerfilForm
+from apps.users.models import User
 
 from django.core.paginator import Paginator
 import json, requests
@@ -31,7 +32,8 @@ def me_perfil(request):
             
             if response.status_code == 200:
                 data['me'] = response.json()
-                
+                print(data['me'])
+                data['verbose_name'] = User._meta.get_field('avatar').verbose_name
             if response_rooms.status_code == 200:
                 data['allrooms'] = response_rooms.json()
 

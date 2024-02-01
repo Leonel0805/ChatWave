@@ -33,7 +33,12 @@
               <div class="row container-content-info">
 
                 <div class="col-4 content-info-key">
-                  <p>{{key}} </p>
+                  {% if key == 'avatar' %}
+                    <p>{{data.verbose_name}} </p>
+                  {% else %}
+                    <p>{{key}} </p>
+
+                  {% endif%}
                 </div>
 
                 {% if key != 'avatar' %}
