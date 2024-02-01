@@ -63,6 +63,14 @@
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 50%;
+    border: 2px solid #CB5BFF;
+    transition: transform 0.5s;
+}
+
+.meet-card-image:hover{
+    border: 2px solid #a34acc;
+    transform: scale(1.05);
+
 }
 
 .meet-card-username{
@@ -78,12 +86,20 @@
     
 }
 
-.meet-card-boton-seguir{
-    background-color: #1a53ff;
+.card-boton{
     color: white;
     padding: 4px 50px;
-    border: 2px solid #174AFF;
     border-radius: 10px;
+    transition: transform 0.7s;
+}
+
+.card-boton:hover{
+    transform: scale(1.12);
+}
+
+.meet-card-boton-seguir{
+    background-color: #1a53ff;
+    border: 2px solid #174AFF;
     transition: transform 0.5s ease;
     margin-top: 22%;
 }
@@ -127,8 +143,8 @@
     
 }
 .room-card-image{
-    max-width: 90px;
-    max-height: 140px;
+    max-width: 100px;
+    max-height: 120px;
     width: auto;
     height: auto;
 }
@@ -163,7 +179,7 @@
     background-color: #1a53ff;
     color: white;
     padding: 4px 50px;
-    border: 2px solid #174AFF;
+    border: 2px solid  #174AFF;
     border-radius: 10px;
     transition: transform 0.5s ease;
     margin-left: 0px;

@@ -49,7 +49,7 @@
 
               
               <div class="meet-card-boton-container">
-                <button class="meet-card-boton-seguir">Seguir</button>
+                <button class="card-boton meet-card-boton-seguir">Seguir</button>
               </div>
 
             </div>
@@ -94,13 +94,13 @@
 
                       <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
 
-                        <button class="room-card-boton-entrar">Entrar</button>
+                        <button class="card-boton room-card-boton-entrar">Entrar</button>
                       </a>
 
                       <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
                         {% csrf_token %}
     
-                        <button class="room-card-boton-like"><i class="bi bi-heart icon-like"></i></button>
+                        <button class="card-boton room-card-boton-like"><i class="bi bi-heart icon-like"></i></button>
     
                       </form>
             
@@ -149,7 +149,7 @@
                       <p>{{likedroom.user_host.email}} | {{likedroom.likes}} Likes </p>
         
                       <a href="{% url 'room-chat' pk=likedroom.id %}" class="room-container-link">
-                        <button class="room-card-boton-entrar">Entrar</button>
+                        <button class="card-boton room-card-boton-entrar">Entrar</button>
                       </a>
         
                     </div>

@@ -1,42 +1,53 @@
 @import '../core/home.css';
 
 /* PERFIL */
-.mi-perfil{
-    background-color: rgb(185, 110, 255);
-    max-width: 150px;
+
+.container-mi-perfil{
+
+    width: 1100px;
+    max-height: 1000px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #6d79fa;
+    padding: 16px;
+
 }
 
-
-.data-perfil{
+.container-mi-perfil-title{
     text-align: center;
 }
 
-.cont-mi-perfil{
-
-    max-width: 1000px;
-    margin: 0 auto;
-    border-radius: 10px;
+.container-edit-perfil{
+    background-color: rgb(196, 197, 196);
 }
 
-.cont-mi-perfil-edit{
-    background-color: rgb(185, 110, 255);
-    max-width: 800px;
-
-    margin: 0 auto;
+.container-edit-perfil-datos{
+    padding: 20px;
+    text-align: left;
     border-radius: 10px;
-    
+    margin-top: 30px;
+    background-color: #D987FF;
+    border: 2px solid #CB5BFF;
+
+}
+
+.container-perfil-datos-titulo{
+
+}
+
+.container-content-info{
+
 }
 
 
-.mi-perfil-title{
-    border-radius: 10px;
-    padding-left: 15px;
-    padding-top: 7px;
-    text-align: center;
-    padding-bottom: 7px;
-    background-color: rgb(185, 110, 255)
+.content-info-key{
 }
-.valor-perfil-image{
+
+.content-info-value{
+
+}
+
+.content-info-image{
     display: flex;
     max-width: 50px;
     max-height: 50px;
@@ -45,12 +56,27 @@
     
 }
 
-
-.contenedor-perfil-datos{
+.container-edit-boton{
+    margin-top: 112px;
     text-align: center;
-    border-radius: 10px;
-    margin-top: 30px;
-    background-color: rgb(185, 110, 255);
+
+
 }
 
 
+.boton-perfil-editar{
+    background-color: #1a53ff;
+    border: 2px solid #174AFF;
+
+}
+.boton-rooms-editar{
+    background-color: #7DC2FF;
+    border: 2px solid #6fa7e0;
+
+
+}
+
+.boton-rooms-eliminar{
+    background-color: #ff4d4d;
+    border: 2px solid #cc3333;
+}
