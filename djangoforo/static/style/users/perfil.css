@@ -4,7 +4,7 @@
 
 .container-mi-perfil{
 
-    width: 1100px;
+    width: 1400px;
     max-height: 1000px;
     margin: 0 auto;
     border-radius: 10px;
@@ -26,24 +26,51 @@
     text-align: left;
     border-radius: 10px;
     margin-top: 30px;
+    margin-right: 50px;
     background-color: #D987FF;
     border: 2px solid #CB5BFF;
+    height: 800px;
 
 }
 
 .container-perfil-datos-titulo{
+    margin-bottom: 24px;
 
 }
 
 .container-content-info{
+    padding: 24px;
+    height: 600px;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    border: 2px solid #CB5BFF;
+
+}
+
+.content-info{
+    background-color: #D987FF;
+
+    margin: 16px;
+    height: 80px;
+    text-align: left;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+
+.content-key{
+    color: rgb(58, 58, 58);
+    margin: 0;
+    font-size: 14px;
 
 }
 
 
-.content-info-key{
-}
-
-.content-info-value{
+.content-value{
+    margin: 0;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    color: rgb(0, 0, 0);
 
 }
 
@@ -57,7 +84,7 @@
 }
 
 .container-edit-boton{
-    margin-top: 112px;
+    margin-top: 50px;
     text-align: center;
 
 
