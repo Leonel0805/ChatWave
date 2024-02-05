@@ -48,7 +48,12 @@ def home(request):
         data = {}
             
         if response_likes_rooms.status_code == 200:
-            data['likedrooms'] = response_likes_rooms.json()
+            data['all_likedrooms'] = response_likes_rooms.json()
+            
+            paginator2 = Paginator(data['all_likedrooms'], 5)
+            page2 = request.GET.get('page2')
+            data['likedrooms'] = paginator2.get_page(page2)
+            print(data['likedrooms'])
             
         if response_users.status_code == 200:
             data['users'] = response_users.json()

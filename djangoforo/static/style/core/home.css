@@ -27,7 +27,7 @@
 /* CONOCE GENTE */
 .meet-people-container{
     width: 40%;
-    max-height: 500px;
+    max-height: 300px;
     margin-left: 32px;
     border-radius: 5px;
     /* padding: 5px; */
@@ -58,8 +58,8 @@
     width: 100%;
 }
 .meet-card-image{
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 50%;

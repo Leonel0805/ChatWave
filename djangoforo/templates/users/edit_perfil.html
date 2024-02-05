@@ -1,50 +1,71 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'style/users/edit-perfil.css' %}">
+{% endblock %}
+
 {% block title %} Mi Perfil/edit {% endblock %}
 
 {% block content %}
 
-    <h1> Mi Perfil </h1>
 
-        <div class="cont-mi-perfil-edit">
-            <div class="mi-perfil-title">
-                <h2> Mis datos</h2>
- 
-            </div>
-
- 
-            <div>
-                {% for field in form %}
-               
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-
-                        <div class="row">
-                            <div class="col-4 data-perfil">
-                                {{field.label}}
-                            </div>
-
-                            <div class="col-8 valor-perfil">
-                                {{field}}
-                            </div>
-
-                        </div>
-                {% endfor %}
-
-                        
-                        <div class="container-edit-perfil text">
-                            <a href="#">
-                                <button class="btn btn-success">
-                                    Aceptar cambios
-                                </button>
-                            </a>
-
-                        </div>
-                    </form>
-    
-            
-            </div> 
+    <div class="container-edit-perfil-datos">
+        <div class="container-perfil-datos-titulo">
+            <h2> Mi Perfil </h2>
         </div>
+        
+        <div class="container-content-info">
 
-    
+
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            {% for field in form %}
+
+                {% if field.name == 'bio' %}
+                <div id="bio" class="content-info">
+                    <div class="content-key">
+                        {{field.label}}
+                    </div>
+
+                    <div class="content-value">
+                        {{field}}
+                    </div>
+
+                </div>
+                {% else %}
+                <div class="content-info">
+                    <div class="content-key">
+                        {{field.label}}
+                    </div>
+
+                    <div class="content-valuedfsa">
+                        {{field}}
+                    </div>
+
+                </div>
+                {% endif %}
+
+
+            {% endfor %}
+
+
+            <div>
+
+                <div class="container-edit-perfil">
+                    <a href="#">
+                        <button class="card-boton edit-perfil-boton">
+                            Aceptar cambios
+                        </button>
+                    </a>
+                </div>
+            </form>
+
+        
+        </div> 
+    </div>
+
 {% endblock %}

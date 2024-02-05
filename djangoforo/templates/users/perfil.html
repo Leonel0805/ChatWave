@@ -29,29 +29,26 @@
 
            
             <div class="container-content-info">
+
+              <div class="content-info-image">
+                {% if 'avatar' in data.me.keys %}
+                  <img src="{{ data.me.avatar }}" alt="" class="meet-card-image">
+                {% endif %}
+
+              </div>
+
               {% for key, value in data.me.items %}
         
-                <div class="content-info">
+                {% if key != 'avatar' %}
+                  <div class="content-info">
+                    <p class="content-key">{{key}} </p>           
 
-                    {% if key == 'avatar' %}
-                      <p class="content-key">{{data.verbose_name}} </p>
-                    {% else %}
-                      <p class="content-key">{{key}} </p>
+                    <p class="content-value">{{value}} </p>
 
-                    {% endif%}
-              
-
-                    {% if key != 'avatar' %}
-                        <p class="content-value">{{value}} </p>
-
-                    {% else %}
-                      <div class="col-5 content-info-image">
-                        <img src="{{ value }}" alt="avatar" class="meet-card-image value-image">
-                      </div>
-                    {% endif %}
-
-                </div>
+                  </div>
+                  {% endif %}
               {% endfor %}
+
             </div>
             
   

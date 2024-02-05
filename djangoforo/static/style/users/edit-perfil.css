@@ -1,6 +1,29 @@
+@import '../users/perfil.css';
 
+.container-edit-perfil-datos{
+    width: 800px;
+    height: 800px;
+    margin: 0 auto;
+}
 .container-edit-perfil{
     text-align: center;
     margin: 5px;
     padding: 5px;
+    background-color: #f1f1f1;
+}
+
+.content-value{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#bio{
+    padding-bottom: 110px;
+}
+
+.edit-perfil-boton{
+    background-color: #4CAF50;
+    border: 2px solid #409743;
+    transition: transform 0.5s ease;
+
 }

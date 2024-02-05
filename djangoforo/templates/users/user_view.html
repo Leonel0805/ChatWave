@@ -1,134 +1,133 @@
 {% extends 'base.html' %}
 
 {% load static %}
+
 {% block css %}
-<link rel="stylesheet" href="{% static 'style/users/perfil.css' %}">
+  <link rel="stylesheet" href="{% static 'style/users/perfil.css' %}">
 {% endblock %}
 
-{% block title %} Perfil -otro {% endblock %}
+{% block title %} Mi Perfil {% endblock %}
 
 {% block content %}
 
-    {% if data %}
+  {% if data %}
 
-      <div class="cont-mi-perfil">
-        <div class="mi-perfil-title">
-          <h2> Perfil {{data.user.username}}</h2>
+    <div class="container-mi-perfil">
 
-        </div>
+      <div class="container-mi-perfil-title">
+        <h2> Usuario: {{data.user.username}} </h2>
+      </div>
 
+      
+      <div class="row container-edit-perfil">
+        <div class="col-6">
+          <div class="container-edit-perfil-datos">
 
-        <div class="row">
-          <div class="col-6">
-            <div class="contenedor-perfil-datos">
+            <div class="container-perfil-datos-titulo">
+              <h2> Perfil </h2>
+            </div>
 
-              <div class="perfil-datos-titulo">
-                <h2> Datos </h2>
+           
+            <div class="container-content-info">
 
-              </div>
-
-            
-              {% for key, value in data.user.items %}
-              <div class="row">
-
-                <div class="col-4 data-perfil">
-                  {{key}}
-                </div>
-
-                {% if key != 'avatar' %}
-                  <div class="col-8 valor-perfil">
-                    {{value}}
-                  </div>
-                {% else %}
-                  <div class="col-8 valor-perfil-image">
-                    <img src="{{ value }}" alt="avatar" >
-                  </div>
+              <div class="content-info-image">
+                {% if 'avatar' in data.user.keys %}
+                  <img src="{{ data.user.avatar }}" alt="" class="meet-card-image">
                 {% endif %}
 
               </div>
+
+              {% for key, value in data.user.items %}
+        
+                {% if key != 'avatar' %}
+                  <div class="content-info">
+                    <p class="content-key">{{key}} </p>           
+
+                    <p class="content-value">{{value}} </p>
+
+                  </div>
+                  {% endif %}
               {% endfor %}
 
+            </div>
           
-            </div>
-            
           </div>
+          
+        </div>
 
 
-          <div class="col-6">
-            <div class="contenedor-perfil-rooms">
-              <div class="room-container">
-                            
-                <div class="room-title">
-                  <h2>
-                      ROOMS/CHATS
-                  </h2>
-                </div>
+        <div class="col-6">
+          <div class="contenedor-perfil-rooms">
+            <div class="room-container">
                           
-                <div class="room-chat-datos">
-                  
-                  {% if data.user_rooms %}
-                    {% for room in data.user_rooms %}
-                      <p>{{room.name}}</p>
-                      <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
-                                        
-                  <div>
-                     <p>{{room.likes}} Likes </p>
-                  </div>
-                
-                  <div>
-                    <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
-  
-                      <p>Entrar</p>
-                    </a>
-  
-                  </div>
-
-                    {% endfor %}
-
-                    <div>
-                      {% for num_page in data.user_rooms.paginator.page_range %}
-                      <span class="">
-                          <a href="?page={{ num_page }}">{{ num_page }}</a>
-                      </span>
-                      {% endfor %}
-                    </div>  
-                
-                  {% else %}
-
-                  <div>
-                    <p>{{message}}</p>
-                  </div>
-                  
-                  {% endif %}
-                </div>
-                  
+              <div class="title-container room-title">
+                <h2>
+                    Salas/Chats
+                </h2>
               </div>
-             
+                        
+              <div class="room-chat-container">
+                
+                {% if data.user_rooms %}
+                  {% for room in data.user_rooms %}
+                    <div class="room-chat-card-container">
+                      <div class="room-card-image-container">
+                        <img class="room-card-image" src="{{room.image}}" alt="image_chat">
+                      </div>
+  
+                      <div class="room-card-content">
+                        <p class="room-card-title">{{room.name}}</p>
+                  
+                        <p>{{room.likes}} Likes </p>
+  
+                        <a href="{% url 'room-edit-delete' pk=room.id %}" class="room-container-link" >
+  
+                          <button class="card-boton room-card-boton-entrar">Entrar</button>
+                        </a>
+              
+                      </div>
+     
+  
+                    </div>
 
+
+                  {% endfor %}
+
+                  <div class="page-nums">
+                    {% for num_page in data.myrooms.paginator.page_range %}
+                    <span class="">
+                        <a href="?page={{ num_page }}">{{ num_page }}</a>
+                    </span>
+                    {% endfor %}
+                  </div>  
+
+              
+                {% else %}
+
+                  <div>
+                    <a href="{% url 'room-create' %}">
+                      <button class="btn btn-success">
+                        Crear
+                      </button>
+                    </a>
+
+                  </div>
+                
+                {% endif %}
+              </div>
+                
             </div>
             
 
           </div>
+          
 
-          <div class="container-edit-perfil">
-            <a href="{% url 'home' %}">
-              <button class="btn btn-success">
-                Volver
-              </button>
-            </a>
-    
-          </div>
-                   
+        </div>
+      </div>            
 
-      </div>
+    </div>
 
-           
-               
-       
-      
-
-    {% endif%}
-
-    
+          
+  {% endif%}
 
 {% endblock %}

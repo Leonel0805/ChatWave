@@ -158,6 +158,15 @@
         
               {% endif %}
             </div>
+
+            <div class="page-nums">
+              {% for num_page in data.likedrooms.paginator.page_range %}
+                <span class="">
+                    <a href="?page2={{ num_page }}">{{ num_page }}</a>
+                </span>
+              {% endfor %}
+            
+            </div>
           </div>
         </div>
         
