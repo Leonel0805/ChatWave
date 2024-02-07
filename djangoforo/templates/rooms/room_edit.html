@@ -1,60 +1,60 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'style/rooms/room-chat-edit.css' %}">
+{% endblock %}
+
 {% block title %} Edit Room {% endblock %}
 
 {% block content %}
 
-    <div class="room-chat-contenedor">
-        <div class="container">
+    <div class="container-edit-perfil-datos">
 
-            <div class="room-chat-title">
-                <h1>Editar Room</h1>
-                <p> {{user_host.email}}</p>
+        <div class="container-perfil-datos-titulo">
+            <h1>Editar Room</h1>
+            <p> {{user_host.email}}</p>
+        </div>
 
-            </div>
+        <div class="container-content-info">
 
-            <div class="room-chat-body">
-
-                <div>
+            <div>
+          
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     {% for field in form %}
-                   
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-    
-                            <div class="row">
-                                <div class="col-6 data-perfil">
-                                    {{field.label}}
-                                </div>
-    
-                                <div class="col-6 valor-perfil">
-                                    {{field}}
-                                </div>
-    
+
+                        <div class="content-info">
+                            <div class="content-key">
+                                {{field.label}}
                             </div>
+
+                            <div class="content-value">
+                                {{field}}
+                            </div>
+
+                        </div>
                     {% endfor %}
-    
-                            
-                            
-                            <div class="container-edit-perfil text">
-                                
-                                <input type="hidden" name="action" value="edit">
 
-                                <button class="btn btn-success">
-                                    Aceptar cambios
-                                </button>
                         
-    
-                            </div>
-
-                        </form>
         
-                
-                </div> 
+                    <div class="container-perfil-form-boton">
+
+                        <button  id="perfil-form-boton" class="card-boton edit-perfil-boton">
+                            Aceptar cambios
+                        </button>
+              
+                    </div>
+
+                </form>
+    
             
-            </div>
+            </div> 
+            
+        
         </div>
     </div>
-    
+
 
 
 {% endblock %}
