@@ -8,24 +8,24 @@
     max-height: 1000px;
     margin: 0 auto;
     border-radius: 10px;
-    background-color: #6d79fa;
+    background-color: #c3c8ff;
     padding: 16px;
 
 }
 
 .container-mi-perfil-title{
     text-align: center;
+    margin-bottom: 32px;
 }
 
 .container-edit-perfil{
-    background-color: rgb(196, 197, 196);
+
 }
 
 .container-edit-perfil-datos{
     padding: 20px;
     text-align: left;
     border-radius: 10px;
-    margin-top: 30px;
     margin-right: 50px;
     background-color: #D987FF;
     border: 2px solid #CB5BFF;
