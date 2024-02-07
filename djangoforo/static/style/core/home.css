@@ -125,25 +125,25 @@
 .room-chat-card-container{
     display: flex;
     border: 1px solid #174AFF;
-    border-bottom: 0,5px;
-    border-top: 0,5px;
-    padding: 5px;
+
 }
 
 .room-card-image-container{
+    display: flex;
     border-radius: 10%;
     max-width: 30%;
     max-height: 100%;
     margin-top: 8px;
     margin-bottom: 8px;
     margin-left: 16px;
-    display: flex;
+    padding-top: 3.7px;
+
     
 }
 .room-card-image{
     max-width: 90px;
     max-height: 110px;
-
+    border-radius: 10px;
 }
 
 .room-card-content{
@@ -153,6 +153,7 @@
     max-width: 100%;
     margin-top: 8px;
     margin-bottom: 8px;
+    padding: 8px 0px;
 
 }
 
@@ -161,6 +162,7 @@
     font-weight: bold;
     font-style: italic;
     display: inline-block;
+    margin: 0;
 }
 
 
