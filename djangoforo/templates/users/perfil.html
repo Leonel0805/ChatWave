@@ -98,7 +98,7 @@
                           <button class="card-boton boton-rooms-editar">Editar</button>
                         </a>
 
-                        <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST" class="room-like-link">
+                        <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST" class="room-like-link form-delete">
                           {% csrf_token %}
     
                           <input type="hidden" name="action" value="" class="inputValue">
@@ -151,5 +151,11 @@
 
           
   {% endif%}
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/alerts.js' %}"></script>
 
 {% endblock %}
