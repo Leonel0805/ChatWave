@@ -12,46 +12,46 @@
     <div class="container-edit-perfil-datos">
 
         <div class="container-perfil-datos-titulo">
-            <h1>Editar Room</h1>
-            <p> {{user_host.email}}</p>
+            <h1>
+                Room <span class="room-name">{{data.name}}</span>
+            </h1>
         </div>
 
         <div class="container-content-info">
 
-            <div>
+  
           
-                <form action="" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% for field in form %}
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
 
-                        <div class="content-info">
-                            <div class="content-key">
-                                {{field.label}}
-                            </div>
-
-                            <div class="content-value">
-                                {{field}}
-                            </div>
-
+                    <div class="content-info">
+                        <div class="content-key">
+                            {{field.label}}
                         </div>
-                    {% endfor %}
 
-                        
-        
-                    <div class="container-perfil-form-boton">
+                        <div class="content-value">
+                            {{field}}
+                        </div>
 
-                        <button  id="perfil-form-boton" class="card-boton edit-perfil-boton">
-                            Aceptar cambios
-                        </button>
-              
                     </div>
+                {% endfor %}
 
-                </form>
+                    
+
+            </form>
+
+                
+
+        </div>
+
+
+        <div class="container-perfil-form-boton">
+
+            <button  id="perfil-form-boton" class="card-boton edit-perfil-boton">
+                Aceptar cambios
+            </button>
     
-            
-            </div> 
-            
-        
         </div>
     </div>
 

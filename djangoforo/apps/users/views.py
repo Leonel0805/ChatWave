@@ -75,8 +75,7 @@ def me_perfil_edit(request):
             
             if response.status_code == 200:           
                 data = response.json() 
-                print(data)
-                
+                print('perfil', data)
                 form = PerfilForm(data=data)
                 return render(request, 'users/edit_perfil.html',{
                     'token':token,

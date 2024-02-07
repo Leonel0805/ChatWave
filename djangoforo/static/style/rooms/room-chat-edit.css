@@ -1,1 +1,5 @@
 @import '../users/edit-perfil.css';
+
+.room-name{
+    font-weight: bold;
+}

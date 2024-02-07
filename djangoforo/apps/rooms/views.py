@@ -79,13 +79,15 @@ def room_edit_delete(request, pk):
             
             if response.status_code == 200:
                 data = response.json()
+                print('myroomedit', data)
        
                 form = RoomForm(data=data)
                 
                 return render(request, 'rooms/room_edit.html', {
                     'token':token,
                     'user_host':user_host,
-                    'form':form
+                    'form':form,
+                    'data':data
                 })
             
     if request.method == 'POST':

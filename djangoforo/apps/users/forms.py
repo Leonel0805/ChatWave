@@ -6,5 +6,5 @@ class PerfilForm(forms.ModelForm):
         model = User
         fields = ['email', 'username', 'bio', 'avatar']
         widgets = {
-            'bio': forms.Textarea(attrs={'rows': 2, 'cols': 60}),
+            'bio': forms.Textarea(attrs={'rows': 4, 'cols': 60}),
         }
