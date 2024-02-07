@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
+
 {% load static %}
+
 {% block css %}
   <link rel="stylesheet" href="{% static 'style/rooms/room-chat-edit.css' %}">
 {% endblock %}
@@ -12,49 +14,49 @@
     <div class="container-edit-perfil-datos">
 
         <div class="container-perfil-datos-titulo">
-            <h1>
-                Room <span class="room-name">{{data.name}}</span>
-            </h1>
+            <h1>Room <span>{{data.name}}</span> </h1>
         </div>
 
         <div class="container-content-info">
 
-  
-          
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="room-form" action="{% url 'room-edit-delete' pk=data.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
 
-                    <div class="content-info">
-                        <div class="content-key">
-                            {{field.label}}
-                        </div>
-
-                        <div class="content-value">
-                            {{field}}
-                        </div>
-
+                <div class="content-info">
+                    <div class="content-key">
+                        {{field.label}}
                     </div>
+
+                    <div class="content-value">
+                        {{field}}
+                    </div>
+
+                </div>
                 {% endfor %}
 
-                    
-
+                <input type="hidden" name="action" value="edit">
+                
+            
             </form>
 
-                
+            <div class="container-perfil-form-boton">
 
-        </div>
+                <button  id="room-form-boton" class="card-boton edit-perfil-boton">
+                    Aceptar cambios
+                </button>
+      
+            </div>
 
-
-        <div class="container-perfil-form-boton">
-
-            <button  id="perfil-form-boton" class="card-boton edit-perfil-boton">
-                Aceptar cambios
-            </button>
-    
+      
         </div>
     </div>
 
 
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/perfil-forms.js' %}"></script>
 
 {% endblock %}

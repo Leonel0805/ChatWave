@@ -94,7 +94,6 @@ def room_edit_delete(request, pk):
         
         url = (f'http://127.0.0.1:8000/api/rooms/my-list/{pk}/')
         action = request.POST.get('action')
-        
         if action == 'edit':
         
             if token is not None and token != '':
