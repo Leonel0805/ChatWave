@@ -43,13 +43,13 @@
     height: 600px;
     background-color: #f1f1f1;
     border-radius: 20px;
-    border: 2px solid #CB5BFF;
 }
 
 .content-info{
     display: flex;
     flex-direction: column;
     background-color: #D987FF;
+    border: 1px solid  #CB5BFF;
     margin: 16px;
     text-align: left;
     border-radius: 5px;

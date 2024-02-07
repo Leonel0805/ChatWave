@@ -3,3 +3,28 @@
 .room-name{
     font-weight: bold;
 }
+
+.container-edit-perfil-datos{
+    background-color: #7E9AFF;
+    border-color: #174AFF;
+}
+
+.container-content-info{
+    border: none;
+}
+
+.content-info{
+    background-color: #7E9AFF;
+    border: 1px solid  #174AFF;
+}
+
+#id_description{
+    overflow-y: hidden;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+#id_image{
+    border: 2px solid #174AFF;
+
+}

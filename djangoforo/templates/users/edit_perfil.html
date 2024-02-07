@@ -25,21 +25,7 @@
                 {% csrf_token %}
                 {% for field in form %}
 
-                    {% if field.name == 'bio' %}
-                    <div id="bio" class="content-info">
-                        <div class="content-key">
-                            {{field.label}}
-                        </div>
 
-                        <div class="content-value">
-
-                            <div class="text-area-bio">
-                                {{field}}
-                            </div>
-                        </div>
-
-                    </div>
-                    {% else %}
                     <div class="content-info">
                         <div class="content-key">
                             {{field.label}}
@@ -50,7 +36,7 @@
                         </div>
 
                     </div>
-                    {% endif %}
+ 
 
 
                 {% endfor %}

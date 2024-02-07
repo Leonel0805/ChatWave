@@ -24,17 +24,11 @@
     padding: 8px;
 }
 
-#bio{
-}
 
-.text-area-bio{
-}
-
-.text-area-bio textarea{
+#id_bio{
     overflow-y: hidden;
     border-radius: 10px;
     padding: 8px;
-
 }
 
 #id_avatar{
