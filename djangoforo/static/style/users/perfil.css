@@ -48,30 +48,28 @@
 }
 
 .content-info{
+    display: flex;
+    flex-direction: column;
     background-color: #D987FF;
-
     margin: 16px;
-    height: 80px;
     text-align: left;
     border-radius: 5px;
-    padding: 16px;
+    padding: 16px 16px;
+    min-height: 80px;
+    max-height: 200px;
 }
 
 
 .content-key{
     color: rgb(58, 58, 58);
-    margin: 0;
     font-size: 14px;
-
+    margin: 0;
+    height: 20px; /* Establece un ancho fijo */
 }
 
-
 .content-value{
-    margin: 0;
-    margin-left: 0px;
-    margin-bottom: 0px;
-    color: rgb(0, 0, 0);
-
+    color: black;
+    margin-top: 8px;
 }
 
 .content-info-image{
