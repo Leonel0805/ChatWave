@@ -21,51 +21,59 @@
 
 
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="perfil-form" method="POST" enctype="multipart/form-data" class="form-edit">
                 {% csrf_token %}
-            {% for field in form %}
+                {% for field in form %}
 
-                {% if field.name == 'bio' %}
-                <div id="bio" class="content-info">
-                    <div class="content-key">
-                        {{field.label}}
+                    {% if field.name == 'bio' %}
+                    <div id="bio" class="content-info">
+                        <div class="content-key">
+                            {{field.label}}
+                        </div>
+
+                        <div class="content-value">
+
+                            <div class="text-area-bio">
+                                {{field}}
+                            </div>
+                        </div>
+
                     </div>
+                    {% else %}
+                    <div class="content-info">
+                        <div class="content-key">
+                            {{field.label}}
+                        </div>
 
-                    <div class="content-value">
-                        {{field}}
+                        <div class="content-value">
+                            {{field}}
+                        </div>
+
                     </div>
-
-                </div>
-                {% else %}
-                <div class="content-info">
-                    <div class="content-key">
-                        {{field.label}}
-                    </div>
-
-                    <div class="content-valuedfsa">
-                        {{field}}
-                    </div>
-
-                </div>
-                {% endif %}
+                    {% endif %}
 
 
-            {% endfor %}
+                {% endfor %}
 
 
-            <div>
-
-                <div class="container-edit-perfil">
-                    <a href="#">
-                        <button class="card-boton edit-perfil-boton">
-                            Aceptar cambios
-                        </button>
-                    </a>
-                </div>
             </form>
 
         
         </div> 
+
+        
+        <div class="container-perfil-form-boton">
+
+            <button  id="perfil-form-boton" class="card-boton edit-perfil-boton">
+                Aceptar cambios
+            </button>
+  
+        </div>
     </div>
+
+    {% block scripts %}
+        <script src="{% static 'js/perfil-form.js' %}"></script>
+
+    {% endblock %}
 
 {% endblock %}

@@ -1,1 +1,3 @@
-import {hola} from './alerts.js';
+
+console.log('asdf')
+
