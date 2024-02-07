@@ -44,7 +44,7 @@ def room_create(request):
             response = requests.post(url, headers=headers, data=request.POST, files=files)
             
             if response.status_code == 201:
-                message = response.json()
+                message = response.json()['message']
 
                 messages.success(request, message)
                 
