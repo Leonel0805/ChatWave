@@ -37,6 +37,11 @@
 
 }
 
+#id_avatar{
+    border: 2px solid #CB5BFF;
+
+}
+
 .edit-perfil-boton{
     background-color: #4CAF50;
     border: 2px solid #409743;
