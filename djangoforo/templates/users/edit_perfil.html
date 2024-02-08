@@ -25,31 +25,32 @@
                 {% csrf_token %}
                 {% for field in form %}
 
+                        <div class="content-info">
+                            <div class="content-key">
+                
+                                {{field.label}}
+                            </div>
 
-                    <div class="content-info">
-                        <div class="content-key">
-            
-                            {{field.label}}
+                            <div class="content-value">
+                                {{field}}
+                            </div>
+
                         </div>
-
-                        <div class="content-value">
-                            {{field}}
-                        </div>
-
-                    </div>
-           
-
-                {% endfor %}
-
-                {% if errors_form %}
-                    <ul>
-                    {% for field, errors in errors_form.items %}
-                        {% for error in errors %}
-                            <li>{{ field }}: {{ error }}</li>
+                
+    
+                        <ul>
+                        {% for field_error, errors in errors_form.items %}
+                                {% if field_error == field.name %}
+                                    {% for error in errors %}
+                                        <li>{{ field_error }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                
                         {% endfor %}
-                    {% endfor %}
-                    </ul>
-                {% endif %}
+                        </ul>
+                
+                    
+                {% endfor %}
 
 
 
