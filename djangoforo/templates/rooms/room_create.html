@@ -1,57 +1,66 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'style/rooms/room-chat-edit.css' %}">
+
+{% endblock %}
+
 {% block title %} Create Room {% endblock %}
 
 {% block content %}
 
-    <div class="room-chat-contenedor">
-        <div class="container">
 
-            <div class="room-chat-title">
-                <h1>Crear Room</h1>
-                <p> {{user_host.email}}</p>
-
-            </div>
-
-            <div class="room-chat-body">
-
-                <div>
-                   
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            {% for field in form %}
-
-                            {% csrf_token %}
+    <h1>Crear Room</h1>
     
-                            <div class="row">
-                                <div class="col-6 data-perfil">
-                                    {{field.label}}
-                                </div>
-    
-                                <div class="col-6 valor-perfil">
-                                    {{field}}
-                                </div>
-                            
-                            </div>
-                            {% endfor %}
-                            
-                            
-                            <div class="container-edit-perfil text">
 
-                                <button class="btn btn-success">
-                                    Crear room
-                                </button>
-              
-    
-                            </div>
-                        </form>
-        
+    <div class="container-edit-perfil-datos">
+
+        <div class="container-perfil-datos-titulo">
+            <h1>
+                Room:
+            </h1>
+        </div>
+
+        <div class="container-content-info">
+
+            <form id="room-form"  method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+
+                <div class="content-info">
+                    <div class="content-key">
+                        {{field.label}}
+                    </div>
+
+                    <div class="content-value">
+                        {{field}}
+                    </div>
+
+                </div>
+                {% endfor %}
                 
-                </div> 
             
+            </form>
+
+            <div class="container-perfil-form-boton">
+
+                <button  id="room-form-boton" class="card-boton edit-perfil-boton">
+                    Crear room
+                </button>
+      
             </div>
+
+      
         </div>
     </div>
-    
 
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/perfil-forms.js' %}"></script>
 
 {% endblock %}

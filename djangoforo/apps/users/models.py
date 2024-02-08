@@ -38,8 +38,8 @@ class CustomUserManager(BaseUserManager):
 # Custom User, sin First_name o Last_name que debe contener AbstrasUser
 class User(AbstractBaseUser, PermissionsMixin):
     
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=25, unique=True)
+    email = models.EmailField(unique=True, blank=False)
+    username = models.CharField(max_length=25, unique=True, blank=False)
     bio = models.TextField(blank=True, null=True)
     avatar = models.ImageField(upload_to='img/user', default='/load/foto_perfil.jpg', blank=True, null=True, verbose_name='Imagenlol')
     

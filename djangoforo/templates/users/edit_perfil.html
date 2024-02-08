@@ -19,8 +19,8 @@
         
         <div class="container-content-info">
 
-
-
+                
+         
             <form id="perfil-form" method="POST" enctype="multipart/form-data" class="form-edit">
                 {% csrf_token %}
                 {% for field in form %}
@@ -28,6 +28,7 @@
 
                     <div class="content-info">
                         <div class="content-key">
+            
                             {{field.label}}
                         </div>
 
@@ -36,14 +37,23 @@
                         </div>
 
                     </div>
- 
-
+           
 
                 {% endfor %}
 
+                {% if errors_form %}
+                    <ul>
+                    {% for field, errors in errors_form.items %}
+                        {% for error in errors %}
+                            <li>{{ field }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+
+
 
             </form>
-
         
         </div> 
 

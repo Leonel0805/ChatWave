@@ -96,6 +96,8 @@ def me_perfil_edit(request):
                 'Authorization': f'Bearer {token}'
             }
             
+            form = PerfilForm(request.POST, request.FILES)
+            # if form.is_valid():
             avatar_file = request.FILES.get('avatar')
             files = {'avatar': avatar_file}
             
@@ -103,6 +105,7 @@ def me_perfil_edit(request):
             
             if response.status_code == 200:
                 user_data = response.json()
+                print('nuevojson',user_data)
                 
                 # actualizamos la cookie User
                 user_jsonstr = json.dumps(user_data)
@@ -111,6 +114,15 @@ def me_perfil_edit(request):
                 messages.success(request, 'Cambios guardados correctamente!')
                 
                 return response_html
+            
+            else:
+                print(response.json())
+                errors = {}
+                for error in response.json():
+                    errors[error] = response.json()[error]
+                    
+                return render(request, 'users/edit_perfil.html', {'form': form, 'errors_form':errors})
+                
             
 def user_view(request, pk):
     
