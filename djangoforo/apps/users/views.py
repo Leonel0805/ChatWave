@@ -105,7 +105,6 @@ def me_perfil_edit(request):
             
             if response.status_code == 200:
                 user_data = response.json()
-                print('nuevojson',user_data)
                 
                 # actualizamos la cookie User
                 user_jsonstr = json.dumps(user_data)
@@ -116,7 +115,6 @@ def me_perfil_edit(request):
                 return response_html
             
             else:
-                print(response.json())
                 errors = {}
                 for error in response.json():
                     errors[error] = response.json()[error]

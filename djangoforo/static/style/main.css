@@ -25,3 +25,16 @@ main {
     background-color: red;
 }
 
+.message-form-container{
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+}
+
+.message-form{
+    background-color: #FF6666;
+    border: 2px solid #cc3333;
+    padding: 8px;
+    border-radius: 8px;
+}
+

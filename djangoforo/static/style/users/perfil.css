@@ -27,7 +27,7 @@
     text-align: left;
     border-radius: 10px;
     margin-right: 50px;
-    background-color: #D987FF;
+    background-color: #BAA3FF;
     border: 2px solid #CB5BFF;
     height: 800px;
 
@@ -48,12 +48,12 @@
 .content-info{
     display: flex;
     flex-direction: column;
-    background-color: #D987FF;
+    background-color: #BAA3FF;
     border: 1px solid  #CB5BFF;
     margin: 16px;
     text-align: left;
     border-radius: 5px;
-    padding: 16px 16px;
+    padding: 8px 16px;
     min-height: 80px;
     max-height: 200px;
 }
@@ -69,14 +69,29 @@
 .content-value{
     color: black;
     margin-top: 8px;
+    margin-bottom: 0;
 }
 
 .content-info-image{
     display: flex;
-    border: 2px solid black;
     margin-left: 200px;
     margin-right: 222px;
     
+}
+
+.perfil-info-image{
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 2px solid #CB5BFF;
+    transition: transform 0.5s;
+}
+
+.perfil-info-image:hover{
+    border: 2px solid #a34acc;
+    transform: scale(1.05);
+
 }
 
 .container-edit-boton{
@@ -91,6 +106,7 @@
 
 }
 .boton-rooms-editar{
+    color: black;
     background-color: #7DC2FF;
     border: 2px solid #6fa7e0;
 
@@ -98,6 +114,7 @@
 }
 
 .boton-rooms-eliminar{
-    background-color: #ff4d4d;
+    color: black;
+    background-color: #FF6666;
     border: 2px solid #cc3333;
 }

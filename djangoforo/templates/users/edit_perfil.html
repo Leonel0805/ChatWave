@@ -37,18 +37,20 @@
 
                         </div>
                 
-    
-                        <ul>
-                        {% for field_error, errors in errors_form.items %}
+                        {% if errors_form %}
+                            {% for field_error, errors in errors_form.items %}
                                 {% if field_error == field.name %}
-                                    {% for error in errors %}
-                                        <li>{{ field_error }}: {{ error }}</li>
-                                    {% endfor %}
+                                    <ul class="message-form-container">
+                                        {% for error in errors %}
+                                            <li class="message-form">{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+
                                 {% endif %}
+                    
+                            {% endfor %}
                 
-                        {% endfor %}
-                        </ul>
-                
+                        {% endif %}
                     
                 {% endfor %}
 

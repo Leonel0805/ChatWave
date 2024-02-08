@@ -4,7 +4,7 @@
     width: 800px;
     height: auto;
     margin: 0 auto;
-    margin-bottom: 20px;
+
 }
 .container-perfil-form-boton{
 
@@ -15,6 +15,10 @@
 
 .container-content-info{
     height: auto;
+}
+
+.content-info{
+    padding: 16px;
 }
 .form-edit{
     height: auto;
@@ -37,7 +41,9 @@
 }
 
 .edit-perfil-boton{
-    background-color: #4CAF50;
+    background-color: #9EFF9E;
     border: 2px solid #409743;
+    color: black;
+
     transition: transform 0.5s ease;
 }
