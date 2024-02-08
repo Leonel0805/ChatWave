@@ -1,23 +1,18 @@
-// function perfilForm(){
-//     let form = document.getElementById('perfil-form');
-//     let botonForm = document.getElementById('perfil-form-boton')
-
-//     botonForm.onclick = function(){
-//         form.submit();
-//     }
-// }
-
-function RoomForm(){
-    let form = document.getElementById('room-form');
-    let botonForm = document.getElementById('room-form-boton')
-
-    console.log(botonForm)
-    botonForm.onclick = function(){
-        console.log(botonForm)
-
-        form.submit();
+function SubmitForm(formId, buttonId) {
+    let form = document.getElementById(formId);
+    let botonForm = document.getElementById(buttonId);
+    
+    if (form && botonForm) {
+        botonForm.onclick = function() {
+            form.submit();
+        }
+    } else {
+        console.error(`Los elementos HTML de ${formId} no están presentes en la página.`);
     }
 }
 
-// perfilForm();
-RoomForm();
+console.log('holaaaaaa')
+
+SubmitForm('perfil-form', 'perfil-form-boton')
+SubmitForm('room-form', 'room-form-boton')
+
