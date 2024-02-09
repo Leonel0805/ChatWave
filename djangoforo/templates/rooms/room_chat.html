@@ -15,7 +15,8 @@
         
 
         <div class="room-chat-title">
-            <h1>{{data.room.name}}</h1>
+            <img class="room-chat-image" src="{{data.room.image}}" alt="">
+            <h1 class="room-title">{{data.room.name}}</h1>
             <a class="user-url-host" href="{% url 'user_view' pk=data.room.user_host.id %}"> <p> {{data.room.user_host.email}}</p></a>
 
         </div>

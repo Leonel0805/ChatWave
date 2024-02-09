@@ -1,14 +1,50 @@
 
 .room-chat-contenedor{
-    background-color: #3498db;
+    background-color: #7E9AFF;
 
     max-width: 1000px;
     max-height: 700px;
-    text-align: center;
     margin: 0 auto;
     padding: 15px 30px;
     margin-bottom: 50px;
     border-radius: 20px;
+    box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
+
+
+}
+
+.room-chat-title{
+    position: relative;
+    display: flex;
+    padding: 10px;
+    height: 90px ;
+}
+
+
+
+.room-chat-image{
+    width: 67px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.room-title{
+    padding-top: 7px;
+    margin-left: 16px;
+}
+
+.user-url-host{
+    position: absolute;
+    bottom: 0px;
+    right: 16px;
+    text-decoration: none;
+    color: rgb(39, 39, 39);
+    transition:font-size 0.5s;
+}
+
+.user-url-host:hover{
+    font-size: 17px;
+    color: black;
 }
 
         
@@ -86,16 +122,6 @@
 
 }
 
-.user-url-host{
-    text-decoration: none;
-    color: rgb(39, 39, 39);
-    transition:font-size 0.5s;
-}
-
-.user-url-host:hover{
-    font-size: 17px;
-    color: black;
-}
 
 .chat-footer{
     margin-top: 15px;
@@ -119,3 +145,4 @@
 .boton-send{
     margin-left: 1px;
 }
+
