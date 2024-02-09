@@ -2,11 +2,17 @@
 
 
 {% load static %}
+
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'style/core/Search.css' %}">
+{% endblock %}
+
 {% block title %} Search {% endblock%}
 
 {% block content %}
 
-    <div class="container">
+    <div class="search-container">
 
         <div>
             <h2>Busquedas relacionadas: {{data.rooms | length}} </h2>
@@ -14,43 +20,40 @@
         </div>
 
         {% if data %}
-        <div class="room-container">
+        <div class="room-chat-container ">
 
-              <div class="row row-cols-3">
-                {% for room in data.rooms %}
-
-                <div class="room-search">
-
-                  <div class="col room-chat">
-                      <p>{{room.name}}</p>
-                    <img src="{{room.image}}" alt="image_chat" width="80px" height="80px">
-                          
-                    <div>
-                      <p>Host: {{room.user_host.email}} | {{room.likes}} Likes </p>
-                    </div>
-
-                          
-                    <div>
-                      <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
-
-                        <p>Entrar</p>
-                      </a>
-
-                      <form action="{% url 'room-like' pk=room.id %}" method="POST">
-                        {% csrf_token %}
-
-                        <button>Like</button>
-
-                      </form>
-          
-
-                    </div>
-                  </div>
+            {% for room in data.rooms %}
+       
+              <div class="room-chat-card-container ">
+                <div class="room-card-image-container">
+                  <img class="room-card-image" src="{{room.image}}" alt="image_chat">
                 </div>
-                
-                {% endfor %}
+
+                <div class="room-card-content">
+                  <p class="room-card-title">{{room.name}}</p>
+            
+                  <p>{{room.user_host.email}} | {{room.likes}} Likes </p>
+
+                  <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+
+                    <button class="card-boton room-card-boton-entrar">Entrar</button>
+                  </a>
+
+                  <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
+                    {% csrf_token %}
+
+                    <button class="card-boton room-card-boton-like"><i class="bi bi-heart icon-like"></i></button>
+
+                  </form>
+        
+                </div>
+              
 
               </div>
+   
+            {% endfor %}
+
+     
 
         </div>
                 
@@ -59,5 +62,7 @@
 
 
     </div>
+
+
 
 {% endblock %}

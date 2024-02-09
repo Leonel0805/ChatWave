@@ -30,6 +30,7 @@
     background-color: #BAA3FF;
     border: 2px solid #CB5BFF;
     height: 800px;
+    box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
 
 }
 
