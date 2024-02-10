@@ -1,6 +1,7 @@
 
 .room-chat-contenedor{
-    background-color: #7E9AFF;
+    background: linear-gradient(to bottom right,     #7E9AFF,     #BAA3FF);
+
 
     max-width: 1000px;
     max-height: 700px;
@@ -58,11 +59,12 @@
 
 
 .room-chat-body{
-    background-color: #d6eaf8;
+    background-color: #ffffff;
 
     padding: 10px;
     min-height: 450px;
     max-height: 450px;
+    overflow: hidden;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -86,7 +88,7 @@
 }
 
 .message-1{
-    background-color: #f0f8ff;
+    background-color: #b8d0ff;
     color: black;
     display: inline-block;
     border: 1px solid #1f65a1;    
@@ -98,7 +100,7 @@
 
 
 .message-2{
-    background-color: #ff8c8c;
+    background-color: #BAA3FF;
     color: black;
     display: inline-block;
     border: 1px solid #1f65a1;
