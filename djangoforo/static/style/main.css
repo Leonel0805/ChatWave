@@ -62,3 +62,21 @@ main {
     border-radius: 8px;
 }
 
+/* scrcll chrome */
+
+
+::-webkit-scrollbar {
+    width: 12px; /* Ancho del scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color del fondo del scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Color del scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del scrollbar al pasar el mouse */
+  }
