@@ -150,7 +150,6 @@ def room_edit_delete(request, pk):
 def room_like(request, pk):
     
     token = get_token(request)
-    user_host = get_userhost(request)
     
     if request.method == 'POST':
         

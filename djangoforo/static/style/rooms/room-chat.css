@@ -50,16 +50,17 @@
 
         
 #room-chat-body-container{
-    border-radius: 15px;
-    border: 3px solid rgb(0, 0, 0);
-    border-top: rgb(33, 97, 140) solid 10px;
-    border-bottom: rgb(33, 97, 140) solid 10px;
+
+    border: 3px solid rgb(68, 68, 68);
+
+    border-radius: 25px;
 
 }
 
 
 .room-chat-body{
     background-color: #ffffff;
+    border-radius: 20px;
 
     padding: 10px;
     min-height: 450px;
@@ -129,14 +130,19 @@
     margin-top: 15px;
     padding: 10px;
     max-height: 100px;
-    transition: box-shadow 0.3s, font-size 0.5s;
+    transition: box-shadow 0.3s, transform 0.5s;
     border-radius: 5px;
 
 }
 
 .chat-footer:hover{
     box-shadow: 0 0 10px rgb(0, 0, 0);
-    font-size: 18px;
+    transform: scale(1.012);
+}
+
+#chat-message-input{
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .send-message{
@@ -146,6 +152,8 @@
 
 .boton-send{
     margin-left: 1px;
+    margin-top: 3px;
+    font-size: 22px;
+    border: none;
+    background-color: transparent;
 }
-
-
