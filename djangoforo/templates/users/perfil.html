@@ -79,66 +79,68 @@
                 </h2>
               </div>
                         
-              <div class="room-chat-container">
-                
-                {% if data.myrooms %}
-                  {% for room in data.myrooms %}
-                    <div class="room-chat-card-container">
-                      <div class="room-card-image-container">
-                        <img class="room-card-image" src="{{room.image}}" alt="image_chat">
-                      </div>
-  
-                      <div class="room-card-content">
-                        <p class="room-card-title">{{room.name}}</p>
+              {% if data.myrooms %}
+                <div class="room-chat-container">
                   
-                        <p>{{room.likes}} Likes </p>
-  
-                        <a href="{% url 'room-edit-delete' pk=room.id %}" class="room-container-link" >
-  
-                          <button class="card-boton boton-rooms-editar">Editar</button>
-                        </a>
-
-                        <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST" class="room-like-link form-delete">
-                          {% csrf_token %}
+                  
+                    {% for room in data.myrooms %}
+                      <div class="room-chat-card-container">
+                        <div class="room-card-image-container">
+                          <img class="room-card-image" src="{{room.image}}" alt="image_chat">
+                        </div>
     
-                          <input type="hidden" name="action" value="" class="inputValue">
-                          <button class="card-boton boton-rooms-eliminar">
-                            Eliminar
-                          </button>
-                        </form>
-              
-                      </div>
-     
-  
-                    </div>
+                        <div class="room-card-content">
+                          <p class="room-card-title">{{room.name}}</p>
+                    
+                          <p>{{room.likes}} Likes </p>
+    
+                          <a href="{% url 'room-edit-delete' pk=room.id %}" class="room-container-link" >
+    
+                            <button class="card-boton boton-rooms-editar">Editar</button>
+                          </a>
 
-
-                  {% endfor %}
-
-                  <div class="page-nums">
-                    {% for num_page in data.myrooms.paginator.page_range %}
-                    <span class="">
-                        <a href="?page={{ num_page }}">{{ num_page }}</a>
-                    </span>
-                    {% endfor %}
-                  </div>  
-
-              
-                {% else %}
-
-                  <div>
-                    <a href="{% url 'room-create' %}">
-                      <button class="btn btn-success">
-                        Crear
-                      </button>
-                    </a>
-
-                  </div>
+                          <form action="{% url 'room-edit-delete' pk=room.id %}" method="POST" class="room-like-link form-delete">
+                            {% csrf_token %}
+      
+                            <input type="hidden" name="action" value="" class="inputValue">
+                            <button class="card-boton boton-rooms-eliminar">
+                              Eliminar
+                            </button>
+                          </form>
                 
-                {% endif %}
+                        </div>
+      
+    
+                      </div>
+
+
+                    {% endfor %}
+
+                    <div class="page-nums">
+                      {% for num_page in data.myrooms.paginator.page_range %}
+                      <span class="">
+                          <a href="?page={{ num_page }}">{{ num_page }}</a>
+                      </span>
+                      {% endfor %}
+                    </div>  
+
+                </div>
+                
+              {% else %}
+
+                <div class="boton-rooms-crear-container">
+                  <a href="{% url 'room-create' %}">
+                    <button class="card-boton boton-rooms-crear">
+                      Crear
+                    </button>
+                  </a>
+
+                </div>
+              
+              {% endif %}
               </div>
                 
-            </div>
+       
             
 
           </div>

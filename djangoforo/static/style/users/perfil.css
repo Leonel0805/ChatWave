@@ -114,6 +114,23 @@
 
 }
 
+
+.boton-rooms-crear-container{
+
+    margin-left: 260px;
+}
+
+.boton-rooms-crear{
+
+    background-color: #9EFF9E;
+    border: 2px solid #409743;
+    color: black;
+
+
+    transition: transform 0.5s ease;
+}
+
+
 .boton-rooms-eliminar{
     color: black;
     background-color: #FF6666;
