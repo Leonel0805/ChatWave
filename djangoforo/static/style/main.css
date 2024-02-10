@@ -13,17 +13,37 @@ main {
     border-radius: 50%;
 }
 
-.message{
-    color: rgb(255, 255, 255);
-}
-
 .message-success{
     background-color: rgb(0, 189, 25) ;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 8px 8px;
+
 }
 
 .message-error{
     background-color: red;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 2px 8px;
+
+
+
 }
+
+.messages{
+
+    list-style-type: none;
+    font-size: 18px;
+    margin-top: 16px;
+
+}
+.message{
+
+    color: rgb(255, 255, 255);
+}
+
+
 
 .message-form-container{
     list-style-type: none;
