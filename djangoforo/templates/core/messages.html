@@ -1,13 +1,26 @@
 {% if messages %}
         {% for message in messages %}
         <div class="message-{{message.tags}}">
+
+            {% if message.tags == 'success'%}
             <ul class="messages">
                 
                     <li class="message">
-                        {{ message }}
+                        <i class="bi bi-check-lg"></i> {{ message }} 
                     </li>
              
             </ul>
+
+            {% else %}
+            <ul class="messages">
+                
+                <li class="message">
+                    {{ message }}
+                </li>
+         
+            </ul>
+
+            {% endif %}
         </div>
         {% endfor %}
 {% endif %}
