@@ -154,9 +154,7 @@ def register(request):
 def login(request):
     
     form = LoginForm()
-    
-    token = get_token(request)
-    
+        
     if request.method == 'POST':
         
         url = ('http://127.0.0.1:8000/api/authentication/login/')

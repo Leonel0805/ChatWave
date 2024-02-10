@@ -13,7 +13,7 @@ from .serializers import (
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 #la diferencia entre GenericViewSet y un ModelViewSet es que el
 #model ya tiene los metodos predeterminados y podes sobreescribir
 # en cambio GenericViewSet no tiene los metodos
@@ -22,6 +22,8 @@ from rest_framework.mixins import UpdateModelMixin
 
 class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
     
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [AllowAny]
 
     serializer_class = UserSerializer
     list_serializer_class = UserListSerializer
@@ -31,15 +33,26 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
     #get_object() nos devuelve el objeto por pk
     def get_object(self, pk):
         return self.serializer_class.Meta.model.objects.filter(id=pk).first()
+
+
     
     def get_queryset(self):
         
+ 
         if self.queryset is None:
-            self.queryset = self.serializer_class().Meta.model.objects\
-                .filter(is_active=True).exclude(username=self.request.user.username)
-            return self.queryset
-        else:
-            return self.queryset
+            queryset = self.serializer_class().Meta.model.objects\
+                .filter(is_active=True)
+            if self.request.user.is_authenticated:
+                print('estoy autentticado')
+                queryset = queryset.exclude(username=self.request.user.username)
+            else:
+                print('no estoy autenticado')
+            self.queryset = queryset
+
+        return self.queryset
+        
+
+            
     
     
     def list(self, request):
