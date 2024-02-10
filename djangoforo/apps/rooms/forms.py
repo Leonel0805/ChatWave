@@ -5,6 +5,12 @@ class RoomForm(forms.ModelForm):
     class Meta:
         model = Room 
         fields = ['name', 'description', 'image']
+        
+        labels = {
+            'name': 'Nombre de la sala:',
+            'description': 'Descripción de la sala:',
+            'image': 'Portada de la sala:',
+        }
         widgets = {
             'description': forms.Textarea(attrs={'rows': 2, 'cols':60}),
         }

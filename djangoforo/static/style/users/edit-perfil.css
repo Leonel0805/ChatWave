@@ -1,6 +1,7 @@
 @import '../users/perfil.css';
 
 .container-edit-perfil-datos{
+    margin-top: 16px;
     width: 800px;
     height: auto;
     margin: 0 auto;
