@@ -38,21 +38,24 @@
         {% if data %}
           {% for user in data.users %}
           
-            <div class="meet-people-card">
-              <a href="{% url 'user_view' pk=user.id %}" class="meet-card-url">
-       
-                <img src="{{user.avatar}}" alt="" class="meet-card-image">
-         
-                <p class="meet-card-username"> {{user.username}} </p>     
-                 
-              </a>
+            {% if user_host.email != user.email %}
+              <div class="meet-people-card">
+                <a href="{% url 'user_view' pk=user.id %}" class="meet-card-url">
+        
+                  <img src="{{user.avatar}}" alt="" class="meet-card-image">
+          
+                  <p class="meet-card-username"> {{user.username}} </p>     
+                  
+                </a>
 
-              
-              <div class="meet-card-boton-container">
-                <button class="card-boton meet-card-boton-seguir">Seguir</button>
+                
+                <div class="meet-card-boton-container">
+                  <button class="card-boton meet-card-boton-seguir">Seguir</button>
+                </div>
+
               </div>
 
-            </div>
+            {% endif %}
 
 
           {% endfor %}

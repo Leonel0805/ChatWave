@@ -22,7 +22,6 @@ from rest_framework.mixins import UpdateModelMixin
 
 class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
     
-    authentication_classes = [JWTAuthentication]
     permission_classes = [AllowAny]
 
     serializer_class = UserSerializer
@@ -41,12 +40,8 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
  
         if self.queryset is None:
             queryset = self.serializer_class().Meta.model.objects\
-                .filter(is_active=True)
-            if self.request.user.is_authenticated:
-                print('estoy autentticado')
-                queryset = queryset.exclude(username=self.request.user.username)
-            else:
-                print('no estoy autenticado')
+                .filter(is_active=True).exclude(username=self.request.user.username)
+     
             self.queryset = queryset
 
         return self.queryset
