@@ -4,6 +4,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 from apps.users.models import User 
 from apps.rooms.models import Message, Room
+from django.contrib import messages
 
 # from apps.core.views import get_userhost
 
@@ -45,8 +46,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message_type = data.get('type')
         
         message = data['message']
+        
         username = data['username']
         room = data['room'] 
+        
         
         print(username)
         print(message_type)

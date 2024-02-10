@@ -5,9 +5,12 @@
 
 
 .logout-form{
-    background-color: rgb(185, 110, 255);
-    max-width: 500px;
+    background-color: #BAA3FF;
+    width: 600px;
+    padding: 24px;
     margin: 0 auto;
+    border-radius: 10px;
+    
 }
 
 
@@ -15,3 +18,41 @@
     text-align: center;
     padding: 10px;
 }
+
+.card-boton{
+    text-decoration: none;
+    color: white;
+
+}
+
+.card-boton:hover{
+    transform: scale(1.12);
+}
+
+
+.boton-logout-volver{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    padding: 4px 50px;
+    border-radius: 10px;
+
+    background-color: #1a53ff;
+    border: 2px solid #174AFF;
+    margin-right: 50px;
+    transition: transform 0.7s;
+}
+
+.boton-logout-volver:hover{
+    transform: scale(1.12);
+}
+
+.boton-logout-cerrarsesion{
+    display: inline-block;
+    margin-left: 50px;
+
+    background-color: #1a53ff;
+    border: 2px solid #174AFF;
+
+}
+

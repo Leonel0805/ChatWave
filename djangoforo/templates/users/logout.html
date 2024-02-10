@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %} Logout {% endblock %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'style/users/logout.css' %}">
+{% endblock %}
+
+{% block title %} Cerrar Sesión {% endblock %}
 
 {% block content %}
 
@@ -9,19 +15,16 @@
         <form action="" method="post">
             {% csrf_token %}
             <div class="form-title">   
-                <h2>Seguro que queres cerrar sesión?</h2>
+                <h2>¿Seguro que querés cerrar sesión?</h2>
 
             </div>
 
             <div class="container body-form">
-                <div class="row">
-                    <div class="col-6">
-                        <a href="{% url 'home' %}">Volver</a>
-                    </div>
-                    <div class="col-6">
-                        <button>Logout</button>
-                    </div>
-                </div>
+          
+
+                <a class="boton-logout-volver" href="{% url 'home' %}">Volver</a>
+                <button class="card-boton boton-logout-cerrarsesion">Logout</button>
+      
             </div>
     
      

@@ -7,6 +7,11 @@ main {
     padding: 10px;
 }
 
+.navbar-logo{
+    max-width: 10%;
+    max-height: 10%;
+}
+
 .navbar-image{
     width: 40px;
     height: 40px;
@@ -62,8 +67,21 @@ main {
     border-radius: 8px;
 }
 
-/* scrcll chrome */
+.card-boton{
+    color: white;
+    padding: 4px 50px;
+    border-radius: 10px;
+    transition: transform 0.7s;
+}
 
+.card-boton:hover{
+    transform: scale(1.12);
+}
+
+
+
+
+/* scrcll chrome */
 
 ::-webkit-scrollbar {
     width: 12px; /* Ancho del scrollbar */
