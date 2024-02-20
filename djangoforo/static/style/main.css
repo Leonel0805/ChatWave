@@ -3,10 +3,6 @@ main {
     background-color:rgb(114, 76, 76);
 } */
 
-.navbar{
-    padding: 10px;
-}
-
 .navbar-logo{
     max-width: 10%;
     max-height: 10%;
@@ -77,6 +73,8 @@ main {
 .card-boton:hover{
     transform: scale(1.12);
 }
+
+
 
 
 

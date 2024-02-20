@@ -104,9 +104,7 @@
 
 
 /* SALAS/CHATS */
-.contenedor-perfil-rooms{
 
-}
 .room-chat-container, .like-room{
     background-color: #7E9AFF;
     border-radius: 5px;
@@ -215,6 +213,42 @@
 }
 
 
+@media screen and (max-width: 630px) {
+
+    .home-container {
+        display: flex;
+        flex-direction: column; /* Cambia la dirección de los elementos a columna en pantallas pequeñas */
+        margin: 16px 32px;
+    }
+
+    .meet-people-container{
+        width: 100%;
+        max-height: 300px;
+        border-radius: 5px;
+        margin-left: 0px;
+
+  
+    }
+    .meet-people-body-container{
+    
+        background-color: red;
+    }
+
+    .meet-people-container, .container, .like-rooms-container {
+
+        margin-bottom: 20px; 
+        width: 100%;
+        display: block;
 
 
+    }
+
+    /* .container-rooms{
+        margin-top: 150px;
+        width: auto;
+        padding-left: 0px;
+        padding-right: 24px;
+    } */
+
+}
 
