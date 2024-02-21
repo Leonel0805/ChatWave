@@ -12,7 +12,7 @@
 
     <section class="registro">
         <div class="registro-portada">
-            <img src="{% static 'media/load/nocountry.jpg' %}" alt="">
+            <img class="portada" src="{% static 'media/load/nocountry.jpg' %}" alt="Portada-registro">
         </div>
 
         <div class="registro-form">
@@ -22,13 +22,17 @@
 
                 {% for field in form %}
 
-                    <div class="my-1">
+                <div class="content-info">
+                    <div class="content-key">
+        
                         {{field.label}}
                     </div>
 
-                    <div>
+                    <div class="content-value">
                         {{field}}
                     </div>
+
+                </div>
 
                 {% endfor %}
 

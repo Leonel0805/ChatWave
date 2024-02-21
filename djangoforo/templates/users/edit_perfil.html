@@ -25,32 +25,32 @@
                 {% csrf_token %}
                 {% for field in form %}
 
-                        <div class="content-info">
-                            <div class="content-key">
-                
-                                {{field.label}}
-                            </div>
-
-                            <div class="content-value">
-                                {{field}}
-                            </div>
-
+                    <div class="content-info">
+                        <div class="content-key">
+            
+                            {{field.label}}
                         </div>
-                
-                        {% if errors_form %}
-                            {% for field_error, errors in errors_form.items %}
-                                {% if field_error == field.name %}
-                                    <ul class="message-form-container">
-                                        {% for error in errors %}
-                                            <li class="message-form">{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
 
-                                {% endif %}
-                    
-                            {% endfor %}
+                        <div class="content-value">
+                            {{field}}
+                        </div>
+
+                    </div>
+            
+                    {% if errors_form %}
+                        {% for field_error, errors in errors_form.items %}
+                            {% if field_error == field.name %}
+                                <ul class="message-form-container">
+                                    {% for error in errors %}
+                                        <li class="message-form">{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+
+                            {% endif %}
                 
-                        {% endif %}
+                        {% endfor %}
+            
+                    {% endif %}
                     
                 {% endfor %}
 
