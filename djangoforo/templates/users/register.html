@@ -36,13 +36,17 @@
 
                 {% endfor %}
 
-                <button class="card-boton registro-form-boton">Registrarse</button>
-                <a href="{% url 'login' %}">
-                    <button class="card-boton registro-form-boton" type="button">Iniciar Sesión</button>
+                <div class="registro-container-boton">
+                    <button class="card-boton registro-form-boton">Registrarse</button>
 
-                </a>
-
+                </div>
+                
             </form>
+
+            <div class="registro-inicio-sesion">
+                <p> ¿Ya sos miembro?</p>
+                <a href="{% url 'login' %}">Iniciar Sesión</a>
+            </div>
         </div>
 
     </section>

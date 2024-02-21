@@ -27,7 +27,6 @@
 
 .registro-form{
     width: 50%;
-    margin-left: 0px;
     padding: 24px;
     margin-top: 48px;
 }
@@ -43,9 +42,24 @@
     padding: 8px;
 }
 
+.registro-container-boton{
+    display: flex;
+    justify-content: center;
+}
 
 .registro-form-boton{
     background-color: #1a53ff;
     border: 2px solid #174AFF;
-    margin-left: 24px;
+}
+
+.registro-inicio-sesion{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+
+.registro-inicio-sesion a{
+    text-decoration: none;
 }
