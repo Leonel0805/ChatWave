@@ -33,7 +33,7 @@ class UserRegisterAPIView(APIView):
             
         else:
             return Response({
-                'error': user_serializer.errors
+                'errors': user_serializer.errors
             }, status=status.HTTP_400_BAD_REQUEST)
             
 class UserLoginAPIView(APIView):

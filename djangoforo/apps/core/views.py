@@ -146,12 +146,14 @@ def register(request):
             
             return redirect('login')
     
-        else:
-            error = response.json()['error']       
-            messages.error(request, error)
-            return redirect('index')
-    
-
+        elif response.status_code == 400:
+            errors = response.json()['errors']
+            
+            for ms in errors.values():
+                for message in ms:
+                    messages.error(request, message)
+     
+            return redirect('register')
     
 
 # Login
