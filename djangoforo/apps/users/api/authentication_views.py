@@ -50,6 +50,7 @@ class UserLoginAPIView(APIView):
             password=password
         )
         
+        #buscamos el mail en caso de existir, si existe estan mal las credenciales
         email_found = User.objects.filter(email=email).first() 
         
         if user_authenticate:
@@ -70,10 +71,10 @@ class UserLoginAPIView(APIView):
                 'error': 'Invalid credentials'
             }, status=status.HTTP_401_UNAUTHORIZED)
 
-      
-        return Response({
-            'error': 'User not found'
-        }, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({
+                'error': 'User not found'
+            }, status=status.HTTP_404_NOT_FOUND)
             
             
 #Logout

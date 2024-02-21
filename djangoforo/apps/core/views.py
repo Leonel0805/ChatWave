@@ -129,6 +129,11 @@ def index(request):
 def register(request):
     
     form = RegisterForm()
+    
+    if request.method == 'GET':
+        return render(request, 'users/register.html',{
+        'form':form
+    })    
 
     if request.method == 'POST':
         
@@ -144,10 +149,9 @@ def register(request):
         else:
             error = response.json()['error']       
             messages.error(request, error)
+            return redirect('index')
     
-    return render(request, 'users/register.html',{
-        'form':form
-    })    
+
     
 
 # Login

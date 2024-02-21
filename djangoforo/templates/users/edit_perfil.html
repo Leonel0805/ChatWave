@@ -37,7 +37,7 @@
 
                     </div>
             
-                    {% if errors_form %}
+                    <!-- {% if errors_form %}
                         {% for field_error, errors in errors_form.items %}
                             {% if field_error == field.name %}
                                 <ul class="message-form-container">
@@ -50,24 +50,25 @@
                 
                         {% endfor %}
             
-                    {% endif %}
+                    {% endif %} -->
                     
                 {% endfor %}
+                
+                        
+                <div class="container-perfil-form-boton">
 
+                    <button  id="perfil-form-boton" class="card-boton edit-perfil-boton">
+                        Aceptar cambios
+                    </button>
+        
+                </div>
 
 
             </form>
         
         </div> 
 
-        
-        <div class="container-perfil-form-boton">
 
-            <button  id="perfil-form-boton" class="card-boton edit-perfil-boton">
-                Aceptar cambios
-            </button>
-  
-        </div>
     </div>
 
 

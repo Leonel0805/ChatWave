@@ -84,7 +84,9 @@ def me_perfil_edit(request):
                 })
             
         else:
-            return render(request, 'users/edit_perfil.html')
+            return render(request, 'users/edit_perfil.html',{
+                'form':form
+            })
     
     elif request.method == 'POST':
         
