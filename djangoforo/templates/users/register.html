@@ -36,7 +36,12 @@
 
                 {% endfor %}
 
-                <button class="btn btn-success my-3">Enviar</button>
+                <button class="card-boton registro-form-boton">Registrarse</button>
+                <a href="{% url 'login' %}">
+                    <button class="card-boton registro-form-boton" type="button">Iniciar Sesión</button>
+
+                </a>
+
             </form>
         </div>
 

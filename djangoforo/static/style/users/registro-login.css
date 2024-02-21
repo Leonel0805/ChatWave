@@ -6,14 +6,14 @@
     margin: 0 auto;
     display: flex;
     padding: 24px;
-    margin-top: 16px;
     height: 85vh;
+    margin-top: 24px;
     
 }
 
 .registro-portada{
     width: 50%;
-    background-color: rgb(0, 102, 102);
+
 }
 
 .portada{
@@ -25,12 +25,26 @@
 
 .registro-form{
     width: 50%;
-
-    margin-left: 64px;
+    margin-left: 0px;
+    padding: 24px;
 }
 
+
+.content-info{
+
+    background-color: red;
+    margin: 16px;
+    display: flex;
+}
 
 .content-value input{
     border-radius: 10px;
     padding: 8px;
+}
+
+
+.registro-form-boton{
+    background-color: #1a53ff;
+    border: 2px solid #174AFF;
+    margin-left: 24px;
 }
