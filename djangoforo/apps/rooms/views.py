@@ -8,6 +8,53 @@ from apps.core.views import get_token, get_userhost
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 
+
+def room_chat(request, pk):
+    
+    token = get_token(request)
+    user_host = get_userhost(request)
+    
+    if request.method == 'GET':
+        
+        url = (f'http://127.0.0.1:8000/api/roomsviewset/{pk}/')
+        
+        if token is not None and token != '':
+            
+            headers = {
+                'Authorization': f'Bearer {token}'
+            }
+            
+            response = requests.get(url, headers=headers)
+            
+            if response.status_code == 200:
+                
+                data = response.json()              
+                ms = Message.objects.filter(room=data['room']['id'])
+                
+                data['ms'] = ms
+                return render(request, 'rooms/room_chat.html',{
+                    'token':token,
+                    'user_host':user_host,
+                    'data':data,
+                    
+                })
+                
+        else:
+            response = requests.get(url)
+            data = response.json()  
+            ms = Message.objects.filter(room=data['room']['id'])
+                
+            data['ms'] = ms
+            
+            return render(request, 'rooms/room_chat.html',{
+                    'user_host':user_host,
+                    'data':data,
+                    
+                })
+            
+                
+
+
 def room_create(request):
     
     token = get_token(request)
@@ -173,36 +220,6 @@ def room_like(request, pk):
                 return redirect('home')
 
 
-def room_chat(request, pk):
-    
-    token = get_token(request)
-    user_host = get_userhost(request)
-    
-    if request.method == 'GET':
-        
-        url = (f'http://127.0.0.1:8000/api/roomsviewset/{pk}/')
-        
-        if token is not None and token != '':
-            
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
-            
-            response = requests.get(url, headers=headers)
-            
-            if response.status_code == 200:
-                
-                data = response.json()              
-                ms = Message.objects.filter(room=data['room']['id'])
-                
-                data['ms'] = ms
-                return render(request, 'rooms/room_chat.html',{
-                    'token':token,
-                    'user_host':user_host,
-                    'data':data,
-                    
-                })
-                
             
 
 
