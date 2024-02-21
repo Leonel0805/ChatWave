@@ -10,29 +10,47 @@
 
 {% block content %}
 
+    <section class="login">
+        <div class="login-portada">
+            <img class="portada" src="{% static 'media/load/chatwave-portada.jpg' %}" alt="Portada-registro">
+        </div>
 
-    <div class="d-flex justify-content-center my-5 login">
+        <div class="login-form">
+            
+            <p class="login-form-titulo">Ingresar</p>
 
+            <form action="" method="post">
+                {% csrf_token %}
 
-        <form action="" method="post">
-            {% csrf_token %}
+                {% for field in form %}
 
-            {% for field in form %}
-
-                <div class="my-1">
-                    {{field.label}}
-                </div>
-
-                <div>
-                    {{field}}
-                </div>
-
-            {% endfor %}
-
-            <button class="btn btn-success my-3">Enviar</button>
-        </form>
+                <div class="content-info">
+                    <div class="content-key">
         
-    </div>
-  
+                        {{field.label}}
+                    </div>
+
+                    <div class="content-value">
+                        {{field}}
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+                <div class="login-container-boton">
+                    <button class="card-boton login-form-boton">Iniciar Sesión</button>
+
+                </div>
+                
+            </form>
+
+            <div class="redirect">
+                <p> ¿No tenés cuenta?</p>
+                <a href="{% url 'login' %}">Registrarse</a>
+            </div>
+        </div>
+
+    </section>
 
 {% endblock %}

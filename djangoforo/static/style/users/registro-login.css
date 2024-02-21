@@ -1,6 +1,6 @@
 @import '../users/perfil.css';
 
-.registro{
+.registro, .login{
     background-color: #BAA3FF;
     width: 1080px;
     margin: 0 auto;
@@ -13,7 +13,7 @@
     
 }
 
-.registro-portada{
+.registro-portada, .login-portada{
     width: 50%;
 
 }
@@ -25,10 +25,16 @@
 
 }
 
-.registro-form{
+.registro-form, .login-form{
     width: 50%;
     padding: 24px;
     margin-top: 48px;
+}
+
+.registro-form-titulo, .login-form-titulo{
+    margin-left: 16px;
+    font-size: 32px;
+    margin-top: 0px;
 }
 
 
@@ -42,17 +48,17 @@
     padding: 8px;
 }
 
-.registro-container-boton{
+.registro-container-boton, .login-container-boton{
     display: flex;
     justify-content: center;
 }
 
-.registro-form-boton{
+.registro-form-boton, .login-form-boton{
     background-color: #1a53ff;
     border: 2px solid #174AFF;
 }
 
-.registro-inicio-sesion{
+.redirect{
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -60,6 +66,12 @@
 }
 
 
-.registro-inicio-sesion a{
+.redirect a{
     text-decoration: none;
+    transition: color 0.3s;
+}
+
+.redirect a:hover{
+    color: #174AFF ;
+
 }

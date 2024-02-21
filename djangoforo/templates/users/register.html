@@ -17,6 +17,8 @@
 
         <div class="registro-form">
             
+            <p class="registro-form-titulo">Crear cuenta</p>
+
             <form action="" method="post">
                 {% csrf_token %}
 
@@ -43,7 +45,7 @@
                 
             </form>
 
-            <div class="registro-inicio-sesion">
+            <div class="redirect">
                 <p> ¿Ya sos miembro?</p>
                 <a href="{% url 'login' %}">Iniciar Sesión</a>
             </div>
