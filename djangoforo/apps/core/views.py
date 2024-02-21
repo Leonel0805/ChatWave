@@ -152,8 +152,12 @@ def register(request):
             for ms in errors.values():
                 for message in ms:
                     messages.error(request, message)
+                
+            form = RegisterForm(data=request.POST)
      
-            return redirect('register')
+            return render(request, 'users/register.html',{
+                'form':form
+            })
     
 
 # Login
