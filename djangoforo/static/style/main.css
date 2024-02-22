@@ -2,16 +2,22 @@
 main {
     background-color:rgb(114, 76, 76);
 } */
+.navbarlol{
+    background: linear-gradient(to bottom right,     #7E9AFF,     #BAA3FF);
+    padding: 10px;
+}
 
 .navbar-logo{
     max-width: 10%;
     max-height: 10%;
+
 }
 
 .navbar-image{
     width: 40px;
     height: 40px;
     border-radius: 50%;
+
 }
 
 .message-success{
