@@ -3,10 +3,14 @@
 .container-edit-perfil-datos{
     margin-top: 16px;
     width: 800px;
+    max-height: 1200px;
     height: auto;
     margin: 0 auto;
+    margin-bottom: 16px;
+    padding: 16px;
 
 }
+
 .container-perfil-form-boton{
 
     text-align: center;
@@ -19,10 +23,11 @@
 }
 
 .content-info{
-    padding: 16px;
+    height: auto;
 }
 .form-edit{
     height: auto;
+    padding-left: 0px;
 }
 .content-value input{
     border-radius: 10px;
@@ -45,6 +50,6 @@
     background-color: #9EFF9E;
     border: 2px solid #409743;
     color: black;
-
+    height: auto;
     transition: transform 0.5s ease;
 }

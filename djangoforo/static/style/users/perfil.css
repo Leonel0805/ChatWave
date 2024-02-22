@@ -23,7 +23,7 @@
 }
 
 .container-edit-perfil-datos{
-    padding: 20px;
+    padding: 16px;
     text-align: left;
     border-radius: 10px;
     margin-right: 50px;
@@ -40,7 +40,7 @@
 }
 
 .container-content-info{
-    padding: 24px;
+    padding: 16px;
     height: 600px;
     background-color: #f1f1f1;
     border-radius: 20px;
@@ -76,8 +76,8 @@
 
 .content-info-image{
     display: flex;
-    margin-left: 200px;
-    margin-right: 222px;
+    margin-top: 32px;
+    margin-bottom: 32px;
     
 }
 
