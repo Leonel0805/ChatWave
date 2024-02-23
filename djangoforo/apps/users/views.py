@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from apps.core.views import get_token, get_userhost
+from apps.core.views import get_token, get_userhost, set_headers
 from django.contrib import messages
 from .forms import PerfilForm
 from apps.users.models import User
@@ -20,11 +20,9 @@ def me_perfil(request):
         url_rooms = ('http://127.0.0.1:8000/api/rooms/my-list/')
         
         
-        if token is not None and token != '':
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
-            
+        headers = set_headers(token)
+        
+        if headers:  
             response = requests.get(url_me, headers=headers)
             response_rooms = requests.get(url_rooms, headers=headers)
             
@@ -66,11 +64,9 @@ def me_perfil_edit(request):
         
         url = ('http://127.0.0.1:8000/api/authentication/me/')
     
-        if token is not None and token != '':
-            
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
+        headers = set_headers(token)
+        
+        if headers:  
             response = requests.get(url, headers=headers)
             
             if response.status_code == 200:           
@@ -92,11 +88,9 @@ def me_perfil_edit(request):
         
         url = ('http://127.0.0.1:8000/api/authentication/me/')
         
-        if token is not None and token != '':
-            
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
+        headers = set_headers(token)
+        
+        if headers:  
             
             form = PerfilForm(request.POST, request.FILES)
             # if form.is_valid():
@@ -135,11 +129,9 @@ def user_view(request, pk):
         url_rooms = (f'http://127.0.0.1:8000/api/rooms/list/{pk}/')
         
         
-        if token is not None and token != '':
-            
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
+        headers = set_headers(token)
+        
+        if headers:  
             response = requests.get(url, headers=headers)
             response_rooms = requests.get(url_rooms)
         

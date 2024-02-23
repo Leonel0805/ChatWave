@@ -4,7 +4,7 @@ from django.contrib import messages
 import requests
 from .models import Message
 from .forms import RoomForm
-from apps.core.views import get_token, get_userhost
+from apps.core.views import get_token, get_userhost, set_headers
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 
@@ -18,12 +18,9 @@ def room_chat(request, pk):
         
         url = (f'http://127.0.0.1:8000/api/roomsviewset/{pk}/')
         
-        if token is not None and token != '':
-            
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
-            
+        headers = set_headers(token)
+        
+        if headers:  
             response = requests.get(url, headers=headers)
             
             if response.status_code == 200:
@@ -75,12 +72,9 @@ def room_create(request):
         
         url = ('http://127.0.0.1:8000/api/rooms/create/')
         
-        if token is not None and token != '':
-            
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
-            
+        headers = set_headers(token)
+        
+        if headers:  
        
             file_image = request.FILES.get('image')
      
@@ -115,12 +109,9 @@ def room_edit_delete(request, pk):
         
         url = (f'http://127.0.0.1:8000/api/rooms/my-list/{pk}/')
       
+        headers = set_headers(token)
         
-        if token is not None and token != '':
-                
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
+        if headers:  
                  
             response = requests.get(url, headers=headers)
             
@@ -143,11 +134,9 @@ def room_edit_delete(request, pk):
         action = request.POST.get('action')
         if action == 'edit':
         
-            if token is not None and token != '':
-                
-                headers = {
-                    'Authorization': f'Bearer {token}'
-                }
+            headers = set_headers(token)
+        
+            if headers:  
                 
                                 
                 file_image = request.FILES.get('image')
@@ -174,12 +163,9 @@ def room_edit_delete(request, pk):
         elif action == 'delete':
        
             
-            if token is not None and token != '':
-                
-                headers = {
-                    'Authorization': f'Bearer {token}'
-                }
-                
+            headers = set_headers(token)
+        
+            if headers:  
                 response = requests.delete(url, headers=headers)
 
 
@@ -202,11 +188,9 @@ def room_like(request, pk):
         
         url = (f'http://127.0.0.1:8000/api/roomsviewset/{pk}/like-room/')
         
-        if token is not None and token != '':
-             
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
+        headers = set_headers(token)
+        
+        if headers:  
             
             response = requests.post(url, headers=headers)
             

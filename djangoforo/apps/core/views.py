@@ -13,6 +13,12 @@ def get_token(request):
     token = request.COOKIES.get('Bearer')
     return token
 
+def set_headers(token):
+    if token is not None and token != '':
+        return {'Authorization': f'Bearer {token}'}
+    return None
+
+    
 # Obtenemos data del User, después de setearlo en el /login
 def get_userhost(request):
     user_host_jsonstr = request.COOKIES.get('User')
@@ -100,12 +106,9 @@ def search(request):
         #obtenemos lo enviado por el form de search en la navbar
         query = request.GET.get('query', '')
         
-        if token is not None and token != '':
-            
-            headers = {
-                'Authorization': f'Bearer {token}'
-            }
-            
+        headers = set_headers(token)
+        
+        if headers:    
             #lo enviamos como params haciendo un get a la url
             params = {'search': query}
             response = requests.get(url, headers=headers, params=params)
@@ -214,22 +217,20 @@ def logout(request):
         url = ('http://127.0.0.1:8000/api/authentication/logout/')
         
         
+        headers = set_headers(token)
         
-        headers = {
-            'Authorization': f'Bearer {token}'
-        }
-        
-        response = requests.post(url, headers=headers)
+        if headers:  
+            response = requests.post(url, headers=headers)
 
-        if response.status_code == 200:
-            message = response.json()['message']
-            messages.success(request, message)
-            response_html = redirect ('login')
-            response_html.set_cookie('Bearer', value='')
-            return response_html
-        
-        else:
-            print('no 200')
+            if response.status_code == 200:
+                message = response.json()['message']
+                messages.success(request, message)
+                response_html = redirect ('login')
+                response_html.set_cookie('Bearer', value='')
+                return response_html
+            
+            else:
+                print('no 200')
     
     
     return render(request, 'users/logout.html', {
