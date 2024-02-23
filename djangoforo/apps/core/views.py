@@ -224,7 +224,7 @@ def logout(request):
         if response.status_code == 200:
             message = response.json()['message']
             messages.success(request, message)
-            response_html = redirect ('register')
+            response_html = redirect ('login')
             response_html.set_cookie('Bearer', value='')
             return response_html
         
