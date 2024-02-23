@@ -8,6 +8,7 @@
     margin: 0 auto;
     padding: 15px 30px;
     margin-bottom: 50px;
+    margin-top: 24px;
     border-radius: 20px;
     box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
 
@@ -52,8 +53,7 @@
 #room-chat-body-container{
 
     border: 3px solid rgb(68, 68, 68);
-
-    border-radius: 25px;
+    border-radius: 25px 0px 0px 25px;
 
 }
 

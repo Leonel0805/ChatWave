@@ -203,12 +203,15 @@ def login(request):
 
 def logout(request):
     
+    token = get_token(request)
+    user_host = get_userhost(request)
+    
+    
     if request.method == 'POST':
         
         url = ('http://127.0.0.1:8000/api/authentication/logout/')
         
         
-        token = get_token(request)
         
         headers = {
             'Authorization': f'Bearer {token}'
@@ -226,6 +229,12 @@ def logout(request):
         else:
             print('no 200')
     
-    return render(request, 'users/logout.html')
+    
+    return render(request, 'users/logout.html', {
+        'token':token,
+        'user_host':user_host,
+        
+    })
+    
             
             
