@@ -25,7 +25,7 @@ class UserRegisterAPIView(APIView):
         user_serializer = UserSerializer(data = request.data)
         
         if user_serializer.is_valid():
-            user = user_serializer.save()
+            user_serializer.save()
             
             return Response({
                 'message': 'User created successfully'
@@ -57,7 +57,7 @@ class UserLoginAPIView(APIView):
             login_serializer = self.serializer_class(data = request.data)
             if login_serializer.is_valid():
                 user_serializer = UserMeSerializer(user_authenticate)
-                
+              
                 return Response({
                     'token': login_serializer.validated_data['access'],
                     'refresh': login_serializer.validated_data['refresh'],

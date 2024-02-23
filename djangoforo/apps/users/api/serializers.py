@@ -40,30 +40,30 @@ class UserMeSerializer(serializers.ModelSerializer):
         #llamamos al update predeterminado padre
         return super().update(instance, validated_data)
         
-
-class UpdateUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User 
-        fields = ('email', 'username', 'bio', 'avatar')
         
 class UpdatePasswordSerializer(serializers.ModelSerializer):
     
-    password2 = serializers.CharField(max_length=128)
+    new_password = serializers.CharField(max_length=128)
     
     class Meta:
         model = User 
-        fields = ('password', 'password2')
+        fields = ('password', 'new_password')
         
     def update(self, instance, validated_data):
+        new_password = validated_data.get('new_password')
+        password = validated_data.get('password')
 
-        new_password = validated_data.get('password', instance.password)
+        if not instance.check_password(password):
+            raise serializers.ValidationError('La contraseña actual es incorrecta.')
         
-        if new_password == validated_data['password2']:
+        if new_password == password:
+            raise serializers.ValidationError('La nueva contraseña no puede ser igual a la contraseña actual.')
         
-            instance.set_password(new_password)
-            instance.save()
-            return instance
+
+        instance.set_password(new_password)
+        instance.save()
+        
+        return instance
             
-        else:
-            raise serializers.ValidationError('Error password')
+
         

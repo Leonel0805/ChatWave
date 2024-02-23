@@ -7,7 +7,8 @@ from .authentication_views import (
 )
 
 from .apiviews import (
-    UserMeAPIView
+    UserMeAPIView,
+    UserMeChangePasswordAPIView
 )
 
 
@@ -16,6 +17,6 @@ urlpatterns = [
     path('login/', UserLoginAPIView.as_view(), name='user-login'),
     path('logout/', UserLogoutAPIView.as_view(), name='user-logout'),
     path('me/', UserMeAPIView.as_view(), name='user-me'),
-    
-      
+    path('me/change-password/', UserMeChangePasswordAPIView.as_view(), name='user-me-change-password'),
+         
 ]

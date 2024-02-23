@@ -1,13 +1,8 @@
-from apps.users.models import User 
 from rest_framework.viewsets import GenericViewSet, ModelViewSet, mixins
-from rest_framework.views import APIView
-from rest_framework.generics import RetrieveAPIView
 from .serializers import (
     UserListSerializer,
     UserSerializer,
-    UpdateUserSerializer,
     UpdatePasswordSerializer,
-    UserMeSerializer
 )
 
 from rest_framework.decorators import action
@@ -26,7 +21,6 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
 
     serializer_class = UserSerializer
     list_serializer_class = UserListSerializer
-    update_serializer_class = UpdateUserSerializer
     queryset = None
     
     #get_object() nos devuelve el objeto por pk
@@ -71,7 +65,6 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
             
     def retrieve(self, request, pk=None):
         
-        self.serializer_class = self.update_serializer_class
        # user = User.objects.filter(pk = pk).first()
         user = self.get_object(pk)
         
@@ -93,6 +86,10 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
                     'message':'password change'
                 })    
             
+            else:
+                return Response({
+                    'error': 'not valid'
+                })
     
         return Response({
             'error': 'not found'

@@ -229,9 +229,6 @@ def logout(request):
                 response_html.set_cookie('Bearer', value='')
                 return response_html
             
-            else:
-                print('no 200')
-    
     
     return render(request, 'users/logout.html', {
         'token':token,
