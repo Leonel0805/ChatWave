@@ -5,10 +5,8 @@
 .container-mi-perfil{
 
     width: 1400px;
-    max-height: 1000px;
     margin: 0 auto;
     border-radius: 10px;
-    background-color: #c3c8ff;
     padding: 16px;
 
 }
@@ -29,7 +27,7 @@
     margin-right: 50px;
     background-color: #BAA3FF;
     border: 2px solid #CB5BFF;
-    height: 800px;
+    height: 650px;
     box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
 
 }
@@ -41,7 +39,7 @@
 
 .container-content-info{
     padding: 16px;
-    height: 600px;
+    height: auto;
     background-color: #f1f1f1;
     border-radius: 20px;
 }
@@ -59,6 +57,12 @@
     max-height: 200px;
 }
 
+.content-info-image{
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    
+}
 
 .content-key{
     color: rgb(58, 58, 58);
@@ -74,12 +78,7 @@
     border-radius: 50px;
 }
 
-.content-info-image{
-    display: flex;
-    margin-top: 32px;
-    margin-bottom: 32px;
-    
-}
+
 
 .perfil-info-image{
     width: 90px;
