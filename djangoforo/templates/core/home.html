@@ -52,6 +52,14 @@
           <p>No people</p>
         {% endif %}
       </div>
+      <div class="page-nums">
+        {% for num_page in data.users.paginator.page_range %}
+        <span class="">
+            <a href="?page={{ num_page }}">{{ num_page }}</a>
+        </span>
+        {% endfor %}
+      </div>
+
     </div>
         
 
@@ -111,7 +119,7 @@
             <div class="page-nums">
               {% for num_page in data.rooms.paginator.page_range %}
               <span class="">
-                  <a href="?page={{ num_page }}">{{ num_page }}</a>
+                  <a href="?page2={{ num_page }}">{{ num_page }}</a>
               </span>
               {% endfor %}
             </div>
@@ -153,7 +161,7 @@
             <div class="page-nums">
               {% for num_page in data.likedrooms.paginator.page_range %}
                 <span class="">
-                    <a href="?page2={{ num_page }}">{{ num_page }}</a>
+                    <a href="?page3={{ num_page }}">{{ num_page }}</a>
                 </span>
               {% endfor %}
             

@@ -7,12 +7,13 @@ from django.core.paginator import Paginator
 
 import json, requests
 
-# Home
-
+# Funciones token, user_host
+# Obtenemos el Bearer token, despues de setearlo en el /login
 def get_token(request):
     token = request.COOKIES.get('Bearer')
     return token
 
+# Obtenemos data del User, después de setearlo en el /login
 def get_userhost(request):
     user_host_jsonstr = request.COOKIES.get('User')
     
@@ -21,6 +22,7 @@ def get_userhost(request):
         user = json.loads(user_host_jsonstr)
         return user
 
+# HOME
 def home(request):
     
     if request.method == 'GET':
@@ -29,14 +31,11 @@ def home(request):
         url_rooms = ('http://127.0.0.1:8000/api/rooms/list/')
         url_liked_rooms = ('http://127.0.0.1:8000/api/rooms/list/liked_rooms/')
         
-        # Obtener el token guardado en la cookie
+        # Obtener el token, user guardado en la cookies
         token = get_token(request)
-        
-        #obtenemos el user guardado en cookie
         user_host = get_userhost(request)
         
-        #pasar el token guardado en cookie al header
-        #if token is not None and token != '':
+        # Pasar el token guardado en cookie al header
         headers = {
                 'Authorization': f'Bearer {token}'
             }
@@ -49,23 +48,26 @@ def home(request):
             
         if response_likes_rooms.status_code == 200:
             data['all_likedrooms'] = response_likes_rooms.json()
-            
-            paginator2 = Paginator(data['all_likedrooms'], 5)
-            page2 = request.GET.get('page2')
-            data['likedrooms'] = paginator2.get_page(page2)
-            print(data['likedrooms'])
+      
+            paginator3 = Paginator(data['all_likedrooms'], 5)
+            page3 = request.GET.get('page3')
+            data['likedrooms'] = paginator3.get_page(page3)
             
         if response_users.status_code == 200:
-            data['users'] = response_users.json()
+            data['all_users'] = response_users.json()
                 
+            paginator = Paginator(data['all_users'], 6)
+            page = request.GET.get('page')
+            data['users'] = paginator.get_page(page)   
+             
         if response_rooms.status_code == 200:
             data['allrooms'] = response_rooms.json()
                 
-            paginator = Paginator(data['allrooms'], 5)
+            paginator2 = Paginator(data['allrooms'], 5)
                 
-            page = request.GET.get('page')
+            page2 = request.GET.get('page2')
                 
-            data['rooms'] = paginator.get_page(page)          
+            data['rooms'] = paginator2.get_page(page2)          
                 
             if 'success_message_displayed' not in request.session:
                 messages.success(request, 'usuarios cargados correctamente')
