@@ -116,7 +116,23 @@ def me_perfil_edit(request):
                     errors[error] = response.json()[error]
                     
                 return render(request, 'users/edit_perfil.html', {'form': form, 'errors_form':errors})
-                
+             
+             
+def me_perfil_change_password(request):
+    
+    token = get_token(request)
+    user_host = get_userhost(request)
+    
+    form = PerfilForm()
+    
+    if request.method == 'POST':
+        url = ('http://127.0.0.1:8000/api/authentication/me/change-password/')
+        
+    return render(request, 'users/edit_perfil_password.html',{
+        'form': form,
+        'token':token,
+        'user_host':user_host
+    })
             
 def user_view(request, pk):
     
