@@ -4,6 +4,8 @@ const RoomId = JSON.parse(document.getElementById('json-roomid').textContent);
 const UserHost = JSON.parse(document.getElementById('json-authenticated-user').textContent);
 const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomId + '/');
 
+// ngrok
+// const chatSocket = new WebSocket('wss://' + window.location.host + '/ws/' + RoomId + '/');
 
 
 const chatContainer = document.getElementById('chat-body-room');

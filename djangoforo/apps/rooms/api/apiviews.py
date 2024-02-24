@@ -34,29 +34,28 @@ class RoomCreateAPIView(APIView):
             
 class RoomListAPIView(APIView):
     
-    def get(self, request, pk=None):
-        
-        print(pk)
+   def get(self, request, pk=None):
+       
         if pk is not None:
-            print('entramos a user.rooms')
+            print('Entramos a user.rooms')
             user = User.objects.filter(id=pk).first()
             if user:
                 rooms = user.rooms.all().order_by('-created_at')
                 if len(rooms) == 0:
+                    
                     return Response({
                         'message': 'No hay rooms creados'
-                    })
+                    }, status=status.HTTP_202_ACCEPTED) # 204
             else:
                 return Response({
-                    'error': 'Rooms de user not found'
+                    'error': 'User not found'
                 }, status=status.HTTP_404_NOT_FOUND)
-
         else:
-            print('no entramos')
+            print('No entramos')
             rooms = Room.objects.all().order_by('-created_at')
-        
+            
         rooms_serializer = RoomListSerializer(rooms, many=True)
-        return Response(rooms_serializer.data)
+        return Response(rooms_serializer.data, status=status.HTTP_200_OK)
     
 
 class RoomSearchAPIView(APIView):

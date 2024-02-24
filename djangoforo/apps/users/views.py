@@ -156,14 +156,28 @@ def user_view(request, pk):
                 data = response.json()
                 
             if response_rooms.status_code == 200:
-                data['user_rooms'] = response_rooms.json()
-                
-                paginator = Paginator(data['user_rooms'], 3)
-                page = request.GET.get('page')
-                data['user_rooms'] = paginator.get_page(page)
+                data['user_allrooms'] = response_rooms.json()
+                print('200',response_rooms.json())
+
+                paginator_rooms = Paginator(data['user_allrooms'], 3)
+                page_rooms = request.GET.get('page_rooms')
+                data['user_rooms'] = paginator_rooms.get_page(page_rooms)
                 
                 return render(request, 'users/user_view.html',{
                     'token':token,
                     'authenticated_user': authenticated_user,
                     'data':data,
                 })        
+            
+            else: 
+     
+                print('204',response_rooms.json()['message'])
+                data['message'] = response_rooms.json()['message']
+                
+                return render(request, 'users/user_view.html',{
+                    'token':token,
+                    'authenticated_user': authenticated_user,
+                    'data':data,
+                })   
+                
+                

@@ -68,8 +68,9 @@ def home(request):
             
         if response_users.status_code == 200:
             data['all_users'] = response_users.json()
+            print(response_users.json())
                 
-            paginator = Paginator(data['all_users'], 6)
+            paginator = Paginator(data['all_users'], 5)
             page = request.GET.get('page')
             data['users'] = paginator.get_page(page)   
              

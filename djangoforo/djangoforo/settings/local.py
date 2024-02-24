@@ -3,8 +3,13 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.10']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2b34-2800-810-507-a12f-bd4a-1711-7f4d-cf11.ngrok-free.app']
 
+#config ngrok csrf
+# CSRF_TRUSTED_ORIGINS = ['https://2b34-2800-810-507-a12f-bd4a-1711-7f4d-cf11.ngrok-free.app']
+
+
+#database local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
