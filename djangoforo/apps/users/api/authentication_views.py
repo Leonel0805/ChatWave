@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate
 
-from apps.users.models import User 
+from apps.users.models import User, CustomToken 
+
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework import status
 
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -56,10 +57,14 @@ class UserLoginAPIView(APIView):
         if user_authenticate:
             login_serializer = self.serializer_class(data = request.data)
             if login_serializer.is_valid():
+                
+                access_token = login_serializer.validated_data['access']
+                CustomToken.objects.create(user=user_authenticate, token=access_token)
+                
                 user_serializer = UserMeSerializer(user_authenticate)
               
                 return Response({
-                    'token': login_serializer.validated_data['access'],
+                    'token': access_token,
                     'refresh': login_serializer.validated_data['refresh'],
                     'user': user_serializer.data,
                     'message':"Login successfully!"

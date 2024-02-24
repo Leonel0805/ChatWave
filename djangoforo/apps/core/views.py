@@ -4,8 +4,10 @@ from django.contrib import messages
 from .forms import LoginForm, RegisterForm
 
 from django.core.paginator import Paginator 
+from apps.users.models import CustomToken
 
 import json, requests
+
 
 # Funciones token, user_host
 # Obtenemos el Bearer token, despues de setearlo en el /login
@@ -20,14 +22,19 @@ def set_headers(token):
 
     
 # Obtenemos data del User, después de setearlo en el /login
-def get_userhost(request):
-    user_host_jsonstr = request.COOKIES.get('User')
+# def get_userhost(request):
+#     user_host_jsonstr = request.COOKIES.get('User')
     
-    if user_host_jsonstr is not None:
-        #convertimos el userstr en objeto dict 
-        user = json.loads(user_host_jsonstr)
-        return user
+#     if user_host_jsonstr is not None:
+#         #convertimos el userstr en objeto dict 
+#         user = json.loads(user_host_jsonstr)
+#         return user
+    
+def get_userhost(request):
+    bearer_token = request.COOKIES.get('Bearer')
 
+    user = CustomToken.objects.filter(token=bearer_token).first()
+    return user
 # HOME
 def home(request):
     
