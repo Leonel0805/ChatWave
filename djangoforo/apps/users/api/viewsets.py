@@ -28,10 +28,7 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
     def get_object(self, pk):
         return self.serializer_class.Meta.model.objects.filter(id=pk).first()
 
-
-    
     def get_queryset(self):
-        
  
         if self.queryset is None:
             queryset = self.serializer_class().Meta.model.objects\
@@ -41,13 +38,11 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
 
         return self.queryset
         
-
-            
-    
     
     def list(self, request):
         users = self.get_queryset()
         
+        print('request.user desde apiview',request.user)
         users_serializer = self.list_serializer_class(users, many=True)
         return Response(users_serializer.data)
     
@@ -75,26 +70,6 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
                 'user':user_serializer.data
             })
     
-    @action(detail=True, methods=['put'], url_path='set_password', serializer_class=UpdatePasswordSerializer)
-    def set_password(self, request, pk=None):
-        user = self.get_object(pk)
-        
-        if user:
-            password_serializer = UpdatePasswordSerializer(user, data=request.data)
-            if password_serializer.is_valid():
-                password_serializer.save()
-                return Response({
-                    'message':'password change'
-                })    
-            
-            else:
-                return Response({
-                    'error': 'not valid'
-                })
-    
-        return Response({
-            'error': 'not found'
-        })
             
     def destroy(self, request, pk=None):
         user = self.get_object(pk)

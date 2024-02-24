@@ -1,11 +1,12 @@
 from rest_framework.views import APIView
-from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from apps.users.models import User
 from rest_framework import status
 from rest_framework.response import Response
-from .serializers import UserMeSerializer, UpdatePasswordSerializer
+from .serializers import UserMeSerializer, UpdatePasswordSerializer, UserListSerializer
 
 # Apiview get, put, patch
 class UserMeAPIView(RetrieveUpdateAPIView):
@@ -18,6 +19,21 @@ class UserMeAPIView(RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
 
+class UserListAPIView(ListAPIView):
+           
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [AllowAny]
+    
+    serializer_class = UserListSerializer
+    
+    def get_queryset(self):
+        queryset = User.objects.all()
+        
+        if self.request.user.is_authenticated:
+            queryset = User.objects.all().exclude(email=self.request.user.email)
+        return queryset
+    
+    
 
 # APIView Cambiar contraseña
 class UserMeChangePasswordAPIView(APIView):

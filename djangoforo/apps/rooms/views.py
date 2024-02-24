@@ -78,7 +78,6 @@ def room_create(request):
        
             file_image = request.FILES.get('image')
      
-            print(file_image)
             files = {'image': file_image}
 
         
@@ -93,7 +92,6 @@ def room_create(request):
                 
             else:
                 message = response.json()
-                print(message)
                 return render(request, 'rooms/room_create.html')
                 
 
@@ -117,7 +115,6 @@ def room_edit_delete(request, pk):
             
             if response.status_code == 200:
                 data = response.json()
-                print('myroomedit', data)
        
                 form = RoomForm(data=data)
                 

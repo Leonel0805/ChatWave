@@ -40,7 +40,7 @@ def home(request):
     
     if request.method == 'GET':
       
-        url_users = ('http://127.0.0.1:8000/api/usersview/usersview/')
+        url_users = ('http://127.0.0.1:8000/api/authentication/users/')
         url_rooms = ('http://127.0.0.1:8000/api/rooms/list/')
         url_liked_rooms = ('http://127.0.0.1:8000/api/rooms/list/liked_rooms/')
         
@@ -49,11 +49,13 @@ def home(request):
         authenticated_user = get_userhost(request)
         
         # Pasar el token guardado en cookie al header
-        headers = {
-                'Authorization': f'Bearer {token}'
-            }
+        headers = set_headers(token)
         
-        response_users = requests.get(url_users, headers=headers)
+        if headers is None:
+            response_users = requests.get(url_users)
+        else:
+            response_users = requests.get(url_users, headers=headers)
+            
         response_rooms = requests.get(url_rooms, headers=headers)
         response_likes_rooms = requests.get(url_liked_rooms, headers=headers)
             
@@ -65,28 +67,21 @@ def home(request):
             paginator3 = Paginator(data['all_likedrooms'], 5)
             page3 = request.GET.get('page3')
             data['likedrooms'] = paginator3.get_page(page3)
-            
+           
+        if response_rooms.status_code == 200:
+            data['allrooms'] = response_rooms.json()
+   
+            paginator2 = Paginator(data['allrooms'], 5) 
+            page2 = request.GET.get('page2')
+            data['rooms'] = paginator2.get_page(page2)  
+                
         if response_users.status_code == 200:
             data['all_users'] = response_users.json()
-            print(response_users.json())
-                
+            
             paginator = Paginator(data['all_users'], 5)
             page = request.GET.get('page')
             data['users'] = paginator.get_page(page)   
-             
-        if response_rooms.status_code == 200:
-            data['allrooms'] = response_rooms.json()
-                
-            paginator2 = Paginator(data['allrooms'], 5)
-                
-            page2 = request.GET.get('page2')
-                
-            data['rooms'] = paginator2.get_page(page2)          
-                
-            if 'success_message_displayed' not in request.session:
-                messages.success(request, 'usuarios cargados correctamente')
-                request.session['success_message_displayed'] = True
-                
+            
             return render(request, 'core/home.html', {
                 'authenticated_user':authenticated_user,
                 'token':token,
@@ -189,8 +184,6 @@ def login(request):
             # user = response.json()['user']
             message = response.json()['message']
             
-            #convertimos el objeto a str json
-            # user_jsonstr = json.dumps(user)
             #lo almacenamos en una cookie
             response_html =  redirect('home')
             response_html.set_cookie('Bearer', token)

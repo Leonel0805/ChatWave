@@ -30,7 +30,6 @@ def me_perfil(request):
             
             if response.status_code == 200:
                 data['me'] = response.json()
-                print(data['me'])
                 data['verbose_name'] = User._meta.get_field('avatar').verbose_name
                 
             if response_rooms.status_code == 200:
@@ -71,7 +70,6 @@ def me_perfil_edit(request):
             
             if response.status_code == 200:           
                 data = response.json() 
-                print('perfil', data)
                 form = PerfilForm(data=data)
                 return render(request, 'users/edit_perfil.html',{
                     'token':token,
@@ -157,7 +155,6 @@ def user_view(request, pk):
                 
             if response_rooms.status_code == 200:
                 data['user_allrooms'] = response_rooms.json()
-                print('200',response_rooms.json())
 
                 paginator_rooms = Paginator(data['user_allrooms'], 3)
                 page_rooms = request.GET.get('page_rooms')
@@ -171,7 +168,6 @@ def user_view(request, pk):
             
             else: 
      
-                print('204',response_rooms.json()['message'])
                 data['message'] = response_rooms.json()['message']
                 
                 return render(request, 'users/user_view.html',{
