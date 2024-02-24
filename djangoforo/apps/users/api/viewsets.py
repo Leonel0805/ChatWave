@@ -3,6 +3,7 @@ from .serializers import (
     UserListSerializer,
     UserSerializer,
     UpdatePasswordSerializer,
+    UserViewSerializer
 )
 
 from rest_framework.decorators import action
@@ -65,7 +66,7 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
             
     def retrieve(self, request, pk=None):
         
-       # user = User.objects.filter(pk = pk).first()
+        self.serializer_class = UserViewSerializer 
         user = self.get_object(pk)
         
         if user:

@@ -36,7 +36,7 @@ def me_perfil(request):
             if response_rooms.status_code == 200:
                 data['allrooms'] = response_rooms.json()
 
-                paginator = Paginator(data['allrooms'], 5)
+                paginator = Paginator(data['allrooms'], 4)
                 
                 page = request.GET.get('page')
                 
@@ -161,7 +161,7 @@ def user_view(request, pk):
                 paginator = Paginator(data['user_rooms'], 3)
                 page = request.GET.get('page')
                 data['user_rooms'] = paginator.get_page(page)
-                print(data)
+                
                 return render(request, 'users/user_view.html',{
                     'token':token,
                     'user_host': user_host,
