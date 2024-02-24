@@ -9,7 +9,7 @@ from apps.users.models import CustomToken
 import json, requests
 
 
-# Funciones token, user_host
+# Funciones token, authenticated_user
 # Obtenemos el Bearer token, despues de setearlo en el /login
 def get_token(request):
     token = request.COOKIES.get('Bearer')
@@ -46,7 +46,7 @@ def home(request):
         
         # Obtener el token, user guardado en la cookies
         token = get_token(request)
-        user_host = get_userhost(request)
+        authenticated_user = get_userhost(request)
         
         # Pasar el token guardado en cookie al header
         headers = {
@@ -87,7 +87,7 @@ def home(request):
                 request.session['success_message_displayed'] = True
                 
             return render(request, 'core/home.html', {
-                'user_host':user_host,
+                'authenticated_user':authenticated_user,
                 'token':token,
                 'data':data
     
@@ -104,7 +104,7 @@ def home(request):
 def search(request):
     
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     if request.method == 'GET':
         
@@ -126,7 +126,7 @@ def search(request):
                 
                 return render(request, 'core/search.html',{
                     'token':token,
-                    'user_host':user_host,
+                    'authenticated_user':authenticated_user,
                     'data':data
                 })
         
@@ -185,15 +185,14 @@ def login(request):
         if response.status_code == 200:
             #accedemos al token
             token = response.json()['token']
-            user = response.json()['user']
+            # user = response.json()['user']
             message = response.json()['message']
             
             #convertimos el objeto a str json
-            user_jsonstr = json.dumps(user)
+            # user_jsonstr = json.dumps(user)
             #lo almacenamos en una cookie
             response_html =  redirect('home')
             response_html.set_cookie('Bearer', token)
-            response_html.set_cookie('User', user_jsonstr)
             
             messages.success(request, message)
             
@@ -216,7 +215,7 @@ def login(request):
 def logout(request):
     
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     
     if request.method == 'POST':
@@ -239,7 +238,7 @@ def logout(request):
     
     return render(request, 'users/logout.html', {
         'token':token,
-        'user_host':user_host,
+        'authenticated_user':authenticated_user,
         
     })
     

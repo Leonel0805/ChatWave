@@ -1,7 +1,7 @@
 // websocket 
 
 const RoomId = JSON.parse(document.getElementById('json-roomid').textContent);
-const UserHost = JSON.parse(document.getElementById('json-userhost').textContent);
+const UserHost = JSON.parse(document.getElementById('json-authenticated-user').textContent);
 const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomId + '/');
 
 

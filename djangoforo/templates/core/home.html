@@ -26,7 +26,7 @@
         {% if data %}
           {% for user in data.users %}
           
-            {% if user_host.email != user.email %}
+            {% if authenticated_user.user.email != user.email %}
               <div class="meet-people-card">
                 <a href="{% url 'user_view' pk=user.id %}" class="meet-card-url">
         

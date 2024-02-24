@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 def room_chat(request, pk):
     
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     if request.method == 'GET':
         
@@ -30,8 +30,8 @@ def room_chat(request, pk):
                 
                 data['ms'] = ms
                 return render(request, 'rooms/room_chat.html',{
+                    'authenticated_user':authenticated_user,
                     'token':token,
-                    'user_host':user_host,
                     'data':data,
                     
                 })
@@ -44,7 +44,7 @@ def room_chat(request, pk):
             data['ms'] = ms
             
             return render(request, 'rooms/room_chat.html',{
-                    'user_host':user_host,
+                    'authenticated_user':authenticated_user,
                     'data':data,
                     
                 })
@@ -55,7 +55,7 @@ def room_chat(request, pk):
 def room_create(request):
     
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     form = RoomForm()
     
@@ -64,7 +64,7 @@ def room_create(request):
         
         return render(request, 'rooms/room_create.html',{
             'token':token,
-            'user_host':user_host,
+            'authenticated_user':authenticated_user,
             'form':form
         })
     
@@ -102,7 +102,7 @@ def room_create(request):
 def room_edit_delete(request, pk):
         
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     form = RoomForm()
     
     if request.method == 'GET':
@@ -123,7 +123,7 @@ def room_edit_delete(request, pk):
                 
                 return render(request, 'rooms/room_edit.html', {
                     'token':token,
-                    'user_host':user_host,
+                    'authenticated_user':authenticated_user,
                     'form':form,
                     'data':data
                 })

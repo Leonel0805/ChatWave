@@ -11,7 +11,7 @@ import json, requests
 def me_perfil(request):
             
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     if request.method == 'GET':
         
@@ -45,7 +45,7 @@ def me_perfil(request):
                 return render(request, 'users/perfil.html',{
                     'token':token,
                     'data':data,
-                    'user_host':user_host
+                    'authenticated_user':authenticated_user
                 })   
             else:
                 return render(request, 'users/perfil.html')
@@ -57,7 +57,7 @@ def me_perfil_edit(request):
     
     form = PerfilForm()
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     
     if request.method == 'GET':
@@ -76,7 +76,7 @@ def me_perfil_edit(request):
                 return render(request, 'users/edit_perfil.html',{
                     'token':token,
                     'form':form,
-                    'user_host':user_host
+                    'authenticated_user':authenticated_user
                 })
             
         else:
@@ -121,7 +121,7 @@ def me_perfil_edit(request):
 def me_perfil_change_password(request):
     
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     form = PerfilForm()
     
@@ -131,13 +131,13 @@ def me_perfil_change_password(request):
     return render(request, 'users/edit_perfil_password.html',{
         'form': form,
         'token':token,
-        'user_host':user_host
+        'authenticated_user':authenticated_user
     })
             
 def user_view(request, pk):
     
     token = get_token(request)
-    user_host = get_userhost(request)
+    authenticated_user = get_userhost(request)
     
     if request.method == 'GET':
         
@@ -164,6 +164,6 @@ def user_view(request, pk):
                 
                 return render(request, 'users/user_view.html',{
                     'token':token,
-                    'user_host': user_host,
+                    'authenticated_user': authenticated_user,
                     'data':data,
                 })        
