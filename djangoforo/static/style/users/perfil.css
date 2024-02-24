@@ -116,8 +116,11 @@
 
 }
 
-.boton-rooms-crear{
+.boton-rooms-crear-container a{
     margin: 0 auto;
+}
+
+.boton-rooms-crear{
     background-color: #9EFF9E;
     border: 2px solid #0f9b14;
     color: black;
