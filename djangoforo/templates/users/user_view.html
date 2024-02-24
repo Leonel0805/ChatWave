@@ -104,14 +104,12 @@
               
                 {% else %}
 
-                  <div>
-                    <a href="{% url 'room-create' %}">
-                      <button class="btn btn-success">
-                        {{data.message}}
-                      </button>
-                    </a>
+                <div class="boton-rooms-crear-container">
+                    <button class="card-boton boton-rooms-crear">
+                      {{data.message}}
+                    </button>
 
-                  </div>
+                </div>
                 
                 {% endif %}
               </div>

@@ -3,3 +3,14 @@
 @import '../users/perfil.css';
 
 /* PERFIL */
+.boton-rooms-crear{
+    margin: 0 auto;
+    background-color: #9EFF9E;
+    border: 2px solid #0f9b14;
+    color: black;
+
+}
+
+.card-boton:hover{
+    transform: none;
+}
