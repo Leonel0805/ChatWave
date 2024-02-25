@@ -223,13 +223,11 @@ def logout(request):
                 message = response.json()['message']
                 messages.success(request, message)
                 response_html = redirect ('login')
-                
-                # user_logout = CustomToken.objects.filter(user=authenticated_user).first()
-                # print(user_logout)
-                
                 response_html.set_cookie('Bearer', value='')
-                print(authenticated_user)
-                # user_logout.delete()
+                
+                # Eliminamos el Token
+                user_logout = CustomToken.objects.filter(user=authenticated_user).first()
+                user_logout.delete()
                 
                 return response_html
             
