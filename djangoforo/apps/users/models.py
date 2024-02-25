@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 
+from apps.rooms.models import Room
 
 # Custom User Manager
 class CustomUserManager(BaseUserManager):
@@ -58,6 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    room = models.ManyToManyField(Room)
     is_online = models.BooleanField(default=False)
     
     def __str__(self):

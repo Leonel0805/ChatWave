@@ -22,7 +22,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
-        self.user = self.scope['user']
         
         await self.accept()
     
@@ -64,8 +63,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
             username = data.get('username')
             print('Usuario conectado:', username)
             
-            await self.save_user_connect(username)
+            # await self.save_user_connect(username)
             await self.send_user_list()
+            
         
         elif data.get('type') == 'message_chat':
              
@@ -108,3 +108,21 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def save_user_connect(self, username):
         user = User.objects.filter(email=username).first()
         Profile.objects.create(user=user, is_online=True)
+        
+        
+        
+class UserOnline(AsyncWebsocketConsumer):
+    async def connect(self):
+
+        
+        await self.accept()
+    
+
+    async def disconnect(self, close_code):
+        pass
+        # Lógica de desconexión para las notificaciones
+
+    async def receive(self, text_data):
+        
+        data = json.loads(text_data)
+        print(data)

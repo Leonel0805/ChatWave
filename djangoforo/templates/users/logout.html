@@ -33,3 +33,13 @@
 
 
 {% endblock %}
+
+
+
+{% block scripts %}
+
+{{ authenticated_user.email|json_script:"json-authenticated-user" }}   
+
+<script type="module" src="{% static 'js/logout.js' %}"></script>
+
+{% endblock %}

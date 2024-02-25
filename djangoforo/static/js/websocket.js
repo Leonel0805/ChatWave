@@ -9,7 +9,6 @@ const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomI
 
 const chatContainer = document.getElementById('chat-body-room');
 
-let users = []
 
 // Connect
 chatSocket.onopen = function (e) {
@@ -19,25 +18,7 @@ chatSocket.onopen = function (e) {
         'type': 'connect_user',
         'username': UserHost,
     }));
-
-    // // Acceder a los datos recibidos
-    // const data = JSON.parse(e.data);
-
-    // // Acceder a las propiedades del objeto
-    // const type = data.type;
-    // const users = data.users;
-
-    // console.log(type)
-    // console.log(users)
-    
-
-    // users.push(UserHost)
-    // console.log(users)
-
-    // for (let user of users){
-    //     console.log(`Users online: ${user}`)
-
-    
+   
 
 }
 
@@ -46,6 +27,7 @@ chatSocket.onclose = function (e) {
     console.log('onclose');
 }
 
+// Send Message
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
 

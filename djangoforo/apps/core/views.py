@@ -4,7 +4,7 @@ from django.contrib import messages
 from .forms import LoginForm, RegisterForm
 
 from django.core.paginator import Paginator 
-from apps.users.models import CustomToken
+from apps.users.models import CustomToken, Profile
 
 import json, requests
 
@@ -185,6 +185,17 @@ def login(request):
             response_html =  redirect('home')
             response_html.set_cookie('Bearer', token)
             
+            custom_token = CustomToken.objects.filter(token=token).first()
+            authenticated_user = custom_token.user
+            
+            profile = Profile.objects.filter(user=authenticated_user).first()
+            
+            if not profile:
+                Profile.objects.create(user=authenticated_user, is_online=True)
+            
+            else:
+                profile.is_online = True
+                profile.save()
             messages.success(request, message)
             
             return response_html
@@ -226,8 +237,14 @@ def logout(request):
                 response_html.set_cookie('Bearer', value='')
                 
                 # Eliminamos el Token
-                user_logout = CustomToken.objects.filter(user=authenticated_user).first()
-                user_logout.delete()
+                if token:
+                    user_logout = CustomToken.objects.filter(user=authenticated_user).first()
+                    user_logout.delete()
+                    
+                    # Eliminamos el Profile FALSE
+                    user_online = Profile.objects.filter(user=authenticated_user).first()
+                    user_online.is_online = False
+                    user_online.save()
                 
                 return response_html
             

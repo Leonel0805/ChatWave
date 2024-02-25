@@ -72,18 +72,14 @@
    
     </div>
 
-    {% block scripts %}
 
-        <script type="application/json" id="json-roomid">
-            {{ data.room.id }}   
-        </script>
-       
-        <!-- valor       |  script    :      id -->
-        {{authenticated_user.email|json_script:"json-authenticated-user"}}   
+{% endblock %}
 
-        <script src="{% static 'js/websocket.js' %}"></script>
-    {% endblock %}
-    
+{% block scripts %}
 
+    <script type="application/json" id="json-roomid">
+        {{ data.room.id }}   
+    </script>
 
+    <script src="{% static 'js/websocket.js' %}"></script>
 {% endblock %}
