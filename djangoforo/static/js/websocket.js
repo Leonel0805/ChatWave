@@ -14,16 +14,21 @@ let users = []
 // Connect
 chatSocket.onopen = function (e) {
     console.log('Conexión establecida');
+    
+    chatSocket.send(JSON.stringify({
+        'type': 'connect_user',
+        'username': UserHost,
+    }));
 
-    // Acceder a los datos recibidos
-    const data = JSON.parse(e.data);
+    // // Acceder a los datos recibidos
+    // const data = JSON.parse(e.data);
 
-    // Acceder a las propiedades del objeto
-    const type = data.type;
-    const users = data.users;
+    // // Acceder a las propiedades del objeto
+    // const type = data.type;
+    // const users = data.users;
 
-    console.log(type)
-    console.log(users)
+    // console.log(type)
+    // console.log(users)
     
 
     // users.push(UserHost)
@@ -44,24 +49,33 @@ chatSocket.onclose = function (e) {
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
 
-    // Crear un nuevo elemento de mensaje
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('container-message', data.username == UserHost ? 'container-message-1' : 'container-message-2'); //le agregamos una class
+    if (data['type'] == 'user_list'){
+        console.log('userlist')
+        console.log(data.users)
+    }
 
-    //creamos la col para messageElement
-    const colElement = document.createElement('div');
-    colElement.classList.add(data.username == UserHost ? 'message-1' : 'message-2');
+    else {
+        
+        // Crear un nuevo elemento de mensaje
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('container-message', data.username == UserHost ? 'container-message-1' : 'container-message-2'); //le agregamos una class
 
-    //configuramos el message dentro de col
-    colElement.textContent = data.username == UserHost ? data.message : `${data.username}: ${data.message}`;
+        //creamos la col para messageElement
+        const colElement = document.createElement('div');
+        colElement.classList.add(data.username == UserHost ? 'message-1' : 'message-2');
+
+        //configuramos el message dentro de col
+        colElement.textContent = data.username == UserHost ? data.message : `${data.username}: ${data.message}`;
 
 
-    messageElement.appendChild(colElement);
-    chatContainer.appendChild(messageElement);
+        messageElement.appendChild(colElement);
+        chatContainer.appendChild(messageElement);
 
 
-    //desplazamiento de scroll
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+        //desplazamiento de scroll
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
 };
 
 
