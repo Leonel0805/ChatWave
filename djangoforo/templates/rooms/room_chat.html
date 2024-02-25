@@ -26,7 +26,7 @@
 
                 <!-- carga de mensajes -->
                 {% for message in data.ms %}
-                    {% if message.user.email == authenticated_user.user.email %}
+                    {% if message.user.email == authenticated_user.email %}
                         <div class="container-message  container-message-1">
                             <div class="message-1">
                                 {{message.content}}
@@ -79,7 +79,7 @@
         </script>
        
         <!-- valor       |  script    :      id -->
-        {{authenticated_user.user.email|json_script:"json-authenticated-user"}}   
+        {{authenticated_user.email|json_script:"json-authenticated-user"}}   
 
         <script src="{% static 'js/websocket.js' %}"></script>
     {% endblock %}

@@ -7,9 +7,36 @@ const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomI
 // ngrok
 // const chatSocket = new WebSocket('wss://' + window.location.host + '/ws/' + RoomId + '/');
 
-
 const chatContainer = document.getElementById('chat-body-room');
 
+let users = []
+
+// Connect
+chatSocket.onopen = function (e) {
+    console.log('Conexión establecida');
+
+    // Acceder a los datos recibidos
+    const data = JSON.parse(e.data);
+
+    // Acceder a las propiedades del objeto
+    const type = data.type;
+    const users = data.users;
+
+    console.log(type)
+    console.log(users)
+    
+
+    // users.push(UserHost)
+    // console.log(users)
+
+    // for (let user of users){
+    //     console.log(`Users online: ${user}`)
+
+    
+
+}
+
+// Disconnect
 chatSocket.onclose = function (e) {
     console.log('onclose');
 }
@@ -50,7 +77,6 @@ document.querySelector('#chat-message-input').onkeyup = function (e) {
 document.querySelector('#chat-message-button').onclick = function (e) {
     e.preventDefault()
 
-    console.log('boton apretado');
     const messageInputDom = document.querySelector('#chat-message-input');
     const message = messageInputDom.value;
 

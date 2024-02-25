@@ -10,32 +10,31 @@ import json, requests
 
 
 # Funciones token, authenticated_user
+
 # Obtenemos el Bearer token, despues de setearlo en el /login
 def get_token(request):
     token = request.COOKIES.get('Bearer')
     return token
 
+#Seteamos header con token
 def set_headers(token):
     if token is not None and token != '':
         return {'Authorization': f'Bearer {token}'}
     return None
 
-    
-# Obtenemos data del User, después de setearlo en el /login
-# def get_userhost(request):
-#     user_host_jsonstr = request.COOKIES.get('User')
-    
-#     if user_host_jsonstr is not None:
-#         #convertimos el userstr en objeto dict 
-#         user = json.loads(user_host_jsonstr)
-#         return user
-    
+#Obtenemos User autenticado
 def get_userhost(request):
     bearer_token = request.COOKIES.get('Bearer')
 
-    user = CustomToken.objects.filter(token=bearer_token).first()
-    return user
-# HOME
+    token = CustomToken.objects.filter(token=bearer_token).first()
+    
+    if token:
+        user = token.user
+        return user
+    
+    return None
+
+# Home
 def home(request):
     
     if request.method == 'GET':
@@ -96,7 +95,7 @@ def home(request):
                 
     return render(request, 'core/home.html')
 
-
+# Search
 def search(request):
     
     token = get_token(request)
@@ -127,9 +126,7 @@ def search(request):
                 })
         
         
-        
-        
-
+    
 def index(request):
     return render(request, 'base.html')
 
@@ -205,7 +202,7 @@ def login(request):
         'form':form,
     })
     
-
+# Logout
 def logout(request):
     
     token = get_token(request)
@@ -226,7 +223,14 @@ def logout(request):
                 message = response.json()['message']
                 messages.success(request, message)
                 response_html = redirect ('login')
+                
+                # user_logout = CustomToken.objects.filter(user=authenticated_user).first()
+                # print(user_logout)
+                
                 response_html.set_cookie('Bearer', value='')
+                print(authenticated_user)
+                # user_logout.delete()
+                
                 return response_html
             
     

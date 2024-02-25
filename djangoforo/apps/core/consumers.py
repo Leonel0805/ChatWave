@@ -30,6 +30,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
         
+        await self.send_user_list()
+        
         await self.accept()
         
         
@@ -40,6 +42,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
+        
+        
+    # Obtener la lista de usuarios conectados
+    def get_connected_users(self):
+        return [user.username for user in User.objects.filter(profile__is_online=True)] 
+    
+    # Enviar la lista de usuarios conectados
+    async def send_user_list(self):
+    # Obtener la lista de usuarios conectados
+        connected_users = await sync_to_async(self.get_connected_users)()
+        
+        # Enviar la lista de usuarios conectados al cliente
+        await self.send(text_data=json.dumps({
+            'type': 'user_list',
+            'users': connected_users
+        }))
+        
+
         
     async def receive(self, text_data):
         data = json.loads(text_data)
