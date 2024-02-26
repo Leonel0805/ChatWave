@@ -1,14 +1,12 @@
 @import '../users/perfil.css';
 
 .container-edit-perfil-datos{
-    margin-top: 16px;
     width: 800px;
     max-height: 1200px;
     height: auto;
     margin: 0 auto;
     margin-bottom: 16px;
     margin-top: 24px;
-    padding: 16px;
 
 
 }

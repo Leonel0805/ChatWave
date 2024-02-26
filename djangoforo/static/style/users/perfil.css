@@ -16,7 +16,6 @@
 }
 
 .container-edit-perfil-datos{
-    padding: 16px;
     text-align: left;
     border-radius: 10px;
     margin-right: 50px;
@@ -29,11 +28,12 @@
 }
 
 .container-perfil-datos-titulo{
-    margin-bottom: 24px;
+    padding: 8px 24px;
 
 }
 
 .container-content-info{
+    margin: 0px 24px;
     padding: 16px;
     height: auto;
     background-color: #f1f1f1;
@@ -105,6 +105,7 @@
 .boton-perfil-editar{
     background-color: #1a53ff;
     border: 2px solid #174AFF;
+    margin-bottom: 24px;
 
 }
 .boton-rooms-editar{
