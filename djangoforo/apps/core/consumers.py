@@ -39,7 +39,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         else:
             print("No token")
         
-    
         
      #nos desconectamos
     async def disconnect(self, code):
@@ -167,10 +166,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
 class UserOnline(AsyncWebsocketConsumer):
     async def connect(self):
 
-        
         await self.accept()
     
-
+    
     async def disconnect(self, close_code):
         pass
         # Lógica de desconexión para las notificaciones

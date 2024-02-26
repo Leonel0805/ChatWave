@@ -12,5 +12,5 @@ class RoomForm(forms.ModelForm):
             'image': 'Portada de la sala:',
         }
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 2, 'cols':60}),
+            'description': forms.Textarea(attrs={'rows': 2, 'style': 'width: 100%; resize: none;'}),
         }

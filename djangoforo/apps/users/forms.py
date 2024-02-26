@@ -14,5 +14,5 @@ class PerfilForm(forms.ModelForm):
             
         }
         widgets = {
-            'bio': forms.Textarea(attrs={'rows': 2, 'cols': 60}),
+            'bio': forms.Textarea(attrs={'rows': 2, 'style': 'width: 100%; resize: none;'}),
         }
