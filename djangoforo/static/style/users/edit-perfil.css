@@ -1,15 +1,10 @@
 @import '../users/perfil.css';
 
-.container-edit-perfil-datos{
-    width: 800px;
-    max-height: 1200px;
-    height: auto;
+.perfil-edit{
     margin: 0 auto;
-    margin-bottom: 16px;
     margin-top: 24px;
-
-
 }
+
 
 .container-perfil-form-boton{
 

@@ -15,19 +15,23 @@
     margin-bottom: 32px;
 }
 
-.container-edit-perfil-datos{
+.container-datos{
     text-align: left;
     border-radius: 10px;
     margin-right: 50px;
-    background-color: #BAA3FF;
-    border: 2px solid #CB5BFF;
     height: auto;
     max-width: 500px;
     box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
+}
+
+.perfil-edit{
+
+    background-color: #BAA3FF;
+    border: 2px solid #CB5BFF;
 
 }
 
-.container-perfil-datos-titulo{
+.container-datos-titulo{
     padding: 8px 24px;
 
 }

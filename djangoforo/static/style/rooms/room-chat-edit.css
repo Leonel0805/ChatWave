@@ -4,7 +4,9 @@
     font-weight: bold;
 }
 
-.container-edit-perfil-datos{
+.room-edit{
+    margin: 0 auto;
+    margin-top: 24px;
     background-color: #7E9AFF;
     border-color: #174AFF;
 }
