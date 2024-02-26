@@ -1,32 +1,45 @@
 import json 
-from django.core.serializers import serialize
-
+from urllib.parse import parse_qs
 from channels.generic.websocket import AsyncWebsocketConsumer
-from asgiref.sync import sync_to_async
 from channels.db import database_sync_to_async
-from apps.users.models import User, Profile
+from apps.users.models import User, Profile, CustomToken
 from apps.rooms.models import Message, Room
-from django.contrib import messages
+
 
 # from apps.core.views import get_userhost
 
+async def get_token_url(chatconsumer):        
+    query_string = chatconsumer.scope.get('query_string', b'').decode('utf-8')
+    query_params = parse_qs(query_string)
+
+    # Obtener el token de autorización de los parámetros de consulta
+    token = query_params.get('Authorization', [''])[0]
+
+    return token
 
 class ChatConsumer(AsyncWebsocketConsumer):
-    
+
     #nos conectamos
     async def connect(self):
         
-        self.room_name = self.scope['url_route']['kwargs']['pk']
-        self.room_group_name = f'chat_{self.room_name}'
+        self.room_id = self.scope['url_route']['kwargs']['pk']
+        self.room_group_name = f'chat_{self.room_id}'
     
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
         )
-        
         await self.accept()
-    
+
+        token = await get_token_url(self)
+        # Procesar el token si es necesario
+        if token:
+            print("Token:", token)
+            # Realiza acciones con el token, como validación, almacenamiento, etc.
+        else:
+            print("No token")
         
+    
         
      #nos desconectamos
     async def disconnect(self, code):
@@ -34,7 +47,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
+        
+        print('desconexion de websocket desde servidor')
+        token = await get_token_url(self)
+        if token:
+            room_id = self.room_id
+            await self.remove_user_online(token, room_id)
+            print('user removido')
             
+        else:
+            print('No token')
+        
         # Obtener la lista de usuarios conectados
         
     async def user_tojson(self, connected_users):
@@ -54,7 +77,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         
         # Serializar toda la lista de usuarios conectados
         users_serializer = await self.user_tojson(connected_users)
-         
+        
+ 
         # Enviar la lista de usuarios conectados al cliente
         await self.send(text_data=json.dumps({
             'type': 'user_list',
@@ -70,7 +94,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             # Manejar la conexión del usuario
             username = data.get('username')
             room_id = data.get('room')
-            print('Usuario conectado:', username)
             
             await self.save_user_connect_room(username, room_id)
             await self.send_user_list(room_id)
@@ -79,7 +102,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         elif data.get('type') == 'message_chat':
              
             message = data['message']
-            
             username = data['username']
             room = data['room'] 
         
@@ -130,6 +152,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if room:
             users = room.users_online.all()
             return list(users)
+        
+    @database_sync_to_async
+    def remove_user_online(self, token, room_id):
+        customtoken = CustomToken.objects.filter(token=token).first()
+        user = customtoken.user
+        room = Room.objects.filter(pk=room_id).first()
+        room.users_online.remove(user)
 
 
         

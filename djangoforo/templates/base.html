@@ -55,10 +55,13 @@
     </footer>
     
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- token -->
+    {{token|json_script:"json-authenticated-user-token"}}   
        <!-- valor              |  script   :        id     -->
     {{authenticated_user.email|json_script:"json-authenticated-user"}}   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="{% static 'js/main.js' %}"></script>
     
     {% block scripts %}
     {% endblock %}  

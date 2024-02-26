@@ -3,10 +3,10 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2b34-2800-810-507-a12f-bd4a-1711-7f4d-cf11.ngrok-free.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '6d30-2800-810-507-a12f-19e-5994-8b3a-e823.ngrok-free.app']
 
 #config ngrok csrf
-# CSRF_TRUSTED_ORIGINS = ['https://2b34-2800-810-507-a12f-bd4a-1711-7f4d-cf11.ngrok-free.app']
+# CSRF_TRUSTED_ORIGINS = ['https://6d30-2800-810-507-a12f-19e-5994-8b3a-e823.ngrok-free.app']
 
 
 #database local

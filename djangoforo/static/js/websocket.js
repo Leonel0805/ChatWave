@@ -1,9 +1,18 @@
-// websocket 
+import { Token } from "./main.js";
 
+const mytoken = Token
+
+// websocket 
 const RoomId = JSON.parse(document.getElementById('json-roomid').textContent);
 const UserHost = JSON.parse(document.getElementById('json-authenticated-user').textContent);
-const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomId + '/');
+// const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomId + '/');
 
+
+console.log(mytoken)
+
+const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + RoomId + '/?Authorization=' + encodeURIComponent(mytoken));
+
+console.log(chatSocket)
 // ngrok
 // const chatSocket = new WebSocket('wss://' + window.location.host + '/ws/' + RoomId + '/');
 
