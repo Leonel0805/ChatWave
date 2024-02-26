@@ -6,8 +6,8 @@
 /* TITULOS */
 .title-container{
     color: black;
-    margin-bottom: 10px;
     padding: 5px 0px;
+    margin-bottom: 16px;
     border-radius: 10px;
     text-align: left;
     box-shadow: 10px 0px 10px 2px rgba(14, 12, 12, 0.3);
@@ -16,19 +16,19 @@
 
 .meet-people-title{
     background-color: #BAA3FF;
-    border: 1px solid #CB5BFF;
 
 }
 
 
 .room-title, .like-rooms-title{
     background-color: #7E9AFF;
-    border: 1px solid #174AFF;
     
 }
 
 .title{
     margin-left: 24px;
+    font-weight: 600;
+    
 }
 
 
@@ -43,14 +43,11 @@
 }
 
 .meet-people-body-container{
-
     color: black;
     /* background-color: green; */
     max-width: 100%;
     background-color: #BAA3FF;
-    padding: 5px;
     border-radius: 5px;
-    border: 1px solid #CB5BFF;
     box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
 
 
@@ -58,7 +55,7 @@
 
 .meet-people-card{
     display: flex;
-    padding: 8px 16px;
+    padding: 8px 24px;
 }
 
 .meet-card-url{
@@ -85,7 +82,7 @@
 .meet-card-username{
     text-align: center;
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 8px;
     
 }
 
@@ -97,8 +94,8 @@
 
 
 .meet-card-boton-seguir{
-    background-color: #1a53ff;
-    border: 2px solid #174AFF;
+    background-color: #081C63;
+    border: 2px solid #081C63;
     transition: transform 0.5s ease;
     margin-top: 22%;
 }
@@ -112,11 +109,8 @@
 /* SALAS/CHATS */
 
 .room-chat-container, .like-room{
-    background-color: #7E9AFF;
-    border-radius: 5px;
-    padding: 5px;
-    box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
-
+    /* border-radius: 5px; */
+    /* box-shadow: 0px 10px 10px rgba(14, 12, 12, 0.3); */
 }
 
 .container-rooms{
@@ -124,8 +118,16 @@
     padding-right: 24px;
 }
 .room-chat-card-container{
+    border-radius: 5px;
+
+    background-color: #7E9AFF;
+    padding: 0px 24px;
     display: flex;
-    border: 1px solid #174AFF;
+    /* border: 1px solid #174AFF; */
+    margin-bottom: 8px;
+    box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
+    padding-top: 8px;
+    padding-bottom: 8px;
 
 }
 
@@ -136,8 +138,6 @@
     max-height: 100%;
     margin-top: 8px;
     margin-bottom: 8px;
-    margin-left: 16px;
-    padding-top: 3.7px;
 
 }
 
@@ -152,9 +152,8 @@
     text-align: left;
     margin-left: 8px;
     max-width: 100%;
-    margin-top: 8px;
+    margin-top: 5px;
     margin-bottom: 8px;
-    padding: 8px 0px;
 
 }
 
@@ -164,25 +163,25 @@
     font-style: italic;
     display: inline-block;
     margin: 0;
+
 }
 
 
 .room-container-link, .room-like-link{
     text-decoration: none;
     display: inline-block;
-    margin: 0px 5px;
+    margin-right: 8px;
 }
 
 
 .room-card-boton-entrar{
 
-    background-color: #1a53ff;
+    background-color: #081C63;
     color: white;
     padding: 4px 50px;
-    border: 2px solid  #174AFF;
+    border: 2px solid  #081C63;
     border-radius: 10px;
     transition: transform 0.5s ease;
-    margin-left: 0px;
 
 }
 
@@ -191,16 +190,16 @@
 .room-card-boton-entrar:hover{
     border-bottom-right-radius: 0;
     /* font-size: 20px; */
-    transform: scale(1.12);
+    transform: scale(1.10);
 
 }
 
 .room-card-boton-like{
     background-color: white;
     padding: 4px;
-    border: 2px solid #174AFF;
+    border: 2px solid #081C63;
     border-radius: 10px;
-    color: #174AFF;
+    color: #081C63;
     font-weight: bold;
 
     transition: 0.5s;
