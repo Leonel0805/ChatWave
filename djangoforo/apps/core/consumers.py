@@ -1,4 +1,5 @@
 import json 
+from django.core.serializers import serialize
 
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
@@ -33,26 +34,33 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
+            
+        # Obtener la lista de usuarios conectados
         
-    
-    
-    def get_connected_users(self):
-        users = []
-        for user in User.objects.filter(profile__is_online=True):
-            users.append(user.username)
-        return users 
-    
-    # Enviar la lista de usuarios conectados
-    async def send_user_list(self):
-    # Obtener la lista de usuarios conectados
-        connected_users = await sync_to_async(self.get_connected_users)()
+    async def user_tojson(self, connected_users):
         
+        users_serializer = []
+        for user in connected_users:
+            
+            users_serializer.append({
+                'username': user.username,  
+            })
+            
+        return users_serializer
+    
+    async def send_user_list(self, room_id):
+        # Obtener la lista de usuarios conectados
+        connected_users = await self.get_room_users_online(room_id)
+        
+        # Serializar toda la lista de usuarios conectados
+        users_serializer = await self.user_tojson(connected_users)
+         
         # Enviar la lista de usuarios conectados al cliente
         await self.send(text_data=json.dumps({
             'type': 'user_list',
-            'users': connected_users
+            'users': users_serializer
         }))
-        
+
 
         
     async def receive(self, text_data):
@@ -61,10 +69,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if data.get('type') == 'connect_user':
             # Manejar la conexión del usuario
             username = data.get('username')
+            room_id = data.get('room')
             print('Usuario conectado:', username)
             
-            # await self.save_user_connect(username)
-            await self.send_user_list()
+            await self.save_user_connect_room(username, room_id)
+            await self.send_user_list(room_id)
             
         
         elif data.get('type') == 'message_chat':
@@ -105,11 +114,26 @@ class ChatConsumer(AsyncWebsocketConsumer):
     
        # Obtener la lista de usuarios conectados
     @database_sync_to_async
-    def save_user_connect(self, username):
+    def save_user_connect_room(self, username, room_id):
         user = User.objects.filter(email=username).first()
-        Profile.objects.create(user=user, is_online=True)
+        room = Room.objects.filter(pk=room_id).first()
         
+        # Agregamos al Room nuestro user en users_online
+        print('llegamos a user_conenect')
+        room.users_online.add(user)
         
+    @database_sync_to_async
+    def get_room_users_online(self, room_id):
+        # Supongamos que Room y User son modelos de SQLAlchemy
+        # Debes ajustar esto según cómo esté estructurada tu base de datos y modelo de datos
+        room = Room.objects.filter(pk=room_id).first()
+        if room:
+            users = room.users_online.all()
+            return list(users)
+
+
+        
+               
         
 class UserOnline(AsyncWebsocketConsumer):
     async def connect(self):

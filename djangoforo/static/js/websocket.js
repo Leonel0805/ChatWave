@@ -17,6 +17,7 @@ chatSocket.onopen = function (e) {
     chatSocket.send(JSON.stringify({
         'type': 'connect_user',
         'username': UserHost,
+        'room':RoomId
     }));
    
 
