@@ -17,6 +17,20 @@ async def get_token_url(chatconsumer):
 
     return token
 
+        
+async def user_tojson(connected_users):
+        
+    users_serializer = []
+
+    for user in connected_users:
+        
+        users_serializer.append({
+            'username': user.username,  
+        })
+        
+    return users_serializer
+    
+
 class ChatConsumer(AsyncWebsocketConsumer):
 
     #nos conectamos
@@ -57,25 +71,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
         else:
             print('No token')
         
-        # Obtener la lista de usuarios conectados
-        
-    async def user_tojson(self, connected_users):
-        
-        users_serializer = []
-        for user in connected_users:
-            
-            users_serializer.append({
-                'username': user.username,  
-            })
-            
-        return users_serializer
-    
+
     async def send_user_list(self, room_id):
         # Obtener la lista de usuarios conectados
         connected_users = await self.get_room_users_online(room_id)
         
         # Serializar toda la lista de usuarios conectados
-        users_serializer = await self.user_tojson(connected_users)
+        users_serializer = await user_tojson(connected_users)
         
  
         # Enviar la lista de usuarios conectados al cliente
@@ -133,7 +135,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
         print(message)
         Message.objects.create(user=user, room=room, content=message)
     
-       # Obtener la lista de usuarios conectados
+    @database_sync_to_async
+    def get_room_users_online(self, room_id):
+        # Supongamos que Room y User son modelos de SQLAlchemy
+        # Debes ajustar esto según cómo esté estructurada tu base de datos y modelo de datos
+        room = Room.objects.filter(pk=room_id).first()
+        if room:
+            users = room.users_online.all()
+            return list(users)    
+
+       # Guardamos el user dentro de users_online de la room
     @database_sync_to_async
     def save_user_connect_room(self, username, room_id):
         user = User.objects.filter(email=username).first()
@@ -143,14 +154,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         print('llegamos a user_conenect')
         room.users_online.add(user)
         
-    @database_sync_to_async
-    def get_room_users_online(self, room_id):
-        # Supongamos que Room y User son modelos de SQLAlchemy
-        # Debes ajustar esto según cómo esté estructurada tu base de datos y modelo de datos
-        room = Room.objects.filter(pk=room_id).first()
-        if room:
-            users = room.users_online.all()
-            return list(users)
         
     @database_sync_to_async
     def remove_user_online(self, token, room_id):
@@ -160,6 +163,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         room.users_online.remove(user)
 
 
+
         
                
         
@@ -167,13 +171,37 @@ class UserOnline(AsyncWebsocketConsumer):
     async def connect(self):
 
         await self.accept()
-    
-    
+        users_online = await self.get_users_online()
+        
+        users_serializer = await user_tojson(users_online)
+        
+        # Enviar la lista de usuarios conectados al cliente
+        await self.send(text_data=json.dumps({
+            'type': 'user_list',
+            'users': users_serializer
+        }))
+
+
+        
+
     async def disconnect(self, close_code):
-        pass
+        
+        print('desconexion')
         # Lógica de desconexión para las notificaciones
 
     async def receive(self, text_data):
         
         data = json.loads(text_data)
         print(data)
+        
+        
+    @database_sync_to_async
+    def get_users_online(self):
+        profiles = Profile.objects.filter(is_online=True)
+        
+        users = []
+        for profile in profiles:
+            users.append(profile.user)
+        
+        print(list(users))
+        return list(users)
