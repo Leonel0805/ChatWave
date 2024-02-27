@@ -85,11 +85,15 @@
     
 }
 
-
-.bi-circle-fill{
-    color: #00FF00;
+.custom-bi{
+    font-size: 12px;
 
 }
+.bi-circle-fill{
+    color: #00FF00;
+}
+
+
 
 .meet-card-boton-container{
     display: inline-block;

@@ -46,6 +46,8 @@ chatSocket.onmessage = function(e){
             } else {
                 newIcon.className = 'bi bi-circle';
             }
+
+            newIcon.classList.add('custom-bi')
             UrlElment.appendChild(newIcon);
         }   
     }
