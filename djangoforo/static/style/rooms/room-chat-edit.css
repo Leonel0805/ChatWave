@@ -9,6 +9,7 @@
     margin-top: 24px;
     background-color: #7E9AFF;
     border-color: #174AFF;
+    height: auto;
 }
 
 .container-content-info{
@@ -17,7 +18,7 @@
 
 .content-info{
     background-color: #7E9AFF;
-    border: 1px solid  #174AFF;
+    /* border: 1px solid  #174AFF; */
 }
 
 #id_description{
@@ -30,3 +31,4 @@
     border: 2px solid #174AFF;
 
 }
+

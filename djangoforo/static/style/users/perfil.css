@@ -27,7 +27,7 @@
 .perfil-edit{
 
     background-color: #BAA3FF;
-    border: 2px solid #CB5BFF;
+    /* border: 2px solid #CB5BFF; */
 
 }
 
@@ -38,7 +38,7 @@
 
 .container-content-info{
     margin: 0px 24px;
-    padding: 16px;
+    padding: 24px;
     height: auto;
     background-color: #f1f1f1;
     border-radius: 20px;
@@ -48,8 +48,8 @@
     display: flex;
     flex-direction: column;
     background-color: #BAA3FF;
-    border: 1px solid  #CB5BFF;
-    margin: 16px;
+    /* border: 1px solid  #CB5BFF; */
+    margin: 8px 0px;
     text-align: left;
     border-radius: 5px;
     padding: 8px 16px;
@@ -101,15 +101,14 @@
 }
 
 .container-edit-boton{
-    margin-top: 50px;
     text-align: center;
+    padding: 16px 0px;
 }
 
 
 .boton-perfil-editar{
-    background-color: #1a53ff;
-    border: 2px solid #174AFF;
-    margin-bottom: 24px;
+    background-color: #081C63;
+    border: 2px solid #081C63;
 
 }
 .boton-rooms-editar{

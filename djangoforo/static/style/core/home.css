@@ -147,10 +147,8 @@
 .room-card-content{
     color: black;
     text-align: left;
-    margin-left: 8px;
     max-width: 100%;
-    margin-top: 5px;
-    margin-bottom: 8px;
+    margin: 8px 8px;
 
 }
 
@@ -179,6 +177,7 @@
     border: 2px solid  #081C63;
     border-radius: 10px;
     transition: transform 0.5s ease;
+    margin-bottom: 0px;
 
 }
 
