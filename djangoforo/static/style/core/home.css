@@ -80,7 +80,15 @@
     text-align: center;
     display: inline-block;
     margin-left: 8px;
+    margin-right: 4px;
+
     
+}
+
+
+.bi-circle-fill{
+    color: #00FF00;
+
 }
 
 .meet-card-boton-container{
