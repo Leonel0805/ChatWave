@@ -163,54 +163,46 @@ class ChatConsumer(AsyncWebsocketConsumer):
         room.users_online.remove(user)
 
   
+connected_users = set()
 class UserOnline(AsyncWebsocketConsumer):
     async def connect(self):
 
         await self.accept()
-    
+        await self.channel_layer.group_add("chat_group", self.channel_name)
+        # Agregar usuario a la lista de usuarios conectados
+        cookies = self.scope['cookies']
+        token = cookies.get('Bearer')
+        
+        if token:
+            print(self.channel_name)  
+            await self.connect_user(token)
+            await self.send_users_online_to_group()
+
+        # Enviar lista de usuarios conectados a todos en el grupo
+
 
     async def disconnect(self, close_code):
         
-        print('desconexion')
+        print('usuario desconectado enviando lista')
+        connected_users.remove(self.channel_name)
+
+        await self.channel_layer.group_discard("chat_group", self.channel_name)
         
         cookies = self.scope['cookies']
         token = cookies.get('Bearer')
-        print('cookie desconectado', token)
         
         if token:
+            print(self.channel_name)  
             await self.disconnect_user(token)
-            print('usuario desconectado enviando lista')
-            users_online = await self.get_users_online()
-            users_serializer = await user_tojson(users_online)
-            await self.send(text_data=json.dumps({
-                'type': 'user_list_disconnect',
-                'users': users_serializer
-            }))
-            
-            print('mensaje disconnect enviado')
+            await self.send_users_online_to_group()
 
             
-        else:
-            print("No token")
-        
-
-        
 
     async def receive(self, text_data):
-    
-    
-        cookies = self.scope['cookies']
-        token = cookies.get('Bearer')
-        print('cookie', token)
-        
-        if token:
-            await self.connect_user(token)
-            print('usuario conectado enviando lista')
-            await self.send_users_online()
-            
-         
-            
-        
+       
+        # pass
+        await self.send_users_online_to_group()
+ 
         
     @database_sync_to_async
     def get_users_online(self):
@@ -246,11 +238,27 @@ class UserOnline(AsyncWebsocketConsumer):
         user_online.is_online = False
         user_online.save()
         
-    async def send_users_online(self):
-        # Envía la lista de usuarios conectados a todos los clientes
-        users_online = await self.get_users_online()
-        users_serializer = await user_tojson(users_online)
+    async def send_users_online_to_group(self):
+        #
+        connected_users = await self.get_users_online()
+        connected_users_serializer = await user_tojson(connected_users)
+        
+        users_online = {
+            'connected_users': connected_users_serializer
+        }
+        await self.channel_layer.group_send(
+            "chat_group",
+            {
+                'type': 'user_list_connect',
+                'message': users_online
+            },
+        )
+        print('mensaje enviado')
+
+    async def user_list_connect(self, event):
         await self.send(text_data=json.dumps({
-            'type': 'user_list_connect',
-            'users': users_serializer
+            'type': event['type'],
+            'message': event['message']
         }))
+        
+        

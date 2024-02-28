@@ -4,20 +4,20 @@ const UserHost = JSON.parse(document.getElementById('json-authenticated-user').t
 
 chatSocket.onopen = function(e){
     console.log('conexion establecida websocket')
-    chatSocket.send(JSON.stringify({
-        'type': 'connect_user',
-    }));
-   
+
 }
 
 chatSocket.onmessage = function(e){
     const data = JSON.parse(e.data);
+    console.log('onmessage', data);
+    console.log('type', data['type']);
 
     if (data['type'] == 'user_list_connect'){
         console.log('userlist_connect')
-        console.log(data.users)
+        console.log(data.message)
 
-        let users = data.users
+        let users = data.message.connected_users
+        console.log(users)
 
         const userCardUrlElements = document.getElementsByClassName('meet-card-url');
         const usernameElements = document.getElementsByClassName('meet-card-username');
@@ -25,9 +25,8 @@ chatSocket.onmessage = function(e){
         console.log(usernameElements)
         
         for (let i = 0; i < usernameElements.length; i++) {
-            const username = usernameElements[i].textContent.trim(); //trim elimina espacio sen blanco principo y final
             const UrlElment = userCardUrlElements[i];
-
+            const username = usernameElements[i].textContent.trim(); //trim elimina espacio sen blanco principo y final
 
             let userOnline = false;
 
@@ -40,20 +39,25 @@ chatSocket.onmessage = function(e){
                 }
                 
             }   
-            let newIcon = document.createElement('i');
-            if (userOnline) {
-                newIcon.className = 'bi bi-circle-fill';
-            } else {
-                newIcon.className = 'bi bi-circle';
-            }
 
-            newIcon.classList.add('custom-bi')
-            UrlElment.appendChild(newIcon);
+            let IconExist = UrlElment.querySelector('i')
+
+            if (IconExist){
+                if (userOnline) {
+                    IconExist.className = 'bi bi-circle-fill';
+                } else {
+                    IconExist.className = 'bi bi-circle';
+                }
+    
+            }else{
+                let newIcon = document.createElement('i');
+                newIcon.className = userOnline ? 'bi bi-circle-fill' : 'bi bi-circle';
+                UrlElment.appendChild(newIcon);
+            }
+    
+
         }   
     }
-    else if (data['type']=='user_list_disconnect'){
-        console.log('user_llist_disconnect')
-        
-    }
+
 
 }
