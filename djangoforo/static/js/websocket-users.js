@@ -59,5 +59,4 @@ chatSocket.onmessage = function(e){
         }   
     }
 
-
 }

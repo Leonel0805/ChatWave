@@ -1,12 +1,12 @@
+@import '../core/home.css';
 
 .room-chat-contenedor{
     background: linear-gradient(to bottom right,     #7E9AFF,     #BAA3FF);
-
-
     max-width: 1000px;
+    width: 60%;
     max-height: 700px;
-    margin: 0 auto;
     padding: 15px 30px;
+    margin: 0 auto;
     margin-bottom: 50px;
     margin-top: 24px;
     border-radius: 20px;
@@ -33,6 +33,7 @@
 .room-title{
     padding-top: 7px;
     margin-left: 16px;
+    background-color: transparent;
 }
 
 .user-url-host{
@@ -79,12 +80,13 @@
 
 .container-message-1{
     text-align: right;
-    margin-left: 30%;
+    margin-left: 33%;
+
 }
 
 .container-message-2{
     text-align: left;
-    margin-right: 30%;
+    margin-right: 33%;
 
 }
 
@@ -156,4 +158,34 @@
     font-size: 22px;
     border: none;
     background-color: transparent;
+}
+
+/* users online */
+
+.room-chat-users-container{
+    display: inline-block;
+    background-color: #BAA3FF;
+    width: 16%;
+    position: absolute;
+    top: 35%;
+    right: 30px;
+    padding: 16px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 10px 0px 10px 2px rgba(14, 12, 12, 0.3);
+
+}
+
+.title{
+    font-size: 22px;
+}
+
+.room-chat-users-list{
+    list-style: none;
+    padding-left: 16px;
+    text-align: left;
+}
+
+.room-chat-users-body-container{
+
 }

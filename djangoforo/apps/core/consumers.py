@@ -59,7 +59,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
      #nos desconectamos
     async def disconnect(self, code):
 
-        print('desconexion de websocket desde servidor')
+        print('desconexion de websocket room desde servidor')
         token = await get_token_url(self)
         if token:
             authenticated_user = await get_user_authenticated(token)
@@ -103,6 +103,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         username = event['username']
     
         await self.send(text_data=json.dumps({
+            'type':event['type'],
             'message':message,
             'username':username
         })
@@ -189,7 +190,7 @@ class UserOnline(AsyncWebsocketConsumer):
         if token:
             print(self.channel_name)  
             await self.disconnect_user(token)
-            print('usuario desconectado enviando lista') 
+            print('usuario desconectado enviando listaaaa home') 
             await self.send_users_online_to_group()
 
         await self.channel_layer.group_discard("chat_group", self.channel_name)

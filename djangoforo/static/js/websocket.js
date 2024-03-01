@@ -33,15 +33,28 @@ chatSocket.onclose = function (e) {
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
 
-    console.log(data)
     if (data['type'] == 'user_list_room_connect'){
-        console.log('userlist')
+        console.log('userlist_room++++++++++++++++++++++++++++')
         let users = data.message.connected_users
 
-        console.log(users)
+        // reseteamos nuestro ul
+        const UserElement = document.getElementById('user-list');
+        UserElement.textContent = '';
+
+        for (let i = 0; i < users.length; i++) {
+            let username = users[i].username;
+       
+            let newUser = document.createElement('li');
+            newUser.className = 'room-chat-user';
+            newUser.textContent = username;
+            UserElement.appendChild(newUser);
+            }
+        
     }
 
-    else {
+    else if(data['type'] == 'message_chat') {
+
+        console.log('mensaje recibido desde el servidor')
         
         // Crear un nuevo elemento de mensaje
         const messageElement = document.createElement('div');
@@ -95,6 +108,5 @@ document.querySelector('#chat-message-button').onclick = function (e) {
     messageInputDom.value = '';
     return false
 }
-
 
 
