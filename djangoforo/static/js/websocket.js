@@ -22,13 +22,6 @@ const chatContainer = document.getElementById('chat-body-room');
 chatSocket.onopen = function (e) {
     console.log('Conexión establecida');
     
-    chatSocket.send(JSON.stringify({
-        'type': 'connect_user',
-        'username': UserHost,
-        'room':RoomId
-    }));
-   
-
 }
 
 // Disconnect
@@ -40,9 +33,12 @@ chatSocket.onclose = function (e) {
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
 
-    if (data['type'] == 'user_list'){
+    console.log(data)
+    if (data['type'] == 'user_list_room_connect'){
         console.log('userlist')
-        console.log(data.users)
+        let users = data.message.connected_users
+
+        console.log(users)
     }
 
     else {
