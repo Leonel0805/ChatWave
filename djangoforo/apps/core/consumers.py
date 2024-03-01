@@ -163,7 +163,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         room.users_online.remove(user)
 
   
-connected_users = set()
+# connected_users = set()
 class UserOnline(AsyncWebsocketConsumer):
     async def connect(self):
 
@@ -184,10 +184,6 @@ class UserOnline(AsyncWebsocketConsumer):
     async def disconnect(self, close_code):
         
         print('usuario desconectado enviando lista')
-        connected_users.remove(self.channel_name)
-
-        await self.channel_layer.group_discard("chat_group", self.channel_name)
-        
         cookies = self.scope['cookies']
         token = cookies.get('Bearer')
         
@@ -195,6 +191,12 @@ class UserOnline(AsyncWebsocketConsumer):
             print(self.channel_name)  
             await self.disconnect_user(token)
             await self.send_users_online_to_group()
+
+        await self.channel_layer.group_discard("chat_group", self.channel_name)
+        # connected_users.remove(self.channel_name)
+        
+        
+
 
             
 
