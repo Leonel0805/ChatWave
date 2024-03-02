@@ -10,3 +10,8 @@
 .card-boton:hover{
     transform: none;
 }
+
+.container-datos{
+    padding-bottom: 24px;
+
+}

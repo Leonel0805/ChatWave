@@ -11,8 +11,8 @@ class RegisterForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
         
         labels = {
-            'username':'Username:',
-            'email':'Email:',
-            'password':'Contraseña:'
+            'username':'Username',
+            'email':'Email',
+            'password':'Contraseña'
                 
         }
