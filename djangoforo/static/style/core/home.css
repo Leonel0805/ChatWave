@@ -99,6 +99,10 @@ main{
     color: #00FF00;
 }
 
+/* .circle-off{
+    color: red;
+} */
+
 
 
 .meet-card-boton-container{
@@ -218,7 +222,17 @@ main{
     transition: 0.5s;
 }
 
+.bi-heart-fill{
+    color: #3A55B1;
+    
+}
 
+.bi-heart{
+}
+
+.room-card-boton-like:active{
+    color: red;
+}
 
 .room-card-boton-like:hover{
     transform: scale(1.2);
@@ -226,10 +240,26 @@ main{
 
 .page-nums{
     text-align: center;
-    padding: 5px;
     text-decoration: none;
+    margin-top: 16px;
+
 }
 
+.page-nums a{
+    text-decoration: none;
+    background-color: white;
+    color: #754AF6;
+    border: 1px solid #754AF6;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 6px;
+}
+
+.page-nums a:hover{
+    background-color: #754AF6;
+    color: white;
+    border: 1px solid #754AF6;
+}
 
 @media screen and (max-width: 630px) {
 

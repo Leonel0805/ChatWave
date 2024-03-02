@@ -6,8 +6,8 @@ main {
     padding-bottom: 24px;
     background-color: #C7D1D8;
 
-
 }
+
 .navbar-container{
     background: linear-gradient(to bottom right, #7E9AFF, #BAA3FF);
     margin-bottom: 0px;
@@ -87,13 +87,23 @@ main {
 }
 
 
-
-
 .footer-container{
+    padding: 48px;
     background: linear-gradient(to bottom right, #7E9AFF, #BAA3FF);
-
-    height: 150px;
+    height: 110px;
+    display: flex;
+    justify-content: space-between;
 }
+.footer-list-container{
+    list-style-type: none;
+    display: flex;
+    gap: 8px;
+}
+
+.footer-list-element i{
+    color: black;
+}
+
 
 /* scrcll chrome */
 
