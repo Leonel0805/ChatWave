@@ -16,7 +16,7 @@
             <form class="d-flex mx-auto" method="GET" action="{% url 'search' %}"> <!-- Centrado -->
                 {% csrf_token %}
                 <input class="form-control me-2" name="query" type="search" placeholder="Buscar..." aria-label="Search">
-                <button class="btn btn-outline-success" >Buscar</button>
+                <button class="button-search" >Buscar</button>
             </form>
 
             {% if token %}

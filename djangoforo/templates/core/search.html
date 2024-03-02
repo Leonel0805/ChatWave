@@ -40,7 +40,13 @@
                   <form action="{% url 'room-like' pk=room.id %}" method="POST" class="room-like-link">
                     {% csrf_token %}
 
-                    <button class="card-boton room-card-boton-like"><i class="bi bi-heart icon-like"></i></button>
+                    {% if room in data.all_likedrooms %}
+                      <button class="card-boton room-card-boton-like"><i class="bi bi-heart-fill"></i></button>
+
+                    {% else %}
+                      <button class="card-boton room-card-boton-like"><i class="bi bi-heart"></i></button>
+
+                    {% endif%}
 
                   </form>
         

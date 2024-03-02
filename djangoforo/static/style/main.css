@@ -26,6 +26,20 @@ main {
 
 }
 
+.button-search{
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid #754AF6;
+    color: #754AF6;
+    font-weight: 600;
+}
+
+.button-search:hover{
+    background-color: #754AF6;
+    color: white;
+
+}
+
 .message-success{
     margin-bottom: 16px;
     background-color: rgb(0, 189, 25) ;

@@ -104,6 +104,8 @@ def search(request):
     if request.method == 'GET':
         
         url = ('http://127.0.0.1:8000/api/rooms/search/')
+        url_liked_rooms = ('http://127.0.0.1:8000/api/rooms/list/liked_rooms/')
+        
         
         #obtenemos lo enviado por el form de search en la navbar
         query = request.GET.get('query', '')
@@ -114,10 +116,12 @@ def search(request):
             #lo enviamos como params haciendo un get a la url
             params = {'search': query}
             response = requests.get(url, headers=headers, params=params)
+            response_liked_rooms = requests.get(url_liked_rooms, headers=headers)
             
             data = {}
             if response.status_code == 200:
                 data['rooms'] = response.json() 
+                data['all_likedrooms'] = response_liked_rooms.json()
                 
                 return render(request, 'core/search.html',{
                     'token':token,

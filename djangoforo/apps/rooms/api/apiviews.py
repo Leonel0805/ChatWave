@@ -66,7 +66,6 @@ class RoomSearchAPIView(APIView):
     def get(self, request):
         
         query_param = self.request.query_params.get('search', '')
-        print(query_param)
         
         if query_param != '':
             rooms = Room.objects.filter(name__icontains = query_param)
