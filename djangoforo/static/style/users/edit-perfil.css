@@ -2,7 +2,6 @@
 
 .perfil-edit{
     margin: 0 auto;
-    margin-top: 24px;
 }
 
 
@@ -41,9 +40,10 @@
 }
 
 .edit-perfil-boton{
-    background-color: #9EFF9E;
-    border: 2px solid #409743;
-    color: black;
+    color: white;
+    background-color: #754AF6;
+    border: 2px solid #754AF6;
+
     height: auto;
     transition: transform 0.5s ease;
 }

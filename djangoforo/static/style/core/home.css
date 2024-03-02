@@ -1,6 +1,11 @@
+main{
+    height: 130vh;
+
+}
+
 .home-container{
     display: flex;
-    margin-top: 24px;
+
 }
 
 /* TITULOS */
@@ -19,7 +24,7 @@
 
 .room-title, .like-rooms-title{
     background-color: #7E9AFF;
-    
+  
 }
 
 .title{
@@ -137,6 +142,8 @@
     padding-bottom: 8px;
 
 }
+
+
 
 .room-card-image-container{
     display: flex;

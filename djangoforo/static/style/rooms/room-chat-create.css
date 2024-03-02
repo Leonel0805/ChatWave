@@ -1,6 +1,14 @@
 @import '../rooms/room-chat-edit.css';
 
+
 .room-create-title{
     margin-left: 32px;
 }
 
+.edit-perfil-boton{
+    background-color: #081C63;
+    border: 2px solid #081C63;
+    color: white;
+    height: auto;
+    transition: transform 0.5s ease;
+}

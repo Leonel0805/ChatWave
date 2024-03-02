@@ -27,10 +27,10 @@
                 <!-- NAVBAR -->
         {% include 'navbar.html' %}
 
-        {% include 'core/messages.html' %}
     </header>
 
     <main>
+        {% include 'core/messages.html' %}
             
         {% block content %}
             <h1>base</h1>
@@ -50,7 +50,16 @@
     </main>
 
     
-    <footer>
+    <footer class="footer-container">
+
+        <p>© 2024 ChatWave | Todos los derechos reservados</p>
+        <p>
+            <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a>
+        </p>
+
+
+
+        <p>Desarrollado por Leonel Rodriguez</p>
 
     </footer>
     

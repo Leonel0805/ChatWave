@@ -64,7 +64,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if token:
             authenticated_user = await get_user_authenticated(token)
             await self.remove_user_online(authenticated_user, self.room_id)
-            print('user removido')
             await self.send_user_list(self.room_id)      
             
         else:
@@ -127,7 +126,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'message': users_online
             },
         )
-        print('List users enviado')
 
     async def user_list_room_connect(self, event):
         await self.send(text_data=json.dumps({
@@ -152,14 +150,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
        # Guardamos el user dentro de users_online de la room
     @database_sync_to_async
-    def save_user_connect_room(self, user_authenticated, room_id):
-        
-        print(user_authenticated.email)
+    def save_user_connect_room(self, user_authenticated, room_id):    
         room = Room.objects.filter(pk=room_id).first()
-        # Agregamos al Room nuestro user en users_online
         room.users_online.add(user_authenticated)
         
-        
+        #Eliminamos el user dentro de users_online de la room
     @database_sync_to_async
     def remove_user_online(self, user_authenticated, room_id):
         room = Room.objects.filter(pk=room_id).first()
@@ -171,12 +166,13 @@ class UserOnline(AsyncWebsocketConsumer):
     async def connect(self):
 
         await self.accept()
+        
+        #Agregamos el usuario al group del websocket
         await self.channel_layer.group_add("chat_group", self.channel_name)
-        # Agregar usuario a la lista de usuarios conectados
+        
         token = await get_token_url(self)
-        print(token)
         if token:
-            print(self.channel_name)  
+            # Agregar usuario a de usuarios conectados, set is_online=True 
             await self.connect_user(token)
             await self.send_users_online_to_group()
 
@@ -188,13 +184,10 @@ class UserOnline(AsyncWebsocketConsumer):
         token = await get_token_url(self)
         
         if token:
-            print(self.channel_name)  
             await self.disconnect_user(token)
-            print('usuario desconectado enviando listaaaa home') 
             await self.send_users_online_to_group()
 
         await self.channel_layer.group_discard("chat_group", self.channel_name)
-        # connected_users.remove(self.channel_name)
     
 
     async def receive(self, text_data):
@@ -204,6 +197,7 @@ class UserOnline(AsyncWebsocketConsumer):
  
  
  
+    #Enviamos la lista de usuarios online a todo el group del websocket 
     async def send_users_online_to_group(self):
         
         connected_users = await self.get_users_online()
@@ -219,7 +213,6 @@ class UserOnline(AsyncWebsocketConsumer):
                 'message': users_online
             },
         )
-        print('List users enviado')
 
     async def user_list_connect(self, event):
         await self.send(text_data=json.dumps({
@@ -228,6 +221,8 @@ class UserOnline(AsyncWebsocketConsumer):
         }))
  
     #CONSULTAS DATABASE
+    
+    #Obtenemos todos los usuarios is_online=True
     @database_sync_to_async
     def get_users_online(self):
         profiles = Profile.objects.filter(is_online=True)
@@ -236,10 +231,9 @@ class UserOnline(AsyncWebsocketConsumer):
         for profile in profiles:
             users.append(profile.user)
         
-        # print(list(users))
         return list(users)
     
-    
+    #Conectamos usuario create, set is_online=True
     @database_sync_to_async
     def connect_user(self, token):
         custom_token = CustomToken.objects.filter(token=token).first()
@@ -254,12 +248,12 @@ class UserOnline(AsyncWebsocketConsumer):
             profile.is_online = True
             profile.save()
             
-                  
+                 
+    #Set el usuario is_online=False
     @database_sync_to_async
     def disconnect_user(self, token):
         custom_token = CustomToken.objects.filter(token=token).first()
         authenticated_user = custom_token.user
-    # Eliminamos el Profile FALSE
         user_online = Profile.objects.filter(user=authenticated_user).first()
         user_online.is_online = False
         user_online.save()

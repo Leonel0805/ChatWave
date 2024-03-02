@@ -1,5 +1,10 @@
 @import '../core/home.css';
 
+main{
+    height: 91vh;
+
+}
+
 /* PERFIL */
 
 .container-mi-perfil{
@@ -7,7 +12,6 @@
     width: 1400px;
     margin: 0 auto;
     border-radius: 10px;
-    margin-top: 24px;
 }
 
 .container-mi-perfil-title{
@@ -112,9 +116,9 @@
 
 }
 .boton-rooms-editar{
-    color: black;
-    background-color: #7DC2FF;
-    border: 2px solid #6fa7e0;
+    color: white;
+    background-color: #754AF6;
+    border: 2px solid #754AF6;
 
 
 }
@@ -130,17 +134,8 @@
     margin: 0 auto;
 }
 
-.boton-rooms-crear{
-    background-color: #9EFF9E;
-    border: 2px solid #0f9b14;
-    color: black;
-
-    transition: transform 0.5s ease;
-}
-
-
 .boton-rooms-eliminar{
-    color: black;
-    background-color: #FF6666;
-    border: 2px solid #cc3333;
+    color: #754AF6;
+    background-color: white;
+    border: 2px solid #754AF6;
 }
