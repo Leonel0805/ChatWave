@@ -102,12 +102,27 @@ main {
 
 
 .footer-container{
-    padding: 48px;
+    padding: 32px;
     background: linear-gradient(to bottom right, #7E9AFF, #BAA3FF);
-    height: 110px;
+    height: 100%;
+
+
+}
+
+.footer{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
+
+.footer p, .footer ul{
+    margin: auto 0;
+}
+
+.footer-container a{
+    text-decoration: none;
+}
+
 .footer-list-container{
     list-style-type: none;
     display: flex;
@@ -116,6 +131,28 @@ main {
 
 .footer-list-element i{
     color: black;
+}
+
+
+
+@media screen and (max-width: 630px) {
+
+    .footer{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: auto 0;
+    }
+
+    .footer p, .footer ul{
+        margin: 8px 0px
+    }
+    .footer-list-container {
+        list-style-type: none;
+        display: flex;
+        padding: 0;
+
+    }
 }
 
 

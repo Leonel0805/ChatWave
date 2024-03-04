@@ -1,5 +1,6 @@
 main{
-    height: 130vh;
+    height: 100%;
+    padding: 32px;
 
 }
 
@@ -35,9 +36,8 @@ main{
 
 /* CONOCE GENTE */
 .meet-people-container{
-    width: 40%;
-    max-height: 300px;
-    margin-left: 32px;
+    width: 30%;
+    height: auto;
     border-radius: 5px;
     /* padding: 5px; */
 
@@ -127,12 +127,21 @@ main{
 
 /* SALAS/CHATS */
 
-
-
 .container-rooms{
-    padding-left: 150px;
-    padding-right: 24px;
+    display: flex;
+    flex-direction: row;
+    background-color: red;
+    width: 70%;
+    padding-left: 10rem;
+    justify-content: space-between;
 }
+
+.room-container{
+    width: 45%;
+    
+}
+
+
 .room-chat-card-container{
     border-radius: 5px;
 
@@ -146,7 +155,6 @@ main{
     padding-bottom: 8px;
 
 }
-
 
 
 .room-card-image-container{
@@ -261,43 +269,62 @@ main{
     border: 1px solid #754AF6;
 }
 
+.like-rooms-container {
+
+    width: 45%;
+    display: inline-block;
+
+
+}
+
 @media screen and (max-width: 630px) {
+
+    main{
+        height: 100%;
+        padding: 32px;
+    } 
 
     .home-container {
         display: flex;
         flex-direction: column; /* Cambia la dirección de los elementos a columna en pantallas pequeñas */
-        margin: 16px 32px;
+        /* margin: 16px 32px; */
     }
 
     .meet-people-container{
         width: 100%;
-        max-height: 300px;
+        height: auto;
         border-radius: 5px;
         margin-left: 0px;
+        margin-bottom: 32px;
 
   
     }
-    /* .meet-people-body-container{
-    
-        background-color: red; 
-    } 
-    */
 
-    .meet-people-container, .container, .like-rooms-container {
-
-        margin-bottom: 20px; 
+    .container-rooms{
+        display: flex;
+        flex-direction: column;
+        background-color: red;
+        padding-left: 0px;
+        padding-right: 0px;
         width: 100%;
-        display: block;
+    }
+    
+    .room-container{
+        width: 100%;
+        margin-bottom: 16px;
+        
+    }
+    
+    .like-rooms-container {
 
-
+        width: 100%;
+    
+    
     }
 
-    /* .container-rooms{
-        margin-top: 150px;
-        width: auto;
-        padding-left: 0px;
-        padding-right: 24px;
-    } */
+
+    
+
 
 }
 
