@@ -1,8 +1,8 @@
 @import '../users/edit-perfil.css';
 
 main{
-    height: 91vh;
-
+    height: 80vh;
+    padding: 32px;
 }
 
 .room-name{

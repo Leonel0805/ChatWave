@@ -1,5 +1,11 @@
 @import '../core/home.css';
 
+main{
+    height: 80vh;
+    padding: 32px;
+
+}
+
 .search-container{
     padding: 32px;
 }

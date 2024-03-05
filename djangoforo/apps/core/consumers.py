@@ -171,8 +171,11 @@ class UserOnline(AsyncWebsocketConsumer):
         await self.channel_layer.group_add("chat_group", self.channel_name)
         
         token = await get_token_url(self)
+   
+        # Agregar usuario a de usuarios conectados, set is_online=True 
         if token:
-            # Agregar usuario a de usuarios conectados, set is_online=True 
+    
+            # if self.channel_name in group_channels:
             await self.connect_user(token)
             await self.send_users_online_to_group()
 

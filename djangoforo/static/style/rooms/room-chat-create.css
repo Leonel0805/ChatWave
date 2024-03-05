@@ -1,5 +1,9 @@
 @import '../rooms/room-chat-edit.css';
 
+main{
+    height: 80vh;
+    padding: 32px;
+}
 
 .room-create-title{
     margin-left: 32px;

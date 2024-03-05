@@ -130,7 +130,6 @@ main{
 .container-rooms{
     display: flex;
     flex-direction: row;
-    background-color: red;
     width: 70%;
     padding-left: 10rem;
     justify-content: space-between;
@@ -277,7 +276,7 @@ main{
 
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 900px) {
 
     main{
         height: 100%;

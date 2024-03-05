@@ -1,39 +1,33 @@
 @import '../core/home.css';
 
 main{
-    height: 91vh;
-
+    height: 100%;
+    padding: 32px;
 }
 
 /* PERFIL */
 
 .container-mi-perfil{
 
-    width: 1400px;
+    width: 100%;
     margin: 0 auto;
-    border-radius: 10px;
-}
-
-.container-mi-perfil-title{
-    text-align: center;
-    margin-bottom: 32px;
+    display: flex;
 }
 
 .container-datos{
-    text-align: left;
-    border-radius: 10px;
-    margin-right: 50px;
-    height: auto;
-    max-width: 500px;
+
+    border-radius: 5px;
+    height: 10%;
+    width: 30%;
+    margin-left: 5%;
+
     box-shadow: 10px 10px 10px 2px rgba(14, 12, 12, 0.3);
 }
 
 .perfil-edit{
-
     background-color: #BAA3FF;
-    /* border: 2px solid #CB5BFF; */
-
 }
+
 
 .container-datos-titulo{
     padding: 8px 24px;
@@ -48,46 +42,12 @@ main{
     border-radius: 20px;
 }
 
-.content-info{
-    display: flex;
-    flex-direction: column;
-    background-color: #BAA3FF;
-    /* border: 1px solid  #CB5BFF; */
-    margin: 8px 0px;
-    text-align: left;
-    border-radius: 5px;
-    padding: 8px 16px;
-    min-height: 80px;
-    max-height: 200px;
-}
-
 .content-info-image{
     display: flex;
     margin-top: 16px;
     margin-bottom: 16px;
     
 }
-
-.content-key{
-    color: rgb(58, 58, 58);
-    font-size: 14px;
-    margin: 0;
-    height: 20px; /* Establece un ancho fijo */
-}
-
-.content-value{
-    color: black;
-    margin-top: 8px;
-    margin-bottom: 0;
-    border-radius: 50px;
-}
-
-#id_description{
-    width: auto;
-    height: auto;
-}
-
-
 
 .perfil-info-image{
     width: 90px;
@@ -103,6 +63,39 @@ main{
     transform: scale(1.05);
 
 }
+
+.content-info{
+    display: flex;
+    flex-direction: column;
+    background-color: #BAA3FF;
+    /* border: 1px solid  #CB5BFF; */
+    margin: 8px 0px;
+    text-align: left;
+    border-radius: 5px;
+    padding: 8px 16px;
+    min-height: 80px;
+    max-height: 200px;
+}
+
+.content-key{
+    color: rgb(58, 58, 58);
+    font-size: 14px;
+    margin: 0;
+}
+
+.content-value{
+    color: black;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+#id_description{
+    width: auto;
+    height: auto;
+}
+
+
+
 
 .container-edit-boton{
     text-align: center;
@@ -125,9 +118,7 @@ main{
 
 
 .boton-rooms-crear-container{
-
     display: flex;
-
 }
 
 .boton-rooms-crear-container a{
@@ -138,4 +129,18 @@ main{
     color: #754AF6;
     background-color: white;
     border: 2px solid #754AF6;
+}
+
+.contenedor-perfil-rooms{
+    width: 60%;
+    padding-left: 20%;
+
+}
+
+.room-container{
+    width: 100%;
+}
+
+.page-nums{
+
 }
