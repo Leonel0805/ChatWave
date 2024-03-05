@@ -18,8 +18,10 @@
             <img class="room-chat-image" src="{{data.room.image}}" alt="">
             <h1 class="room-title">{{data.room.name}}</h1>
             <a class="user-url-host" href="{% url 'user_view' pk=data.room.user_host.id %}"> <p> {{data.room.user_host.email}}</p></a>
-
+            <i id="bi-people" class="bi bi-people"></i>
+            
         </div>
+
 
         <div id="room-chat-body-container">
             <div class="room-chat-body" id="chat-body-room">
@@ -73,7 +75,7 @@
     </div>
 
 
-    <div class="room-chat-users-container">
+    <div id="room-chat-users-container" class="room-chat-users-container">
         <div class="room-chat-users-title-container">
             <h2 class="title">🌊 Usuarios conectados:</h2>
         </div>
@@ -95,4 +97,6 @@
     </script>
 
     <script type="module" src="{% static 'js/websocket.js' %}"></script>
+    <script type="module" src="{% static 'js/hidden-people.js' %}"></script>
+
 {% endblock %}
