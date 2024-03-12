@@ -295,19 +295,31 @@ main{
 
   
     }
+    .meet-people-card{
+        padding: 8px 48px;
+    }
 
     .meet-card-url{
         width: 50%;
     }
+    .meet-card-image{
+        display: block;
+        margin: 0 auto;
+    }
+
+    
+    .meet-card-username{
+        padding-left: 24px;
+        display: inline-block;
+    }
+
 
     .meet-card-boton-container{
         width: 50%;
-
+        text-align: center;
     }
 
-    .meet-people-card{
-        padding: 8px 48px;
-    }
+
     .container-rooms{
         display: flex;
         flex-direction: column;
