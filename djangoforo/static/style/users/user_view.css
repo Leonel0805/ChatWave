@@ -10,6 +10,9 @@ main{
 /* USER VIEW */
 .boton-rooms-crear{
     margin: 0 auto;
+    color: white;
+    background-color: #754AF6;
+    border: 2px solid #754AF6;
 }
 
 .card-boton:hover{
@@ -24,5 +27,6 @@ main{
 @media screen and (max-width: 900px) {
     main{
         height: 100%;
+        padding: 16px;
     }
 }

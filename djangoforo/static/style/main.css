@@ -3,7 +3,7 @@ body{
 
 }
 main {
-    padding: 24px 0px;
+    padding: 24px;
     background-color: #C7D1D8;
 
 }
@@ -136,6 +136,10 @@ main {
 
 
 @media screen and (max-width: 900px) {
+
+    main{
+        padding: 16px;
+    }
 
     .card-boton{
         color: white;

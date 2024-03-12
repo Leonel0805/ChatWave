@@ -1,5 +1,11 @@
 @import '../users/perfil.css';
 
+main {
+    height: 100%;
+
+
+}
+
 .perfil-edit{
     margin: 0 auto;
 }
@@ -47,4 +53,14 @@
 
     height: auto;
     transition: transform 0.5s ease;
+}
+
+@media screen and (max-width: 900px) {
+    main {
+        height: 100%;
+        /* padding: 16px; */
+        padding-bottom: 20%;
+    
+    }
+    
 }

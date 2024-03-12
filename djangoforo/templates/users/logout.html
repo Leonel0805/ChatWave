@@ -11,7 +11,7 @@
 {% block content %}
 
 
-    <div class="logout-form my-5">
+    <div class="logout-form">
         <form action="" method="post">
             {% csrf_token %}
             <div class="form-title">   
@@ -35,11 +35,3 @@
 {% endblock %}
 
 
-
-{% block scripts %}
-
-{{ authenticated_user.email|json_script:"json-authenticated-user" }}   
-
-<script type="module" src="{% static 'js/logout.js' %}"></script>
-
-{% endblock %}

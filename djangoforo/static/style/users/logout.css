@@ -1,5 +1,6 @@
 main{
     height: 91vh;
+    padding: 32px;
 
 }
 
@@ -60,3 +61,11 @@ main{
 
 }
 
+@media screen and (max-width: 600px) {
+
+        
+
+    .logout-form{
+        width: 100%;
+    }
+}
