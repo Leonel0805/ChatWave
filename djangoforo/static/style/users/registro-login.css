@@ -77,3 +77,48 @@
     color: #174AFF ;
 
 }
+
+@media screen and (max-width: 900px) {
+
+    main{
+        height: 100%;
+        padding: 16px;
+        padding-bottom: 15%;
+    } 
+
+    .registro, .login{
+        width: 100%;
+        height: auto;
+        padding: 24px 0px;
+    }
+
+
+    .registro-portada, .login-portada{
+        display: none;
+    }
+
+    .registro-form-titulo, .login-form-titulo{
+        text-align: center;
+        font-size: 32px;
+    }
+
+    .registro-form, .login-form{
+        margin: auto 0;
+        width: 100%;
+        margin: 0px;
+    
+    }
+
+    .content-info{
+        margin: 16px 56px;
+        display: flex;
+        text-align: center;
+
+    }
+
+    .content-key{
+        text-align: left;
+        margin-left: 20px;
+    }
+    
+}
