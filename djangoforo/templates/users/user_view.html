@@ -14,114 +14,103 @@
 
     <div class="container-mi-perfil">
 
-      
-      <div class="row">
-        <div class="col-6">
-          <div class="container-datos perfil-edit">
+      <div class="container-datos perfil-edit">
 
-            <div class="container-datos-titulo">
-              <h2 class="title"> Perfil </h2>
-            </div>
-
-           
-            <div class="container-content-info">
-
-              <div class="content-info-image">
-                {% if 'avatar' in data.user.keys %}
-                  <img src="{{ data.user.avatar }}" alt="" class="perfil-info-image">
-                {% endif %}
-
-              </div>
-
-              {% for key, value in data.user.items %}
-        
-                {% if key != 'avatar' %}
-                  <div class="content-info">
-                    <p class="content-key">{{key}} </p>           
-
-                    <p class="content-value">{{value}} </p>
-
-                  </div>
-                  {% endif %}
-              {% endfor %}
-
-            </div>
-          
-          </div>
-          
+        <div class="container-datos-titulo">
+          <h2 class="title"> Perfil </h2>
         </div>
 
+        
+        <div class="container-content-info">
 
-        <div class="col-6">
-          <div class="contenedor-perfil-rooms">
-            <div class="room-container">
-                          
-              <div class="title-container room-title">
-                <h2>
-                    Salas/Chats
-                </h2>
+          <div class="content-info-image">
+            {% if 'avatar' in data.user.keys %}
+              <img src="{{ data.user.avatar }}" alt="" class="perfil-info-image">
+            {% endif %}
+
+          </div>
+
+          {% for key, value in data.user.items %}
+    
+            {% if key != 'avatar' %}
+              <div class="content-info">
+                <p class="content-key">{{key}} </p>           
+
+                <p class="content-value">{{value}} </p>
+
               </div>
-                        
-              <div class="room-chat-container">
-                
-                {% if data.user_rooms %}
-                  {% for room in data.user_rooms %}
-                    <div class="room-chat-card-container">
-                      <div class="room-card-image-container">
-                        <img class="room-card-image" src="{{room.image}}" alt="image_chat">
-                      </div>
-  
-                      <div class="room-card-content">
-                        <p class="room-card-title">{{room.name}}</p>
-                  
-                        <p>{{room.likes}} Likes </p>
-  
-                        <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
-  
-                          <button class="card-boton room-card-boton-entrar">Entrar</button>
-                        </a>
+              {% endif %}
+          {% endfor %}
+
+        </div>
+      
+      </div>
+
+      <div class="contenedor-perfil-rooms">
+        <div class="room-container">
+                      
+          <div class="title-container room-title">
+            <h2>
+                Salas/Chats
+            </h2>
+          </div>
+                    
+          <div class="room-chat-container">
+            
+            {% if data.user_rooms %}
+              {% for room in data.user_rooms %}
+                <div class="room-chat-card-container">
+                  <div class="room-card-image-container">
+                    <img class="room-card-image" src="{{room.image}}" alt="image_chat">
+                  </div>
+
+                  <div class="room-card-content">
+                    <p class="room-card-title">{{room.name}}</p>
               
-                      </div>
-     
+                    <p>{{room.likes}} Likes </p>
+
+                    <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
+
+                      <button class="card-boton room-card-boton-entrar">Entrar</button>
+                    </a>
+          
+                  </div>
   
-                    </div>
-
-
-                  {% endfor %}
-
-                  <div class="page-nums">
-                    {% for num_page in data.myrooms.paginator.page_range %}
-                    <span class="">
-                        <a href="?page={{ num_page }}">{{ num_page }}</a>
-                    </span>
-                    {% endfor %}
-                  </div>  
-
-              
-                {% else %}
-
-                <div class="boton-rooms-crear-container">
-                    <button class="card-boton boton-rooms-crear">
-                      {{data.message}}
-                    </button>
 
                 </div>
-                
-                {% endif %}
-              </div>
-                
+
+
+              {% endfor %}
+
+              <div class="page-nums">
+                {% for num_page in data.myrooms.paginator.page_range %}
+                <span class="">
+                    <a href="?page={{ num_page }}">{{ num_page }}</a>
+                </span>
+                {% endfor %}
+              </div>  
+
+          
+            {% else %}
+
+            <div class="boton-rooms-crear-container">
+                <button class="card-boton boton-rooms-crear">
+                  {{data.message}}
+                </button>
+
             </div>
             
-
+            {% endif %}
           </div>
-          
-
+            
         </div>
-      </div>            
+        
+
+      </div>
+          
 
     </div>
-
-          
+       
   {% endif%}
 
 {% endblock %}
