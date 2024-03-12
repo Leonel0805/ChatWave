@@ -16,3 +16,8 @@ main{
     height: auto;
     transition: transform 0.5s ease;
 }
+
+#id_image{
+    width: 100%;
+    
+}

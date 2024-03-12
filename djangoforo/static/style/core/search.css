@@ -1,7 +1,7 @@
 @import '../core/home.css';
 
 main{
-    height: 80vh;
+    height: 91vh;
     padding: 24px;
 
 }
@@ -41,4 +41,42 @@ main{
     margin-top: 8px;
     margin-bottom: 8px;
     padding: 8px 0px;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    
+    .room-container{
+        width: 100%;
+        margin-bottom: 16px;
+        
+    }
+
+    .room-chat-container{
+        margin: 0px;
+    }
+    .room-chat-card-container{
+        width: 100%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        margin: 0px;
+    }
+    
+ 
+
+    .room-card-image-container{
+        display: flex;
+        border-radius: 10%;
+        max-width: 30%;
+        max-height: 100%;
+    }
+    
+    .room-card-image{
+        width: 100px;
+        height: 110px;
+        border-radius: 8px;
+    } 
+    
+
 }

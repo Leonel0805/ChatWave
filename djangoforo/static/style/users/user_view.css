@@ -2,6 +2,11 @@
 
 @import '../users/perfil.css';
 
+main{
+    height: 80vh;
+    padding: 24px;
+}
+
 /* USER VIEW */
 .boton-rooms-crear{
     margin: 0 auto;

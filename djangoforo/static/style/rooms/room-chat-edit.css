@@ -30,9 +30,7 @@ main{
     border-radius: 10px;
     padding: 8px;
 }
-
 #id_image{
-    border: 2px solid #174AFF;
-
+    width: 100%;
+    
 }
-

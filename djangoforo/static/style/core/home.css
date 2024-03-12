@@ -314,6 +314,10 @@ main{
         margin-bottom: 16px;
         
     }
+    .room-chat-card-container{
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
     
     .like-rooms-container {
 
@@ -327,14 +331,11 @@ main{
         border-radius: 10%;
         max-width: 30%;
         max-height: 100%;
-        margin-top: 8px;
-        margin-bottom: 0px;
-    
     }
     
     .room-card-image{
-        width: 100%;
-        height: auto;
+        width: 100px;
+        height: 110px;
         border-radius: 8px;
     } 
     

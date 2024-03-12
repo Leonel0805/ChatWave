@@ -2,6 +2,7 @@
 
 main{
     height: 100%;
+    /* background-color: red; */
     padding: 24px;
 }
 
@@ -10,7 +11,7 @@ main{
     background: linear-gradient(to bottom right,     #7E9AFF,     #BAA3FF);
     max-width: 1000px;
     width: 60%;
-    max-height: 700px;
+    max-height: auto;
     padding: 15px 30px;
     margin: 0 auto;
     border-radius: 20px;
@@ -213,7 +214,7 @@ main{
         display: block;
         height: auto ;
         text-align: center;
-        background-color: red;
+        /* background-color: red; */
         width: 100%;
     }
 
@@ -227,7 +228,7 @@ main{
     }
     
     .room-chat-users-container{
-        display: inline-block;
+        display: none;
         background-color: #BAA3FF;
         width: 90%;
         position: absolute;

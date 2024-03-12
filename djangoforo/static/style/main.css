@@ -1,9 +1,9 @@
 body{
     margin: 0;
+
 }
 main {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding: 24px 0px;
     background-color: #C7D1D8;
 
 }
@@ -142,6 +142,13 @@ main {
         padding: 4px 35px;
         border-radius: 10px;
         transition: transform 0.7s;
+    }
+
+    .footer-container{
+        padding: 32px;
+        background: linear-gradient(to bottom right, #7E9AFF, #BAA3FF);
+        height: 100%;
+    
     }
     
 

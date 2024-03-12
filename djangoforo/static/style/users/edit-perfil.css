@@ -17,6 +17,7 @@
 
 .content-info{
     height: auto;
+    width: auto;
 }
 .form-edit{
     height: auto;
@@ -35,8 +36,8 @@
 }
 
 #id_avatar{
-    border: 2px solid #CB5BFF;
-    
+
+    width: 100%;    
 }
 
 .edit-perfil-boton{
