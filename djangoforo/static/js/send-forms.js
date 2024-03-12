@@ -11,7 +11,6 @@ function SubmitForm(formId, buttonId) {
     }
 }
 
-console.log('holaaaaaa')
 
 SubmitForm('perfil-form', 'perfil-form-boton')
 SubmitForm('room-form', 'room-form-boton')

@@ -14,10 +14,10 @@ chatSocket.onmessage = function(e){
 
     if (data['type'] == 'user_list_connect'){
         console.log('userlist_connect')
-        console.log(data.message)
+        // console.log(data.message)
 
         let users = data.message.connected_users
-        console.log(users)
+        // console.log(users)
 
         const userCardUrlElements = document.getElementsByClassName('meet-card-url');
         const usernameElements = document.getElementsByClassName('meet-card-username');
