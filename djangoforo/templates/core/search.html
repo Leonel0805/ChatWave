@@ -30,7 +30,13 @@
                 <div class="room-card-content">
                   <p class="room-card-title">{{room.name}}</p>
             
-                  <p>{{room.user_host.email}} | {{room.likes}} Likes </p>
+                  <p>{{room.user_host.email}} | {{room.likes}} 
+                    {% if room.likes == 1 %}
+                      Like
+                    {% else %}
+                      Likes
+                    {% endif %}
+                    </p>
 
                   <a href="{% url 'room-chat' pk=room.id %}" class="room-container-link" >
 

@@ -3,7 +3,7 @@
 @import '../users/perfil.css';
 
 main{
-    height: 80vh;
+    min-height: 80vh;
     padding: 24px;
 }
 
@@ -19,4 +19,10 @@ main{
 .container-datos{
     padding-bottom: 24px;
 
+}
+
+@media screen and (max-width: 900px) {
+    main{
+        height: 100%;
+    }
 }

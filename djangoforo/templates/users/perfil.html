@@ -77,7 +77,13 @@
                   <div class="room-card-content">
                     <p class="room-card-title">{{room.name}}</p>
               
-                    <p>{{room.likes}} Likes </p>
+                    <p>{{room.likes}} 
+                      {% if room.likes == 1 %}
+                        Like
+                      {% else %}
+                        Likes
+                      {% endif %}
+                      </p>
 
                     <a href="{% url 'room-edit-delete' pk=room.id %}" class="room-container-link" >
 

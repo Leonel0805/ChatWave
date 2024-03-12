@@ -168,6 +168,15 @@ main {
         padding: 0;
 
     }
+
+    .navbar-collapse{
+        text-align: center;
+    }
+
+    .navbar-collapse form{
+        width: 70%;
+    }
+
 }
 
 
