@@ -73,6 +73,7 @@ main{
     border-radius: 50%;
     border: 2px solid #CB5BFF;
     transition: transform 0.5s;
+    object-fit: cover;
 }
 
 .meet-card-image:hover{
@@ -139,7 +140,6 @@ main{
     
 }
 
-
 .room-chat-card-container{
     border-radius: 5px;
 
@@ -169,6 +169,7 @@ main{
     width: 90px;
     height: 110px;
     border-radius: 8px;
+    object-fit: cover;
 } 
 
 .room-card-content{

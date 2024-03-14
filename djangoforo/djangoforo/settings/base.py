@@ -1,13 +1,24 @@
 from pathlib import Path
 import os
 from datetime import timedelta
-
+from django.core.exceptions import ImproperlyConfigured
+import json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+with open("secret.json") as f:
+    secrets = json.loads(f.read())
+
+def get_secret(secret_name, secrets=secrets):
+    try:
+        return secrets[secret_name]
+    except:
+        msg = "la variable %s no existe" % secret_name
+        raise ImproperlyConfigured(msg)
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l&%j-$@xr*!38z(1&35u!bjhu2q7o#!&)qp@+(uw^gb2+zr)87'
+SECRET_KEY = get_secret('SECRET_KEY')
 
 
 DJANGO_APPS = [
@@ -71,7 +82,7 @@ WSGI_APPLICATION = 'djangoforo.wsgi.application'
 ASGI_APPLICATION = 'djangoforo.asgi.application'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",  # o tu dominio en desarrollo
+    "http://localhost:8000", 
     "http://localhost:8001",
 ]
 
@@ -90,7 +101,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [('redis://:mQ5S0L7pW6kUkCYwXuZ1SCDsI74Mwl4G@redis-15697.c281.us-east-1-2.ec2.cloud.redislabs.com:15697')],
+            "hosts": [(get_secret('REDIS_SERVER'))],
        
         },
     },

@@ -120,9 +120,16 @@ main{
     display: flex;
 }
 
+.boton-rooms-crear{
+    color: white;
+    background-color: #754AF6;
+    border: 2px solid #754AF6;
+}
+
 .boton-rooms-crear-container a{
     margin: 0 auto;
 }
+
 
 .boton-rooms-eliminar{
     color: #754AF6;

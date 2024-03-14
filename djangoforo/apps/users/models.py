@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     email = models.EmailField(unique=True, blank=False)
     username = models.CharField(max_length=25, unique=True, blank=False)
-    bio = models.TextField(blank=True, null=True)
+    bio = models.TextField(blank=True, null=True, default='¡Hola estoy usando ChatWave!')
     avatar = models.ImageField(upload_to='img/user', default='/load/foto_perfil.jpg', blank=True, null=True, verbose_name='Imagenlol')
     
     is_active = models.BooleanField(default=True)

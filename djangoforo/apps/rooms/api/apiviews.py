@@ -22,7 +22,7 @@ class RoomCreateAPIView(APIView):
             room_serializer.save()
             
             return Response({
-                'message':'Room created!!'
+                'message':'Sala creada correctamente!'
             }, status=status.HTTP_201_CREATED)
             
         else:

@@ -158,7 +158,13 @@
         
                     <div class="room-card-content">
                       <p class="room-card-title">{{likedroom.name}}</p>
-                      <p>{{likedroom.user_host.email}} | {{likedroom.likes}} Likes </p>
+                      <p>{{likedroom.user_host.email}} | {{likedroom.likes}} 
+                        {% if likedroom.likes == 1 %}
+                          Like
+                        {% else %}
+                          Likes
+                        {% endif %}
+                        </p>
         
                       <a href="{% url 'room-chat' pk=likedroom.id %}" class="room-container-link">
                         <button class="card-boton room-card-boton-entrar">Entrar</button>

@@ -39,6 +39,7 @@ def room_chat(request, pk):
         else:
             response = requests.get(url)
             data = response.json()  
+            # print(response.json())
             ms = Message.objects.filter(room=data['room']['id'])
                 
             data['ms'] = ms
