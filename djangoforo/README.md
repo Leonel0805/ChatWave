@@ -12,6 +12,7 @@ Bienvenido a la documentación de la API de ChatWave. Acá encontrarás informac
     - [Inicio de Sesión](#inicio-de-sesión)
     - [Información del usuario con sesión iniciada](#información-del-usuario-con-sesión-iniciada)
     - [Editar detalles del usuario](#editar-detalles-del-usuario)
+    - [Ver listado de usuarios](#ver-listado-de-usuarios)
     - [Ver el perfil de un usuario](#ver-el-perfil-de-un-usuario)
     - [Cerrar Sesión](#cerrar-sesión)
   - [Salas](#salas)
@@ -72,18 +73,29 @@ Bienvenido a la documentación de la API de ChatWave. Acá encontrarás informac
   - `Authorization: Bearer [token]` (Reemplaza `[token]` con el token válido)
 - **Respuesta Exitosa**:
   - Código de estado: 200 (OK)
-  - Cuerpo de respuesta: `{"message": "Update successfully!", "user": {"id": 1, "username": "usuario123_update", "email": "usuario_update@example.com", ...}}`)
+  - Cuerpo de respuesta: `{"id": 1, "email": "usuario@example.com", "username": "usuario123", ...}`)
+
+### Ver listado de usuarios
+- **URL**: `/api/authentication/users/`
+- **Método HTTP**: `GET`
+- **Descripción**: Este endpoint permite a los usuarios ver el listado de usuarios.
+- **Encabezados de Autenticación**:
+  - `Authorization: Bearer [token]` (Reemplaza `[token]` con el token válido)
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: `{{"id": 1, "email": "usuario@example.com"...}, {"id":2, "email":"usuario2@example.com"} ...}`)
+
 
 ### Ver el perfil de un usuario
 
-- **URL**: `/api/user/<int:pk>`
+- **URL**: `/api/usersview/usersview/{pk}/`
 - **Método HTTP**: `GET`
 - **Descripción**: Este endpoint permite a los usuarios ver el perfil de otros usuarios.
 - **Encabezados de Autenticación**:
   - `Authorization: Bearer [token]` (Reemplaza `[token]` con el token válido)
 - **Respuesta Exitosa**:
   - Código de estado: 200 (OK)
-  - Cuerpo de respuesta: `{"user": {"id", "username": "test1" , "photo_image": "img/", "posts": [], "followers_users": 10}}`
+  - Cuerpo de respuesta: `{"user": {"username": "test1" , "email": "usuario@example.com"...}}`
 - **Respuesta en Caso de Error**:
   - Codigo de estado: 404 (Not found)
   - Cuerpo de respuesta: `{"error": "User not found"}`

@@ -69,6 +69,10 @@ class UserGenericViewSet(GenericViewSet, mixins.UpdateModelMixin):
             return Response({
                 'user':user_serializer.data
             })
+        else:
+            return Response({
+                'error':'User not found'
+            })
     
             
     def destroy(self, request, pk=None):
