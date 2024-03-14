@@ -31,7 +31,7 @@ ChatWave es una web-app donde los usuarios pueden conectarse, interactuar y comp
   - Podrás ver los usuarios conectados actualmente en tiempo real.
   - Podrás cambiar tu foto y estados de tu perfil. También podrás likear y entrar a salas de otros usuarios.
   - Podrás enviar y recibir mensajes en tiempo real dentro de las salas.
-  - Podrás encontrar contenido fácilmente, para sentirte cómodo a la hora de usar la aplicación;
+  - Podrás encontrar contenido fácilmente, para sentirte cómodo a la hora de usar la aplicación.
   - Tendrás un buscador con palabras claves, para ahorrar tiempo a la hora de encontrar sala de tu interés.
 
 

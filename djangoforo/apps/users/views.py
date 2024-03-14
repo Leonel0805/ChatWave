@@ -29,7 +29,9 @@ def me_perfil(request):
             data = {}
             
             if response.status_code == 200:
+                
                 data['me'] = response.json()
+                del data['me']['id']
                 data['verbose_name'] = User._meta.get_field('avatar').verbose_name
                 
             if response_rooms.status_code == 200:
@@ -98,14 +100,9 @@ def me_perfil_edit(request):
             response = requests.patch(url, headers=headers, data=request.POST, files=files)
             
             if response.status_code == 200:
-                user_data = response.json()
-                
-                # actualizamos la cookie User
-                user_jsonstr = json.dumps(user_data)
+
                 response_html = redirect('me-perfil')
-                response_html.set_cookie('User', user_jsonstr)
                 messages.success(request, 'Cambios guardados correctamente!')
-                
                 return response_html
             
             else:
